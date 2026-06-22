@@ -1,16 +1,16 @@
 {
-  "actualizado": "2026-06-22T19:09:31.570165",
+  "actualizado": "2026-06-22T19:18:57.005495",
   "total": 9,
   "productos": [
     {
-      "id": "prod_0_43285",
+      "id": "prod_0_17986",
       "link_afiliado": "https://meli.la/11ubKXR",
       "titulo": "SanDisk Ultra Memoria Micro Sd",
-      "precio_clp": 26524.0,
+      "precio_clp": 28290.0,
       "precio_original_clp": 34990.0,
-      "precio_fmt": "$26.524",
+      "precio_fmt": "$28.290",
       "precio_orig_fmt": "$34.990",
-      "descuento_pct": 24.2,
+      "descuento_pct": 19.1,
       "categoria": "memorias",
       "descripcion": "La SanDisk UltraÂ® microSDHCâ¢ UHS-I de 128 GB le brinda la libertad de capturar rÃ¡pidamente imÃ¡genes y videos de alta definiciÃ³n. Con horas de espacio para video Full HD, sus velocidades de transferencia de hasta 100 MB/segundo lo ayudan a mover ese contenido rÃ¡pidamente desde su telÃ©fono a su PC.",
       "imagen": "",
@@ -19,7 +19,7 @@
       "activo": true
     },
     {
-      "id": "prod_1_74365",
+      "id": "prod_1_85459",
       "link_afiliado": "https://meli.la/2br6JiG",
       "titulo": "Cargador Portatil Bateria Power Bank Master-g 30000mah 22.5w Color Azul",
       "precio_clp": 27190.0,
@@ -35,7 +35,7 @@
       "activo": true
     },
     {
-      "id": "prod_2_12188",
+      "id": "prod_2_44349",
       "link_afiliado": "https://meli.la/12gANF8",
       "titulo": "AudÃ­fonos In-ear Bluetooth InalÃ¡mbrico gamer Anker con cancelacion",
       "precio_clp": 24990.0,
@@ -51,14 +51,14 @@
       "activo": true
     },
     {
-      "id": "prod_3_45369",
+      "id": "prod_3_44093",
       "link_afiliado": "https://meli.la/2T9MFVG",
       "titulo": "AudÃ­fonos InalÃ¡mbricos Con Noise Cancelling Wh-ch720n",
-      "precio_clp": 69990.0,
+      "precio_clp": 89990.0,
       "precio_original_clp": 99990.0,
-      "precio_fmt": "$69.990",
+      "precio_fmt": "$89.990",
       "precio_orig_fmt": "$99.990",
-      "descuento_pct": 30.0,
+      "descuento_pct": 10.0,
       "categoria": "audifonos",
       "descripcion": "Audifonos bluetooth con cancelacion de ruido",
       "imagen": "",
@@ -67,14 +67,14 @@
       "activo": true
     },
     {
-      "id": "prod_4_65546",
+      "id": "prod_4_77739",
       "link_afiliado": "https://meli.la/2WFEtB8",
       "titulo": "55\" Crystal UHD U8000F 4K Smart TV (2025)",
-      "precio_clp": 314312.0,
+      "precio_clp": 429990.0,
       "precio_original_clp": 579990.0,
-      "precio_fmt": "$314.312",
+      "precio_fmt": "$429.990",
       "precio_orig_fmt": "$579.990",
-      "descuento_pct": 45.8,
+      "descuento_pct": 25.9,
       "categoria": "smartv",
       "descripcion": "Smart TV Samsung 55\" Crystal UHD U8000F 4K (2025)",
       "imagen": "",
@@ -83,7 +83,7 @@
       "activo": true
     },
     {
-      "id": "prod_5_45265",
+      "id": "prod_5_98287",
       "link_afiliado": "https://meli.la/2EzTiji",
       "titulo": "Kit De Internet Via SatÃ©lite Starlink Mini Blanco",
       "precio_clp": 275990.0,
@@ -99,7 +99,7 @@
       "activo": true
     },
     {
-      "id": "prod_6_78016",
+      "id": "prod_6_59003",
       "link_afiliado": "https://meli.la/1fGsL7k",
       "titulo": "Disco Duro Externo500gb Usb3.0 Compatible Pc,mac,ps3,ps4,ps5",
       "precio_clp": 23491.0,
@@ -115,14 +115,14 @@
       "activo": true
     },
     {
-      "id": "prod_7_05376",
+      "id": "prod_7_42267",
       "link_afiliado": "https://meli.la/1UosYo9",
       "titulo": "Teclado Redragon Kumara QWERTY Outemu Red espaÃ±ol latinoamÃ©rica color negro con luz RGB",
-      "precio_clp": 42990.0,
+      "precio_clp": 39590.0,
       "precio_original_clp": 42990.0,
-      "precio_fmt": "$42.990",
+      "precio_fmt": "$39.590",
       "precio_orig_fmt": "$42.990",
-      "descuento_pct": 0,
+      "descuento_pct": 7.9,
       "categoria": "teclados",
       "descripcion": "Teclado Redragon Kumara QWERTY Outemu Red espaÃ±ol latinoamÃ©rica color negro con luz RGB",
       "imagen": "",
@@ -131,14 +131,14 @@
       "activo": true
     },
     {
-      "id": "prod_8_10176",
+      "id": "prod_8_67727",
       "link_afiliado": "https://meli.la/156BJx7",
       "titulo": "Teclado InalÃ¡mbrico Bluetooth Logitech K250 Negro",
-      "precio_clp": 26490.0,
+      "precio_clp": 21990.0,
       "precio_original_clp": 30990.0,
-      "precio_fmt": "$26.490",
+      "precio_fmt": "$21.990",
       "precio_orig_fmt": "$30.990",
-      "descuento_pct": 14.5,
+      "descuento_pct": 29.0,
       "categoria": "teclados",
       "descripcion": "Teclado InalÃ¡mbrico Bluetooth Logitech K250 Negro",
       "imagen": "",
