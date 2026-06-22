@@ -1,19 +1,30 @@
 name: Publicar Ofertas
+
 on:
   schedule:
     - cron: '0 12,17,23 * * *'
   workflow_dispatch:
+
 jobs:
   publicar:
     runs-on: ubuntu-latest
+
     permissions:
       contents: write
+
     steps:
       - uses: actions/checkout@v4
+
+      - name: Sincronizar repositorio
+        run: |
+          git pull --rebase origin main
+
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+
       - run: pip install -r requirements.txt
+
       - name: Publicar ofertas
         env:
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
@@ -21,11 +32,11 @@ jobs:
           TG_INTRO_MSG: ${{ secrets.TG_INTRO_MSG }}
           SHEETS_CSV_URL: ${{ secrets.SHEETS_CSV_URL }}
         run: python publicar.py
+
       - name: Guardar JSON
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git pull --rebase origin main
           git add data/ofertas.json data/enviados.json
           git diff --staged --quiet || git commit -m "Actualizar ofertas"
           git push origin main
