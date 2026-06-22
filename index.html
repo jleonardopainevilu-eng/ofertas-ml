@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="es-CL">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ofertas MercadoLibre Chile — Mejores precios hoy</title>
+  <meta name="description" content="Encuentra las mejores ofertas de MercadoLibre Chile actualizadas cada hora. Compara precios, descuentos y envío gratis.">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Ofertas MercadoLibre Chile">
+  <meta property="og:description" content="Las mejores ofertas actualizadas cada hora con envío gratis.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #f8f8f5;
+      --surface:   #ffffff;
+      --border:    #e8e6de;
+      --text:      #1a1a18;
+      --muted:     #6b6b67;
+      --accent:    #FFE600;   /* amarillo ML */
+      --accent-d:  #d4be00;
+      --green:     #00a650;
+      --red:       #e53935;
+      --radius:    10px;
+      --shadow:    0 1px 3px rgba(0,0,0,.07);
+    }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    /* ── Header ── */
+    header {
+      background: var(--accent);
+      padding: 0 1.5rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 2px solid var(--accent-d);
+    }
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      height: 58px;
+    }
+    .logo {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .logo span { color: #3483fa; }
+    #busqueda {
+      flex: 1;
+      padding: 8px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 6px;
+      font-size: 14px;
+      font-family: inherit;
+      background: white;
+      max-width: 480px;
+    }
+    #busqueda:focus { outline: none; border-color: #3483fa; }
+
+    /* ── Layout ── */
+    main { max-width: 1200px; margin: 0 auto; padding: 1.5rem; }
+
+    /* ── Filtros ── */
+    .filtros {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 1.25rem;
+      align-items: center;
+    }
+    .filtros select, .filtros input[type=number] {
+      padding: 6px 10px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 13px;
+      font-family: inherit;
+      background: white;
+      cursor: pointer;
+    }
+    .chip {
+      padding: 5px 12px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      font-size: 13px;
+      background: white;
+      cursor: pointer;
+      transition: all .15s;
+      color: var(--text);
+    }
+    .chip.activo, .chip:hover {
+      background: #3483fa;
+      border-color: #3483fa;
+      color: white;
+    }
+
+    /* ── Stats ── */
+    .stats {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 1.25rem;
+      flex-wrap: wrap;
+    }
+    .stat {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: .65rem 1rem;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .stat strong { color: var(--text); font-size: 18px; display: block; }
+
+    /* ── Grid de productos ── */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 14px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform .15s, box-shadow .15s;
+      display: flex;
+      flex-direction: column;
+    }
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 14px rgba(0,0,0,.10);
+    }
+
+    .card-img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: contain;
+      background: #fafaf8;
+      padding: 12px;
+    }
+
+    .card-body { padding: 12px; flex: 1; display: flex; flex-direction: column; gap: 6px; }
+
+    .card-titulo {
+      font-size: 13px;
+      color: var(--text);
+      line-height: 1.4;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .card-precio {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--text);
+      margin-top: auto;
+    }
+    .card-original {
+      font-size: 12px;
+      color: var(--muted);
+      text-decoration: line-through;
+    }
+
+    .badges { display: flex; gap: 5px; flex-wrap: wrap; }
+    .badge {
+      font-size: 11px;
+      font-weight: 500;
+      padding: 2px 7px;
+      border-radius: 4px;
+    }
+    .badge-desc  { background: #fff0f0; color: var(--red); }
+    .badge-envio { background: #e6f7ef; color: var(--green); }
+    .badge-nuevo { background: #eef3ff; color: #3483fa; }
+
+    .card-comision {
+      font-size: 11px;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      padding-top: 6px;
+      margin-top: 6px;
+    }
+
+    .btn-ver {
+      display: block;
+      text-align: center;
+      padding: 9px;
+      background: #3483fa;
+      color: white;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      border-radius: 6px;
+      margin-top: 8px;
+      transition: background .15s;
+    }
+    .btn-ver:hover { background: #2968c8; }
+
+    /* ── Estados ── */
+    .loading, .vacio {
+      text-align: center;
+      padding: 4rem 1rem;
+      color: var(--muted);
+      grid-column: 1 / -1;
+    }
+    .spinner {
+      width: 36px; height: 36px;
+      border: 3px solid var(--border);
+      border-top-color: #3483fa;
+      border-radius: 50%;
+      animation: spin .8s linear infinite;
+      margin: 0 auto 1rem;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── Actualización ── */
+    #actualizado {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 12px;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      margin-top: 3rem;
+    }
+    footer a { color: var(--muted); }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="/" class="logo">Ofertas<span>CL</span></a>
+    <input type="text" id="busqueda" placeholder="Buscar productos...">
+  </div>
+</header>
+
+<main>
+  <div class="filtros">
+    <select id="filtro-categoria">
+      <option value="">Todas las categorías</option>
+      <option value="electronica">Electrónica</option>
+      <option value="celulares">Celulares</option>
+      <option value="electrodomesticos">Electrodomésticos</option>
+      <option value="herramientas">Herramientas</option>
+      <option value="ropa">Ropa</option>
+      <option value="deportes">Deportes</option>
+    </select>
+
+    <select id="filtro-orden">
+      <option value="comision">Mayor comisión</option>
+      <option value="descuento">Mayor descuento</option>
+      <option value="precio_asc">Menor precio</option>
+      <option value="precio_desc">Mayor precio</option>
+    </select>
+
+    <button class="chip" id="chip-envio">Envío gratis</button>
+    <button class="chip" id="chip-descuento">Con descuento</button>
+  </div>
+
+  <div class="stats" id="stats"></div>
+  <p id="actualizado"></p>
+
+  <div class="grid" id="grid">
+    <div class="loading">
+      <div class="spinner"></div>
+      <p>Cargando ofertas...</p>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p>Las comisiones se generan cuando compras a través de nuestros links.</p>
+  <p>Participamos en el programa de afiliados de MercadoLibre.</p>
+  <p style="margin-top:.5rem"><a href="https://www.mercadolibre.cl">MercadoLibre Chile</a> &middot; Actualizado cada hora</p>
+</footer>
+
+<script>
+  let TODOS = [];
+  let filtroEnvio = false;
+  let filtroDescuento = false;
+
+  const fmtCLP = n => '$' + Math.round(n).toLocaleString('es-CL');
+
+  async function cargarDatos() {
+    try {
+      const resp = await fetch('data/ofertas.json');
+      if (!resp.ok) throw new Error('No se pudo cargar ofertas.json');
+      const data = await resp.json();
+      TODOS = data.productos || [];
+
+      const fecha = new Date(data.actualizado);
+      document.getElementById('actualizado').textContent =
+        'Actualizado: ' + fecha.toLocaleString('es-CL');
+
+      renderStats();
+      renderGrid();
+    } catch (e) {
+      document.getElementById('grid').innerHTML =
+        '<div class="vacio"><p>No se encontraron datos. Asegúrate de correr el scheduler primero.</p></div>';
+      console.error(e);
+    }
+  }
+
+  function filtrar() {
+    const q   = document.getElementById('busqueda').value.toLowerCase();
+    const cat = document.getElementById('filtro-categoria').value;
+    const ord = document.getElementById('filtro-orden').value;
+
+    let lista = TODOS.filter(p => {
+      if (q   && !p.titulo.toLowerCase().includes(q))        return false;
+      if (cat && p.categoria_nombre !== cat)                  return false;
+      if (filtroEnvio    && !p.envio_gratis)                  return false;
+      if (filtroDescuento && p.descuento_pct <= 0)            return false;
+      return true;
+    });
+
+    lista.sort((a, b) => {
+      if (ord === 'comision')    return b.comision_clp - a.comision_clp;
+      if (ord === 'descuento')   return b.descuento_pct - a.descuento_pct;
+      if (ord === 'precio_asc')  return a.precio - b.precio;
+      if (ord === 'precio_desc') return b.precio - a.precio;
+      return 0;
+    });
+
+    return lista;
+  }
+
+  function renderStats() {
+    const totalComision = TODOS.reduce((s, p) => s + (p.comision_clp || 0), 0);
+    const conEnvio = TODOS.filter(p => p.envio_gratis).length;
+    const maxDesc  = TODOS.length ? Math.max(...TODOS.map(p => p.descuento_pct)) : 0;
+
+    document.getElementById('stats').innerHTML = `
+      <div class="stat"><strong>${TODOS.length}</strong>productos</div>
+      <div class="stat"><strong>${conEnvio}</strong>con envío gratis</div>
+      <div class="stat"><strong>${Math.round(maxDesc)}%</strong>mayor descuento</div>
+      <div class="stat"><strong>${fmtCLP(totalComision)}</strong>comisión potencial</div>
+    `;
+  }
+
+  function renderGrid() {
+    const lista = filtrar();
+    const grid  = document.getElementById('grid');
+
+    if (!lista.length) {
+      grid.innerHTML = '<div class="vacio"><p>No hay productos con esos filtros.</p></div>';
+      return;
+    }
+
+    grid.innerHTML = lista.map(p => `
+      <article class="card">
+        <img class="card-img" src="${p.imagen || ''}" alt="${p.titulo}" loading="lazy"
+          onerror="this.src='https://http.cat/404'">
+        <div class="card-body">
+          <p class="card-titulo">${p.titulo}</p>
+          <div class="badges">
+            ${p.badge_desc  ? `<span class="badge badge-desc">${p.badge_desc}</span>` : ''}
+            ${p.badge_envio ? `<span class="badge badge-envio">${p.badge_envio}</span>` : ''}
+            ${p.estado === 'new' ? '<span class="badge badge-nuevo">Nuevo</span>' : ''}
+          </div>
+          ${p.original_fmt ? `<span class="card-original">${p.original_fmt}</span>` : ''}
+          <p class="card-precio">${p.precio_fmt}</p>
+          <p class="card-comision">Comisión estimada: ${fmtCLP(p.comision_clp)} CLP (${p.comision_pct}%)</p>
+          <a class="btn-ver" href="${p.link_afiliado}" target="_blank" rel="noopener">
+            Ver en MercadoLibre
+          </a>
+        </div>
+      </article>
+    `).join('');
+  }
+
+  /* Eventos */
+  document.getElementById('busqueda').addEventListener('input', renderGrid);
+  document.getElementById('filtro-categoria').addEventListener('change', renderGrid);
+  document.getElementById('filtro-orden').addEventListener('change', renderGrid);
+
+  document.getElementById('chip-envio').addEventListener('click', function() {
+    filtroEnvio = !filtroEnvio;
+    this.classList.toggle('activo', filtroEnvio);
+    renderGrid();
+  });
+
+  document.getElementById('chip-descuento').addEventListener('click', function() {
+    filtroDescuento = !filtroDescuento;
+    this.classList.toggle('activo', filtroDescuento);
+    renderGrid();
+  });
+
+  cargarDatos();
+</script>
+</body>
+</html>
