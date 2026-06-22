@@ -1,9 +1,9 @@
 {
-  "actualizado": "2026-06-22T19:18:57.005495",
+  "actualizado": "2026-06-22T19:28:39.072299",
   "total": 9,
   "productos": [
     {
-      "id": "prod_0_17986",
+      "id": "prod_0_46160",
       "link_afiliado": "https://meli.la/11ubKXR",
       "titulo": "SanDisk Ultra Memoria Micro Sd",
       "precio_clp": 28290.0,
@@ -19,7 +19,7 @@
       "activo": true
     },
     {
-      "id": "prod_1_85459",
+      "id": "prod_1_13934",
       "link_afiliado": "https://meli.la/2br6JiG",
       "titulo": "Cargador Portatil Bateria Power Bank Master-g 30000mah 22.5w Color Azul",
       "precio_clp": 27190.0,
@@ -35,9 +35,9 @@
       "activo": true
     },
     {
-      "id": "prod_2_44349",
+      "id": "prod_2_41337",
       "link_afiliado": "https://meli.la/12gANF8",
-      "titulo": "AudÃ­fonos In-ear Bluetooth InalÃ¡mbrico gamer Anker con cancelacion",
+      "titulo": "AudÃ­fonos In-ear Bluetooth Inalambrico gamer Anker con cancelacion",
       "precio_clp": 24990.0,
       "precio_original_clp": 29990.0,
       "precio_fmt": "$24.990",
@@ -51,9 +51,9 @@
       "activo": true
     },
     {
-      "id": "prod_3_44093",
+      "id": "prod_3_08165",
       "link_afiliado": "https://meli.la/2T9MFVG",
-      "titulo": "AudÃ­fonos InalÃ¡mbricos Con Noise Cancelling Wh-ch720n",
+      "titulo": "AudÃ­fonos Inalambricos Con Noise Cancelling Wh-ch720n",
       "precio_clp": 89990.0,
       "precio_original_clp": 99990.0,
       "precio_fmt": "$89.990",
@@ -67,7 +67,7 @@
       "activo": true
     },
     {
-      "id": "prod_4_77739",
+      "id": "prod_4_29320",
       "link_afiliado": "https://meli.la/2WFEtB8",
       "titulo": "55\" Crystal UHD U8000F 4K Smart TV (2025)",
       "precio_clp": 429990.0,
@@ -83,9 +83,9 @@
       "activo": true
     },
     {
-      "id": "prod_5_98287",
+      "id": "prod_5_38502",
       "link_afiliado": "https://meli.la/2EzTiji",
-      "titulo": "Kit De Internet Via SatÃ©lite Starlink Mini Blanco",
+      "titulo": "Kit De Internet Via Satelite Starlink Mini Blanco",
       "precio_clp": 275990.0,
       "precio_original_clp": 275990.0,
       "precio_fmt": "$275.990",
@@ -99,7 +99,7 @@
       "activo": true
     },
     {
-      "id": "prod_6_59003",
+      "id": "prod_6_73356",
       "link_afiliado": "https://meli.la/1fGsL7k",
       "titulo": "Disco Duro Externo500gb Usb3.0 Compatible Pc,mac,ps3,ps4,ps5",
       "precio_clp": 23491.0,
@@ -115,7 +115,7 @@
       "activo": true
     },
     {
-      "id": "prod_7_42267",
+      "id": "prod_7_58447",
       "link_afiliado": "https://meli.la/1UosYo9",
       "titulo": "Teclado Redragon Kumara QWERTY Outemu Red espaÃ±ol latinoamÃ©rica color negro con luz RGB",
       "precio_clp": 39590.0,
@@ -131,9 +131,9 @@
       "activo": true
     },
     {
-      "id": "prod_8_67727",
+      "id": "prod_8_00949",
       "link_afiliado": "https://meli.la/156BJx7",
-      "titulo": "Teclado InalÃ¡mbrico Bluetooth Logitech K250 Negro",
+      "titulo": "Teclado Inalambrico Bluetooth Logitech K250 Negro",
       "precio_clp": 21990.0,
       "precio_original_clp": 30990.0,
       "precio_fmt": "$21.990",
