@@ -21,14 +21,11 @@ jobs:
           TG_INTRO_MSG: ${{ secrets.TG_INTRO_MSG }}
           SHEETS_CSV_URL: ${{ secrets.SHEETS_CSV_URL }}
         run: python publicar.py
-- name: Guardar JSON
+      - name: Guardar JSON
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/ofertas.json data/enviados.json
-          git stash
           git pull --rebase origin main
-          git stash pop
           git add data/ofertas.json data/enviados.json
           git diff --staged --quiet || git commit -m "Actualizar ofertas"
-          git push
+          git push origin main
