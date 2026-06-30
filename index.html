@@ -515,6 +515,35 @@
       margin-top: 0.2rem;
     }
 
+    .live-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      margin-top: 0.4rem;
+      padding: 0.4rem 0.85rem;
+      background: rgba(0, 166, 80, 0.1);
+      border: 1px solid rgba(0, 166, 80, 0.25);
+      border-radius: 999px;
+      color: var(--green);
+      font-weight: 800;
+      font-size: 12px;
+    }
+
+    .live-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 0 0 rgba(0, 166, 80, 0.6);
+      animation: pulse-dot 1.8s infinite;
+    }
+
+    @keyframes pulse-dot {
+      0% { box-shadow: 0 0 0 0 rgba(0, 166, 80, 0.55); }
+      70% { box-shadow: 0 0 0 7px rgba(0, 166, 80, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(0, 166, 80, 0); }
+    }
+
     .panel {
       background: rgba(255, 255, 255, 0.92);
       border: 1px solid var(--border);
@@ -663,6 +692,34 @@
       left: 12px;
       background: var(--orange);
       box-shadow: 0 8px 18px rgba(240, 125, 19, 0.24);
+    }
+
+    .flash-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      transform: translateY(28px);
+      color: white;
+      padding: 0.3rem 0.6rem;
+      border-radius: 999px;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      background: var(--red);
+      box-shadow: 0 8px 18px rgba(229, 57, 53, 0.3);
+      z-index: 2;
+    }
+
+    .savings-tag {
+      display: inline-block;
+      margin-top: 0.15rem;
+      padding: 0.15rem 0.55rem;
+      background: rgba(0, 166, 80, 0.12);
+      color: var(--green);
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 800;
     }
 
     .category-badge {
@@ -1021,7 +1078,7 @@
       <div class="section-head">
         <div>
           <h2>Ofertas destacadas de hoy</h2>
-          <p id="actualizado">Cargando actualización...</p>
+          <span class="live-chip"><span class="live-dot"></span><span id="actualizado">Cargando actualización...</span></span>
         </div>
       </div>
 
@@ -1077,14 +1134,16 @@
         <p>
           Podemos evaluar productos destacados, precios especiales, ofertas exclusivas o publicaciones para nuestra comunidad.
         </p>
+        <p style="margin-top:.4rem; font-size:12px;">
+          También puedes escribirnos a <a href="mailto:jleonardo.painevilu@gmail.com" style="text-decoration:underline;">jleonardo.painevilu@gmail.com</a>
+        </p>
       </div>
-      <a class="btn btn-blue" href="mailto:jleonardo.painevilu@gmail.com?subject=Quiero%20destacar%20un%20producto%20en%20El%20Oferton%20del%20Gatito">Contacto comercial</a>
+      <a class="btn btn-blue" href="https://wa.me/56973806218?text=Hola%2C%20quiero%20destacar%20un%20producto%20en%20El%20Oferton%20del%20Gatito" target="_blank" rel="noopener">Contacto comercial</a>
     </section>
   </main>
 
   <footer>
     <p><strong>El Ofertón del Gatito</strong> - Buscamos las mejores ofertas por ti.</p>
-    <p>Podemos recibir una comisión si compras mediante algunos enlaces, sin costo extra para ti.</p>
     <p style="margin-top:.5rem;">Las compras, pagos, garantías y despachos se realizan directamente en cada tienda o plataforma asociada.</p>
   </footer>
 
@@ -1358,10 +1417,16 @@
           ? `<img class="card-img" src="${escaparHTML(imagen)}" alt="${titulo}" loading="lazy" onerror="this.parentElement.innerHTML='<div class=&quot;img-placeholder&quot;>Imagen no disponible</div>'">`
           : `<div class="img-placeholder">Imagen no disponible</div>`;
 
+        const esRelampago = descuento >= 40;
+        const ahorro = (precioOriginal && descuento > 0)
+          ? Number(p.precio_orig_clp || 0) - Number(p.precio_clp || 0)
+          : 0;
+
         return `
           <article class="card">
             <div class="card-img-wrap">
               ${descuento > 0 ? `<span class="discount-badge">-${Math.round(descuento)}%</span>` : ""}
+              ${esRelampago ? `<span class="flash-badge">⚡ Relámpago</span>` : ""}
               <span class="category-badge">${categoria}</span>
               <span class="store-badge">${tienda}</span>
               <span class="origin-badge ${origen === "internacional" ? "internacional" : ""}">${origenTexto}</span>
@@ -1375,6 +1440,7 @@
               <div class="price-line">
                 ${precioOriginal && descuento > 0 ? `<div class="old-price">${precioOriginal}</div>` : ""}
                 <div class="price">${precio}</div>
+                ${ahorro > 0 ? `<span class="savings-tag">Ahorras ${fmtCLP(ahorro)}</span>` : ""}
               </div>
 
               <p class="affiliate-note">Compra directamente en la tienda o plataforma asociada.</p>
