@@ -17,11 +17,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
   <style>
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
       --cream: #fff8ed;
@@ -43,9 +39,7 @@
       --radius: 24px;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -57,9 +51,7 @@
       line-height: 1.5;
     }
 
-    a {
-      color: inherit;
-    }
+    a { color: inherit; }
 
     .page-bg-paw {
       position: fixed;
@@ -145,9 +137,7 @@
       font-size: 18px;
     }
 
-    .brand-name .brand-orange {
-      color: var(--orange);
-    }
+    .brand-name .brand-orange { color: var(--orange); }
 
     .brand-name span {
       display: block;
@@ -168,13 +158,8 @@
       color: var(--brown-2);
     }
 
-    .nav a {
-      text-decoration: none;
-    }
-
-    .nav a:hover {
-      color: var(--orange);
-    }
+    .nav a { text-decoration: none; }
+    .nav a:hover { color: var(--orange); }
 
     .search-wrap {
       margin-left: auto;
@@ -264,15 +249,15 @@
       flex-direction: column;
       justify-content: center;
       min-height: 430px;
-      padding-top: 110px;
+      padding-top: 150px;
     }
 
     .hero-cat {
       position: absolute;
-      top: -18px;
+      top: -28px;
       left: 50%;
       transform: translateX(-50%);
-      width: min(390px, 64vw);
+      width: min(360px, 70vw);
       z-index: 5;
       filter: drop-shadow(0 22px 26px rgba(74, 52, 40, 0.18));
       pointer-events: none;
@@ -354,9 +339,7 @@
       transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
     }
 
-    .btn:hover {
-      transform: translateY(-2px);
-    }
+    .btn:hover { transform: translateY(-2px); }
 
     .btn-primary {
       background: linear-gradient(135deg, var(--orange), #ff9b2f);
@@ -394,9 +377,7 @@
       color: var(--brown);
     }
 
-    .right-title span {
-      color: var(--orange);
-    }
+    .right-title span { color: var(--orange); }
 
     .right-copy {
       color: var(--brown-2);
@@ -692,9 +673,7 @@
       background: var(--green);
     }
 
-    .origin-badge.internacional {
-      background: var(--blue);
-    }
+    .origin-badge.internacional { background: var(--blue); }
 
     .card-body {
       padding: 1rem;
@@ -727,9 +706,7 @@
       min-height: 39px;
     }
 
-    .price-line {
-      margin-top: auto;
-    }
+    .price-line { margin-top: auto; }
 
     .old-price {
       color: var(--muted);
@@ -762,9 +739,7 @@
       margin-top: 0.2rem;
     }
 
-    .btn-offer:hover {
-      background: var(--blue-2);
-    }
+    .btn-offer:hover { background: var(--blue-2); }
 
     .loading,
     .vacio {
@@ -788,9 +763,7 @@
       animation: spin 0.8s linear infinite;
     }
 
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
+    @keyframes spin { to { transform: rotate(360deg); } }
 
     .request-box {
       margin-top: 2rem;
@@ -861,121 +834,42 @@
       border-top: 1px solid var(--border);
     }
 
-    footer strong {
-      color: var(--brown);
-    }
+    footer strong { color: var(--brown); }
 
     @media (max-width: 1040px) {
-      .nav {
-        display: none;
-      }
-
-      .hero {
-        grid-template-columns: 1fr;
-      }
-
-      .hero-right {
-        max-width: 680px;
-      }
-
-      .hero-left {
-        min-height: 470px;
-      }
-
-      .hero-cat {
-        width: min(360px, 70vw);
-      }
+      .nav { display: none; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-right { max-width: 680px; }
+      .hero-left { min-height: 470px; }
+      .hero-cat { width: min(340px, 70vw); }
     }
 
     @media (max-width: 860px) {
-      .header-inner {
-        flex-wrap: wrap;
-      }
-
-      .search-wrap {
-        flex-basis: 100%;
-        order: 3;
-        margin-left: 0;
-      }
-
-      .telegram-top {
-        margin-left: auto;
-      }
-
-      .trust-row {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .stats {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
+      .header-inner { flex-wrap: wrap; }
+      .search-wrap { flex-basis: 100%; order: 3; margin-left: 0; }
+      .telegram-top { margin-left: auto; }
+      .trust-row { grid-template-columns: repeat(2, 1fr); }
+      .stats { grid-template-columns: repeat(2, 1fr); }
       .request-box,
-      .business-box {
-        grid-template-columns: 1fr;
-      }
+      .business-box { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 590px) {
-      main {
-        padding: 0.85rem;
-      }
-
-      .header-inner {
-        padding: 0.75rem 0.85rem;
-      }
-
-      .brand-logo {
-        width: 52px;
-        height: 52px;
-      }
-
-      .brand-name {
-        font-size: 15px;
-      }
-
-      .telegram-top {
-        display: none;
-      }
-
-      .hero {
-        border-radius: 24px;
-        padding: 1.2rem;
-        min-height: auto;
-      }
-
-      .hero-left {
-        min-height: 420px;
-        padding-top: 115px;
-      }
-
-      .hero-cat {
-        top: -8px;
-        width: min(310px, 86vw);
-      }
-
-      .mega-title {
-        font-size: clamp(3rem, 17vw, 4.5rem);
-      }
-
-      .tagline-ribbon {
-        font-size: 0.9rem;
-        padding: 0.45rem 1rem;
-      }
-
+      main { padding: 0.85rem; }
+      .header-inner { padding: 0.75rem 0.85rem; }
+      .brand-logo { width: 52px; height: 52px; }
+      .brand-name { font-size: 15px; }
+      .telegram-top { display: none; }
+      .hero { border-radius: 24px; padding: 1.2rem; min-height: auto; }
+      .hero-left { min-height: 420px; padding-top: 130px; }
+      .hero-cat { top: -8px; width: min(300px, 86vw); }
+      .mega-title { font-size: clamp(3rem, 17vw, 4.5rem); }
+      .tagline-ribbon { font-size: 0.9rem; padding: 0.45rem 1rem; }
       .trust-row,
       .stats,
-      .grid {
-        grid-template-columns: 1fr;
-      }
-
-      .card-img-wrap {
-        height: 215px;
-      }
-
-      .hero-score {
-        grid-template-columns: 1fr;
-      }
+      .grid { grid-template-columns: 1fr; }
+      .card-img-wrap { height: 215px; }
+      .hero-score { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -1010,7 +904,7 @@
   <main>
     <section class="hero">
       <div class="hero-left">
-        <img src="/assets/logo-gatito.png" alt="Gatito recostado sobre el nombre El Ofertón del Gatito" class="hero-cat">
+        <img src="/assets/gatito-hero.png" alt="Gatito recostado sobre el nombre El Ofertón del Gatito" class="hero-cat">
 
         <h1 class="mega-title">
           El <span class="orange">Ofertón</span>
@@ -1101,26 +995,18 @@
 
       <div class="panel">
         <div class="filtros">
-          <select id="filtro-categoria">
-            <option value="">Todas las categorías</option>
-          </select>
-
-          <select id="filtro-tienda">
-            <option value="">Todas las tiendas</option>
-          </select>
-
+          <select id="filtro-categoria"><option value="">Todas las categorías</option></select>
+          <select id="filtro-tienda"><option value="">Todas las tiendas</option></select>
           <select id="filtro-origen">
             <option value="">Chile e internacional</option>
             <option value="nacional">Solo nacional</option>
             <option value="internacional">Solo internacional</option>
           </select>
-
           <select id="filtro-orden">
             <option value="descuento">Mayor descuento</option>
             <option value="precio_asc">Menor precio</option>
             <option value="precio_desc">Mayor precio</option>
           </select>
-
           <button class="chip" id="chip-descuento">Con descuento</button>
         </div>
 
@@ -1128,19 +1014,14 @@
       </div>
 
       <div class="grid" id="grid">
-        <div class="loading">
-          <div class="spinner"></div>
-          <p>Cargando ofertas...</p>
-        </div>
+        <div class="loading"><div class="spinner"></div><p>Cargando ofertas...</p></div>
       </div>
     </section>
 
     <section class="request-box" id="pedidos">
       <div>
         <h2>¿Buscas una oferta específica?</h2>
-        <p>
-          Déjanos el producto, presupuesto y urgencia. El Gatito usa ese buzón para buscar ofertas reales para la comunidad.
-        </p>
+        <p>Déjanos el producto, presupuesto y urgencia. El Gatito usa ese buzón para buscar ofertas reales para la comunidad.</p>
       </div>
       <a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSeFz_lI6DzdSghYQniDqqOeCZnRNJJAQqCnIc83pdZ3RtLymw/viewform" target="_blank" rel="noopener">Pedir una oferta</a>
     </section>
@@ -1148,9 +1029,7 @@
     <section class="business-box" id="marcas">
       <div>
         <h2>¿Tienes una tienda o producto para destacar?</h2>
-        <p>
-          Podemos evaluar productos destacados, precios especiales, ofertas exclusivas o publicaciones para nuestra comunidad.
-        </p>
+        <p>Podemos evaluar productos destacados, precios especiales, ofertas exclusivas o publicaciones para nuestra comunidad.</p>
       </div>
       <a class="btn btn-blue" href="mailto:jleonardo.painevilu@gmail.com?subject=Quiero%20destacar%20un%20producto%20en%20El%20Oferton%20del%20Gatito">Contacto comercial</a>
     </section>
@@ -1171,13 +1050,9 @@
     function repararTexto(valor) {
       let texto = String(valor ?? "");
       if (!texto) return "";
-
       if (/[ÃÂ]/.test(texto)) {
-        try {
-          texto = decodeURIComponent(escape(texto));
-        } catch (e) {}
+        try { texto = decodeURIComponent(escape(texto)); } catch (e) {}
       }
-
       return texto
         .replaceAll("â€“", "-")
         .replaceAll("â€”", "-")
@@ -1207,9 +1082,7 @@
     function detectarTienda(p) {
       const directa = repararTexto(p.tienda || p.store || "");
       if (directa) return directa;
-
       const link = String(p.link_afiliado || p.link_oferta || "").toLowerCase();
-
       if (link.includes("mercadolibre") || link.includes("meli.")) return "MercadoLibre";
       if (link.includes("falabella")) return "Falabella";
       if (link.includes("ripley")) return "Ripley";
@@ -1217,29 +1090,18 @@
       if (link.includes("aliexpress")) return "AliExpress";
       if (link.includes("amazon")) return "Amazon";
       if (link.includes("shopee")) return "Shopee";
-
       return "Tienda asociada";
     }
 
     function detectarOrigen(p) {
       const tipo = normalizar(p.tipo_oferta || p.origen || p.pais_origen || "");
       const tienda = normalizar(detectarTienda(p));
-
-      if (
-        tipo.includes("internacional") ||
-        tienda.includes("aliexpress") ||
-        tienda.includes("amazon") ||
-        tienda.includes("shopee")
-      ) {
-        return "internacional";
-      }
-
+      if (tipo.includes("internacional") || tienda.includes("aliexpress") || tienda.includes("amazon") || tienda.includes("shopee")) return "internacional";
       return "nacional";
     }
 
     function categoriaBonita(cat) {
       const c = normalizar(cat || "general");
-
       const mapa = {
         memorias: "Memorias",
         cargadores: "Cargadores",
@@ -1253,7 +1115,6 @@
         hogar: "Hogar",
         general: "General"
       };
-
       return mapa[c] || repararTexto(cat || "General");
     }
 
@@ -1261,22 +1122,16 @@
       try {
         const resp = await fetch("/data/ofertas.json", { cache: "no-store" });
         if (!resp.ok) throw new Error("No se pudo cargar /data/ofertas.json");
-
         const data = await resp.json();
         TODOS = Array.isArray(data.productos) ? data.productos : [];
-
         const fecha = new Date(data.actualizado);
-        document.getElementById("actualizado").textContent =
-          "Actualizado: " + fecha.toLocaleString("es-CL");
-
+        document.getElementById("actualizado").textContent = "Actualizado: " + fecha.toLocaleString("es-CL");
         cargarFiltros();
         renderStats();
         renderGrid();
       } catch (error) {
         console.error(error);
-
         document.getElementById("actualizado").textContent = "No se pudo cargar la actualización.";
-
         document.getElementById("grid").innerHTML = `
           <div class="vacio">
             <h3>No se encontraron ofertas.</h3>
@@ -1289,11 +1144,9 @@
     function cargarFiltros() {
       const categorias = [...new Set(TODOS.map(p => normalizar(p.categoria || "general")))].sort();
       const tiendas = [...new Set(TODOS.map(p => detectarTienda(p)))].sort();
-
       document.getElementById("filtro-categoria").innerHTML =
         "<option value=''>Todas las categorías</option>" +
         categorias.map(cat => `<option value="${escaparHTML(cat)}">${escaparHTML(categoriaBonita(cat))}</option>`).join("");
-
       document.getElementById("filtro-tienda").innerHTML =
         "<option value=''>Todas las tiendas</option>" +
         tiendas.map(t => `<option value="${escaparHTML(normalizar(t))}">${escaparHTML(t)}</option>`).join("");
@@ -1312,13 +1165,11 @@
         const categoria = normalizar(p.categoria || "general");
         const tiendaP = normalizar(detectarTienda(p));
         const origenP = detectarOrigen(p);
-
         if (q && !titulo.includes(q) && !desc.includes(q)) return false;
         if (cat && categoria !== cat) return false;
         if (tienda && tiendaP !== tienda) return false;
         if (origen && origenP !== origen) return false;
         if (filtroDescuento && Number(p.descuento_pct || 0) <= 0) return false;
-
         return true;
       });
 
@@ -1328,7 +1179,6 @@
         if (orden === "precio_desc") return Number(b.precio_clp || 0) - Number(a.precio_clp || 0);
         return 0;
       });
-
       return lista;
     }
 
@@ -1337,10 +1187,8 @@
       const maxDesc = total ? Math.max(...TODOS.map(p => Number(p.descuento_pct || 0))) : 0;
       const nacional = TODOS.filter(p => detectarOrigen(p) === "nacional").length;
       const internacional = TODOS.filter(p => detectarOrigen(p) === "internacional").length;
-
       document.getElementById("hero-total").textContent = total;
       document.getElementById("hero-desc").textContent = Math.round(maxDesc) + "%";
-
       document.getElementById("stats").innerHTML = `
         <div class="stat"><strong>${total}</strong>ofertas activas</div>
         <div class="stat"><strong>${Math.round(maxDesc)}%</strong>mayor descuento</div>
@@ -1352,7 +1200,6 @@
     function renderGrid() {
       const lista = filtrar();
       const grid = document.getElementById("grid");
-
       if (!lista.length) {
         grid.innerHTML = `
           <div class="vacio">
@@ -1375,7 +1222,6 @@
         const origenTexto = origen === "internacional" ? "Internacional" : "Chile";
         const imagen = String(p.imagen || "").trim();
         const link = String(p.link_afiliado || p.link_oferta || "#").trim();
-
         const imagenHTML = imagen
           ? `<img class="card-img" src="${escaparHTML(imagen)}" alt="${titulo}" loading="lazy" onerror="this.parentElement.innerHTML='<div class=&quot;img-placeholder&quot;>Imagen no disponible</div>'">`
           : `<div class="img-placeholder">Imagen no disponible</div>`;
@@ -1389,21 +1235,15 @@
               <span class="origin-badge ${origen === "internacional" ? "internacional" : ""}">${origenTexto}</span>
               ${imagenHTML}
             </div>
-
             <div class="card-body">
               <h3 class="card-title">${titulo}</h3>
               ${descripcion ? `<p class="card-desc">${descripcion}</p>` : ""}
-
               <div class="price-line">
                 ${precioOriginal && descuento > 0 ? `<div class="old-price">${precioOriginal}</div>` : ""}
                 <div class="price">${precio}</div>
               </div>
-
               <p class="affiliate-note">Compra directamente en la tienda o plataforma asociada.</p>
-
-              <a class="btn-offer" href="${escaparHTML(link)}" target="_blank" rel="noopener">
-                Ver oferta
-              </a>
+              <a class="btn-offer" href="${escaparHTML(link)}" target="_blank" rel="noopener">Ver oferta</a>
             </div>
           </article>
         `;
@@ -1415,7 +1255,6 @@
     document.getElementById("filtro-tienda").addEventListener("change", renderGrid);
     document.getElementById("filtro-origen").addEventListener("change", renderGrid);
     document.getElementById("filtro-orden").addEventListener("change", renderGrid);
-
     document.getElementById("chip-descuento").addEventListener("click", function() {
       filtroDescuento = !filtroDescuento;
       this.classList.toggle("activo", filtroDescuento);
