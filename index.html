@@ -12,6 +12,13 @@
   <meta property="og:title" content="El Ofertón del Gatito">
   <meta property="og:description" content="Buscamos las mejores ofertas por ti. Ofertas seleccionadas, dato bueno y compra directa en tiendas asociadas.">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ofertas-ml-ks2k.vercel.app/">
+  <meta property="og:image" content="https://ofertas-ml-ks2k.vercel.app/assets/gatito-hero.png">
+  <meta property="og:locale" content="es_CL">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="canonical" href="https://ofertas-ml-ks2k.vercel.app/">
+  <link rel="icon" href="/assets/logo-gatito.png" type="image/png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -905,7 +912,7 @@
   <header>
     <div class="header-inner">
       <a href="/" class="brand" aria-label="El Ofertón del Gatito">
-        <img src="/assets/logo-gatito.png" alt="Logo El Ofertón del Gatito" class="brand-logo">
+        <img src="/assets/logo-gatito.png" alt="Logo El Ofertón del Gatito" class="brand-logo" width="58" height="58">
         <div class="brand-name">
           El <span class="brand-orange">Ofertón</span><br>del Gatito
           <span>Buscamos ofertas por ti</span>
@@ -919,7 +926,7 @@
       </nav>
 
       <div class="search-wrap">
-        <input type="text" id="busqueda" placeholder="Buscar ofertas...">
+        <input type="text" id="busqueda" placeholder="Buscar ofertas..." aria-label="Buscar ofertas">
       </div>
 
       <a class="telegram-top" href="https://t.me/ofertastech_cl" target="_blank" rel="noopener">Unirme al Telegram</a>
@@ -1020,21 +1027,21 @@
 
       <div class="panel">
         <div class="filtros">
-          <select id="filtro-categoria">
+          <select id="filtro-categoria" aria-label="Filtrar por categoría">
             <option value="">Todas las categorías</option>
           </select>
 
-          <select id="filtro-tienda">
+          <select id="filtro-tienda" aria-label="Filtrar por tienda">
             <option value="">Todas las tiendas</option>
           </select>
 
-          <select id="filtro-origen">
+          <select id="filtro-origen" aria-label="Filtrar por origen">
             <option value="">Chile e internacional</option>
             <option value="nacional">Solo nacional</option>
             <option value="internacional">Solo internacional</option>
           </select>
 
-          <select id="filtro-orden">
+          <select id="filtro-orden" aria-label="Ordenar ofertas">
             <option value="descuento">Mayor descuento</option>
             <option value="precio_asc">Menor precio</option>
             <option value="precio_desc">Mayor precio</option>
@@ -1176,6 +1183,57 @@
       return mapa[c] || repararTexto(cat || "General");
     }
 
+    function registrarClic(tituloProducto) {
+      // Placeholder de tracking: reemplaza esto por tu Analytics/Plausible/endpoint propio
+      // cuando quieras medir qué ofertas generan más clics.
+      try {
+        if (window.gtag) {
+          gtag("event", "click_oferta", { producto: tituloProducto });
+        }
+      } catch (e) {}
+    }
+
+    function actualizarJSONLD() {
+      const items = TODOS.slice(0, 30).map((p, i) => {
+        const titulo = repararTexto(p.titulo || "Producto sin título");
+        const imagen = String(p.imagen || "").trim();
+        const link = String(p.link_afiliado || p.link_oferta || "").trim();
+        const precio = Number(p.precio_clp || 0);
+
+        return {
+          "@type": "ListItem",
+          "position": i + 1,
+          "item": {
+            "@type": "Product",
+            "name": titulo,
+            "image": imagen || undefined,
+            "offers": {
+              "@type": "Offer",
+              "priceCurrency": "CLP",
+              "price": precio || undefined,
+              "url": link || undefined,
+              "availability": "https://schema.org/InStock"
+            }
+          }
+        };
+      });
+
+      const jsonLD = {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "itemListElement": items
+      };
+
+      let script = document.getElementById("jsonld-ofertas");
+      if (!script) {
+        script = document.createElement("script");
+        script.type = "application/ld+json";
+        script.id = "jsonld-ofertas";
+        document.head.appendChild(script);
+      }
+      script.textContent = JSON.stringify(jsonLD);
+    }
+
     async function cargarDatos() {
       try {
         const resp = await fetch("/data/ofertas.json", { cache: "no-store" });
@@ -1191,6 +1249,7 @@
         cargarFiltros();
         renderStats();
         renderGrid();
+        actualizarJSONLD();
       } catch (error) {
         console.error(error);
 
@@ -1320,7 +1379,7 @@
 
               <p class="affiliate-note">Compra directamente en la tienda o plataforma asociada.</p>
 
-              <a class="btn-offer" href="${escaparHTML(link)}" target="_blank" rel="noopener">
+              <a class="btn-offer" href="${escaparHTML(link)}" target="_blank" rel="noopener sponsored" onclick="registrarClic('${escaparHTML(titulo).replace(/'/g, "\\'")}')">
                 Ver oferta
               </a>
             </div>
