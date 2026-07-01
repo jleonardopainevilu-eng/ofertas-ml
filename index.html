@@ -494,6 +494,173 @@
       font-size: 13px;
     }
 
+    /* ---- Cómo funciona ---- */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin: 2rem 0;
+      counter-reset: paso;
+    }
+
+    .step {
+      position: relative;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 1.4rem 1.1rem 1.1rem;
+      box-shadow: var(--shadow-soft);
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .step:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+    }
+
+    .step-num {
+      display: inline-grid;
+      place-items: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 13px;
+      background: linear-gradient(135deg, var(--orange), var(--orange-2));
+      color: white;
+      font-weight: 900;
+      font-size: 18px;
+      margin-bottom: 0.75rem;
+      box-shadow: 0 10px 20px rgba(240, 125, 19, 0.28);
+    }
+
+    .step h3 {
+      font-size: 16px;
+      color: var(--brown);
+      margin-bottom: 0.35rem;
+      letter-spacing: -0.02em;
+    }
+
+    .step p {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.5;
+    }
+
+    .step::after {
+      content: "→";
+      position: absolute;
+      right: -22px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--border);
+      font-size: 22px;
+      font-weight: 900;
+    }
+
+    .step:last-child::after { display: none; }
+
+    /* ---- FAQ ---- */
+    .faq {
+      margin: 2.5rem 0;
+    }
+
+    .faq-item {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      margin-bottom: 0.65rem;
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+    }
+
+    .faq-item summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 1rem 1.2rem;
+      font-weight: 800;
+      font-size: 14px;
+      color: var(--brown);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .faq-item summary::-webkit-details-marker { display: none; }
+
+    .faq-item summary::after {
+      content: "+";
+      font-size: 20px;
+      color: var(--orange);
+      font-weight: 900;
+      flex: 0 0 auto;
+      transition: transform 0.2s ease;
+    }
+
+    .faq-item[open] summary::after { transform: rotate(45deg); }
+
+    .faq-item p {
+      padding: 0 1.2rem 1.1rem;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.55;
+    }
+
+    /* ---- Urgencia visual en descuentos altos ---- */
+    .discount-badge.hot {
+      animation: pulse-badge 1.6s infinite;
+    }
+
+    @keyframes pulse-badge {
+      0% { box-shadow: 0 8px 18px rgba(240, 125, 19, 0.24), 0 0 0 0 rgba(229, 57, 53, 0.45); }
+      70% { box-shadow: 0 8px 18px rgba(240, 125, 19, 0.24), 0 0 0 8px rgba(229, 57, 53, 0); }
+      100% { box-shadow: 0 8px 18px rgba(240, 125, 19, 0.24), 0 0 0 0 rgba(229, 57, 53, 0); }
+    }
+
+    .card {
+      animation: fade-up 0.5s ease both;
+    }
+
+    @keyframes fade-up {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ---- Barra flotante de conversión (mobile) ---- */
+    .sticky-cta {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 200;
+      display: none;
+      gap: 0.6rem;
+      padding: 0.65rem 0.85rem;
+      background: rgba(255, 248, 237, 0.96);
+      backdrop-filter: blur(14px);
+      border-top: 1px solid var(--border);
+      box-shadow: 0 -12px 28px rgba(74, 52, 40, 0.14);
+    }
+
+    .sticky-cta a {
+      flex: 1;
+      text-align: center;
+      padding: 0.85rem 0.7rem;
+      border-radius: 14px;
+      font-weight: 900;
+      font-size: 13px;
+      text-decoration: none;
+    }
+
+    .sticky-cta .btn-primary,
+    .sticky-cta .btn-blue { box-shadow: none; }
+
+    @media (max-width: 720px) {
+      .sticky-cta { display: flex; }
+      body { padding-bottom: 78px; }
+    }
+
     .section-head {
       display: flex;
       align-items: end;
@@ -924,6 +1091,8 @@
       .stats { grid-template-columns: repeat(2, 1fr); }
       .request-box,
       .business-box { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr; }
+      .step::after { display: none; }
     }
 
     @media (max-width: 590px) {
@@ -1074,6 +1243,24 @@
       </div>
     </section>
 
+    <section class="steps" aria-label="Cómo funciona">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Rastreamos ofertas</h3>
+        <p>El sistema revisa precios varias veces al día para detectar caídas y descuentos reales.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>Filtramos lo bueno</h3>
+        <p>Descartamos lo irrelevante y dejamos solo lo que vale la pena por precio y utilidad.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Tú compras seguro</h3>
+        <p>Haces clic y compras directo en la tienda oficial: mismo pago, garantía y despacho de siempre.</p>
+      </div>
+    </section>
+
     <section id="ofertas">
       <div class="section-head">
         <div>
@@ -1140,12 +1327,45 @@
       </div>
       <a class="btn btn-blue" href="https://wa.me/56973806218?text=Hola%2C%20quiero%20destacar%20un%20producto%20en%20El%20Oferton%20del%20Gatito" target="_blank" rel="noopener">Contacto comercial</a>
     </section>
+
+    <section class="faq" aria-label="Preguntas frecuentes">
+      <div class="section-head">
+        <div>
+          <h2>Preguntas frecuentes</h2>
+        </div>
+      </div>
+
+      <details class="faq-item">
+        <summary>¿Ustedes venden los productos?</summary>
+        <p>No. Nosotros encontramos y compartimos las ofertas; la compra, el pago, el despacho y la garantía siempre quedan directamente con la tienda o plataforma asociada.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Es seguro comprar desde acá?</summary>
+        <p>Sí, porque el botón "Ver oferta" te lleva al mismo sitio oficial de la tienda. No procesamos pagos ni pedimos tus datos bancarios en ningún momento.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Con qué frecuencia se actualizan las ofertas?</summary>
+        <p>La vitrina se revisa varias veces al día, así que los precios y descuentos pueden cambiar durante la jornada.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿Puedo pedir que busquen un producto específico?</summary>
+        <p>Sí. Usa el botón "Pedir una oferta" y cuéntanos qué producto, presupuesto y urgencia tienes. Lo agregamos a la búsqueda.</p>
+      </details>
+    </section>
   </main>
 
   <footer>
     <p><strong>El Ofertón del Gatito</strong> - Buscamos las mejores ofertas por ti.</p>
     <p style="margin-top:.5rem;">Las compras, pagos, garantías y despachos se realizan directamente en cada tienda o plataforma asociada.</p>
   </footer>
+
+  <div class="sticky-cta">
+    <a class="btn btn-blue" href="https://t.me/ofertastech_cl" target="_blank" rel="noopener">📲 Telegram</a>
+    <a class="btn btn-primary" href="#ofertas">🔥 Ver ofertas</a>
+  </div>
 
   <script>
     let TODOS = [];
@@ -1400,7 +1620,7 @@
         return;
       }
 
-      grid.innerHTML = lista.map(p => {
+      grid.innerHTML = lista.map((p, idx) => {
         const titulo = escaparHTML(p.titulo || "Producto sin título");
         const descripcion = escaparHTML(p.descripcion || "");
         const precio = p.precio_fmt ? escaparHTML(p.precio_fmt) : fmtCLP(p.precio_clp);
@@ -1418,14 +1638,15 @@
           : `<div class="img-placeholder">Imagen no disponible</div>`;
 
         const esRelampago = descuento >= 40;
+        const esCaliente = descuento >= 50;
         const ahorro = (precioOriginal && descuento > 0)
           ? Number(p.precio_orig_clp || 0) - Number(p.precio_clp || 0)
           : 0;
 
         return `
-          <article class="card">
+          <article class="card" style="animation-delay:${Math.min(idx * 0.04, 0.6)}s">
             <div class="card-img-wrap">
-              ${descuento > 0 ? `<span class="discount-badge">-${Math.round(descuento)}%</span>` : ""}
+              ${descuento > 0 ? `<span class="discount-badge${esCaliente ? " hot" : ""}">-${Math.round(descuento)}%</span>` : ""}
               ${esRelampago ? `<span class="flash-badge">⚡ Relámpago</span>` : ""}
               <span class="category-badge">${categoria}</span>
               <span class="store-badge">${tienda}</span>
