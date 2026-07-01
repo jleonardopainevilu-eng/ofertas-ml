@@ -5,12 +5,12 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>El Ofertón del Gatito - Buscamos las mejores ofertas por ti</title>
-  <meta name="description" content="El Ofertón del Gatito busca, filtra y comparte ofertas seleccionadas para compradores de Chile. Pide una oferta, revisa productos destacados y compra directo en tiendas asociadas.">
+  <title>El Ofertón del Gatito - Ofertas para mascotas y comercio local</title>
+  <meta name="description" content="El Ofertón del Gatito reúne ofertas para mascotas, destacando tiendas locales y usando MercadoLibre como base de apoyo para comparar precios y encontrar oportunidades.">
   <meta name="robots" content="index, follow">
 
   <meta property="og:title" content="El Ofertón del Gatito">
-  <meta property="og:description" content="Buscamos las mejores ofertas por ti. Ofertas seleccionadas, dato bueno y compra directa en tiendas asociadas.">
+  <meta property="og:description" content="Ofertas para mascotas con foco en comercio local, tiendas cercanas y datos de MercadoLibre como base de comparación.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://ofertas-ml-ks2k.vercel.app/">
   <meta property="og:image" content="https://ofertas-ml-ks2k.vercel.app/assets/gatito-hero.png">
@@ -31,22 +31,24 @@
     }
 
     :root {
-      --cream: #fff8ed;
-      --cream-2: #fff1df;
+      --cream: #fffaf1;
+      --cream-2: #fff0d8;
       --paper: #ffffff;
-      --brown: #3b2115;
-      --brown-2: #5a3829;
-      --orange: #f07d13;
-      --orange-2: #ff9b2f;
-      --orange-soft: #fff0dd;
-      --blue: #0c3766;
-      --blue-2: #0a2545;
-      --green: #00a650;
-      --red: #e53935;
-      --muted: #75685d;
-      --border: #f1d8bd;
-      --shadow: 0 18px 45px rgba(74, 52, 40, 0.12);
-      --shadow-soft: 0 10px 25px rgba(74, 52, 40, 0.08);
+      --brown: #382016;
+      --brown-2: #684635;
+      --orange: #f47c35;
+      --orange-2: #ffb15d;
+      --orange-soft: #fff2df;
+      --blue: #2f7d73;
+      --blue-2: #225b54;
+      --green: #39a96b;
+      --mint: #e6f6ee;
+      --yellow: #ffd76a;
+      --red: #e95c4a;
+      --muted: #7a6a5f;
+      --border: #efd8bd;
+      --shadow: 0 18px 42px rgba(75, 45, 28, 0.13);
+      --shadow-soft: 0 10px 24px rgba(75, 45, 28, 0.08);
       --radius: 24px;
     }
 
@@ -55,65 +57,87 @@
     body {
       font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background:
-        radial-gradient(circle at top left, rgba(255, 155, 47, 0.12), transparent 28%),
-        radial-gradient(circle at top right, rgba(240, 125, 19, 0.10), transparent 24%),
+        radial-gradient(circle at top left, rgba(255, 177, 93, 0.18), transparent 28%),
+        radial-gradient(circle at top right, rgba(57, 169, 107, 0.14), transparent 24%),
+        linear-gradient(180deg, #fffaf1 0%, #fff6e8 42%, #fffaf1 100%),
         var(--cream);
       color: var(--brown);
       line-height: 1.5;
+      overflow-x: hidden;
     }
 
     a { color: inherit; }
 
     .page-bg-paw {
       position: fixed;
-      inset: auto auto 6% -40px;
-      width: 170px;
-      height: 170px;
-      opacity: 0.06;
+      inset: 0;
+      width: auto;
+      height: auto;
+      opacity: 1;
       border-radius: 50%;
-      background: var(--orange);
       pointer-events: none;
-      filter: blur(1px);
+      filter: none;
+      z-index: -1;
+      background:
+        radial-gradient(circle at 6% 28%, rgba(244, 124, 53, 0.08) 0 16px, transparent 17px),
+        radial-gradient(circle at 8% 26%, rgba(244, 124, 53, 0.08) 0 10px, transparent 11px),
+        radial-gradient(circle at 4% 25%, rgba(244, 124, 53, 0.08) 0 9px, transparent 10px),
+        radial-gradient(circle at 90% 22%, rgba(244, 124, 53, 0.08) 0 16px, transparent 17px),
+        radial-gradient(circle at 92% 20%, rgba(244, 124, 53, 0.08) 0 10px, transparent 11px),
+        radial-gradient(circle at 88% 19%, rgba(244, 124, 53, 0.08) 0 9px, transparent 10px),
+        radial-gradient(circle at 96% 48%, rgba(244, 124, 53, 0.07) 0 15px, transparent 16px),
+        radial-gradient(circle at 94% 46%, rgba(244, 124, 53, 0.07) 0 9px, transparent 10px),
+        radial-gradient(circle at 98% 45%, rgba(244, 124, 53, 0.07) 0 9px, transparent 10px),
+        radial-gradient(circle at 4% 64%, rgba(244, 124, 53, 0.06) 0 14px, transparent 15px),
+        radial-gradient(circle at 6% 62%, rgba(244, 124, 53, 0.06) 0 8px, transparent 9px),
+        radial-gradient(circle at 2% 61%, rgba(244, 124, 53, 0.06) 0 8px, transparent 9px);
     }
 
     .page-bg-paw::before,
     .page-bg-paw::after {
       content: "";
       position: absolute;
-      background: var(--orange);
-      border-radius: 50%;
+      opacity: 0.42;
+      pointer-events: none;
     }
 
     .page-bg-paw::before {
-      width: 70px;
-      height: 70px;
-      right: -20px;
-      top: 5px;
-      box-shadow:
-        45px 55px 0 -8px var(--orange),
-        4px 90px 0 -12px var(--orange);
+      left: -60px;
+      bottom: -25px;
+      width: 220px;
+      height: 190px;
+      border-radius: 50% 70% 0 0;
+      background:
+        radial-gradient(ellipse at 25% 80%, rgba(244, 124, 53, 0.08), transparent 60%),
+        radial-gradient(ellipse at 45% 65%, rgba(244, 124, 53, 0.09), transparent 58%),
+        radial-gradient(ellipse at 70% 90%, rgba(244, 124, 53, 0.08), transparent 60%);
     }
 
     .page-bg-paw::after {
-      width: 90px;
-      height: 90px;
-      left: 40px;
-      top: 45px;
+      right: -70px;
+      bottom: 0;
+      width: 260px;
+      height: 230px;
+      border-radius: 70% 50% 0 0;
+      background:
+        radial-gradient(ellipse at 30% 92%, rgba(244, 124, 53, 0.08), transparent 60%),
+        radial-gradient(ellipse at 54% 72%, rgba(244, 124, 53, 0.09), transparent 58%),
+        radial-gradient(ellipse at 80% 88%, rgba(244, 124, 53, 0.08), transparent 60%);
     }
 
     header {
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(255, 248, 237, 0.92);
+      background: rgba(255, 250, 241, 0.96);
       backdrop-filter: blur(16px);
       border-bottom: 1px solid rgba(241, 216, 189, 0.9);
     }
 
     .header-inner {
-      max-width: 1220px;
+      max-width: 1440px;
       margin: 0 auto;
-      padding: 0.85rem 1.25rem;
+      padding: 0.8rem 2rem;
       display: flex;
       align-items: center;
       gap: 1rem;
@@ -129,13 +153,13 @@
     }
 
     .brand-logo {
-      width: 58px;
-      height: 58px;
+      width: 64px;
+      height: 64px;
       object-fit: contain;
-      border-radius: 18px;
+      border-radius: 999px;
       background: white;
-      padding: 4px;
-      box-shadow: 0 8px 20px rgba(74, 52, 40, 0.14);
+      padding: 3px;
+      box-shadow: 0 8px 20px rgba(75, 45, 28, 0.12);
       flex: 0 0 auto;
       display: block;
     }
@@ -145,14 +169,14 @@
       letter-spacing: -0.05em;
       color: var(--brown);
       line-height: 0.95;
-      font-size: 18px;
+      font-size: 22px;
     }
 
     .brand-name .brand-orange { color: var(--orange); }
 
     .brand-name span {
       display: block;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 800;
       color: var(--muted);
       letter-spacing: 0;
@@ -161,32 +185,41 @@
 
     .nav {
       display: flex;
-      gap: 1rem;
+      gap: 1.5rem;
       align-items: center;
       margin-left: 1rem;
-      font-size: 14px;
+      font-size: 15px;
       font-weight: 800;
       color: var(--brown-2);
     }
 
     .nav a { text-decoration: none; }
     .nav a:hover { color: var(--orange); }
+    .nav a::before {
+      color: var(--orange);
+      margin-right: 0.42rem;
+      font-weight: 900;
+    }
+    .nav a:nth-child(1)::before { content: "◇"; }
+    .nav a:nth-child(2)::before { content: "⌂"; }
+    .nav a:nth-child(3)::before { content: "?"; }
+    .nav a:nth-child(4)::before { content: "+"; }
 
     .search-wrap {
       margin-left: auto;
-      width: min(330px, 100%);
+      width: min(310px, 100%);
     }
 
     #busqueda {
       width: 100%;
-      padding: 0.78rem 1rem;
+      padding: 0.85rem 1.1rem;
       border: 1px solid var(--border);
       border-radius: 999px;
       font: inherit;
       background: white;
       color: var(--brown);
       outline: none;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.8);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.8), 0 8px 18px rgba(75, 45, 28, 0.04);
     }
 
     #busqueda:focus {
@@ -196,37 +229,38 @@
 
     .telegram-top {
       text-decoration: none;
-      background: var(--blue);
+      background: linear-gradient(135deg, var(--blue), #3a9b8e);
       color: white;
       padding: 0.78rem 1rem;
       border-radius: 999px;
       font-weight: 900;
       font-size: 14px;
       white-space: nowrap;
-      box-shadow: 0 10px 25px rgba(12, 55, 102, 0.22);
+      box-shadow: 0 10px 25px rgba(47, 125, 115, 0.22);
     }
 
     main {
-      max-width: 1220px;
+      max-width: 1440px;
       margin: 0 auto;
-      padding: 1.25rem;
+      padding: 0 2rem 2rem;
     }
 
     .hero {
       position: relative;
-      min-height: 500px;
-      margin-top: 1rem;
-      border-radius: 34px;
+      min-height: 560px;
+      margin: 0 -2rem;
+      border-radius: 0;
       overflow: hidden;
       background:
-        radial-gradient(circle at 20% 20%, rgba(255, 155, 47, 0.25), transparent 28%),
-        linear-gradient(135deg, #fffaf2 0%, #fff1df 52%, #fff8ed 100%);
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow);
+        radial-gradient(circle at 18% 20%, rgba(255, 215, 106, 0.34), transparent 25%),
+        radial-gradient(circle at 88% 18%, rgba(57, 169, 107, 0.18), transparent 26%),
+        linear-gradient(135deg, rgba(255, 253, 246, 0.86) 0%, rgba(255, 242, 220, 0.78) 52%, rgba(234, 248, 240, 0.70) 100%);
+      border-bottom: 1px solid var(--border);
+      box-shadow: none;
       display: grid;
-      grid-template-columns: 1.35fr 0.85fr;
-      gap: 1.6rem;
-      padding: clamp(1.5rem, 4vw, 3.2rem);
+      grid-template-columns: minmax(0, 1.55fr) minmax(340px, 0.75fr);
+      gap: clamp(1.4rem, 4vw, 3.4rem);
+      padding: clamp(1.4rem, 4vw, 4rem) max(2rem, calc((100vw - 1440px) / 2 + 2rem));
     }
 
     .hero::before,
@@ -235,22 +269,22 @@
       position: absolute;
       border-radius: 999px;
       pointer-events: none;
-      opacity: 0.08;
+      opacity: 0.10;
       background: var(--orange);
     }
 
     .hero::before {
-      width: 170px;
-      height: 170px;
-      left: -55px;
-      top: 110px;
+      width: 220px;
+      height: 220px;
+      left: -80px;
+      top: 190px;
     }
 
     .hero::after {
-      width: 230px;
-      height: 230px;
-      right: -70px;
-      bottom: -60px;
+      width: 310px;
+      height: 310px;
+      right: -110px;
+      bottom: -90px;
     }
 
     .hero-left {
@@ -259,26 +293,28 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      min-height: 430px;
-      padding-top: 150px;
+      min-height: 500px;
+      padding-top: 125px;
+      align-items: center;
+      text-align: center;
     }
 
     .hero-cat {
       position: absolute;
-      top: -58px;
-      left: 52%;
+      top: -18px;
+      left: 50%;
       transform: translateX(-50%);
-      width: min(295px, 58vw);
+      width: min(410px, 48vw);
       z-index: 4;
-      filter: drop-shadow(0 18px 24px rgba(74, 52, 40, 0.18));
+      filter: drop-shadow(0 24px 24px rgba(75, 45, 28, 0.16));
       pointer-events: none;
     }
 
     .mega-title {
       position: relative;
       z-index: 5;
-      max-width: 760px;
-      font-size: clamp(3.1rem, 8vw, 7.3rem);
+      max-width: 900px;
+      font-size: clamp(4.1rem, 8.7vw, 8.5rem);
       line-height: 0.78;
       letter-spacing: -0.09em;
       font-weight: 900;
@@ -286,11 +322,28 @@
       text-wrap: balance;
     }
 
+    .hero-kicker {
+      position: relative;
+      z-index: 5;
+      width: fit-content;
+      margin-bottom: 0.75rem;
+      padding: 0.45rem 0.85rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.82);
+      border: 1px solid rgba(57, 169, 107, 0.25);
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      box-shadow: var(--shadow-soft);
+    }
+
     .mega-title .orange {
       color: var(--orange);
       text-shadow:
-        0 4px 0 #bd5d08,
-        0 12px 26px rgba(240, 125, 19, 0.25);
+        0 4px 0 #c45a21,
+        0 12px 26px rgba(244, 124, 53, 0.22);
     }
 
     .mega-title .dark {
@@ -320,13 +373,14 @@
       justify-content: center;
       width: fit-content;
       margin-top: 1.1rem;
-      padding: 0.45rem 1.4rem;
-      background: #ffd99f;
+      padding: 0.5rem 1.7rem;
+      background: linear-gradient(135deg, #ffe0a3, #fff2cd);
       color: var(--brown);
       border-radius: 999px;
+      border: 1px solid rgba(57, 169, 107, 0.22);
       font-size: clamp(0.95rem, 2vw, 1.2rem);
       font-weight: 900;
-      box-shadow: 0 8px 20px rgba(240, 125, 19, 0.15);
+      box-shadow: 0 8px 20px rgba(75, 45, 28, 0.10);
     }
 
     .hero-actions {
@@ -334,14 +388,15 @@
       gap: 0.75rem;
       flex-wrap: wrap;
       margin-top: 1.45rem;
+      justify-content: center;
     }
 
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 0.92rem 1.2rem;
-      border-radius: 16px;
+      padding: 0.95rem 1.25rem;
+      border-radius: 999px;
       text-decoration: none;
       font-weight: 900;
       border: 0;
@@ -353,22 +408,22 @@
     .btn:hover { transform: translateY(-2px); }
 
     .btn-primary {
-      background: linear-gradient(135deg, var(--orange), #ff9b2f);
+      background: linear-gradient(135deg, var(--orange), var(--orange-2));
       color: white;
-      box-shadow: 0 12px 24px rgba(240, 125, 19, 0.28);
+      box-shadow: 0 12px 24px rgba(244, 124, 53, 0.26);
     }
 
     .btn-secondary {
       background: white;
-      color: var(--orange);
-      border: 1px solid rgba(240, 125, 19, 0.45);
+      color: var(--brown);
+      border: 1px solid rgba(57, 169, 107, 0.35);
       box-shadow: var(--shadow-soft);
     }
 
     .btn-blue {
-      background: var(--blue);
+      background: linear-gradient(135deg, var(--blue), #3a9b8e);
       color: white;
-      box-shadow: 0 12px 24px rgba(12, 55, 102, 0.22);
+      box-shadow: 0 12px 24px rgba(47, 125, 115, 0.22);
     }
 
     .hero-right {
@@ -377,11 +432,12 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      gap: 1rem;
+      gap: 1.05rem;
+      padding-top: 2rem;
     }
 
     .right-title {
-      font-size: clamp(1.55rem, 3vw, 2.25rem);
+      font-size: clamp(2rem, 3.2vw, 3.1rem);
       line-height: 1.05;
       letter-spacing: -0.06em;
       font-weight: 900;
@@ -393,7 +449,8 @@
     .right-copy {
       color: var(--brown-2);
       font-weight: 600;
-      max-width: 440px;
+      max-width: 470px;
+      font-size: 1.04rem;
     }
 
     .benefit-list {
@@ -404,26 +461,26 @@
 
     .benefit {
       display: grid;
-      grid-template-columns: 42px 1fr;
-      gap: 0.75rem;
+      grid-template-columns: 56px 1fr;
+      gap: 0.9rem;
       align-items: center;
-      background: rgba(255, 255, 255, 0.74);
+      background: rgba(255, 255, 255, 0.82);
       border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 0.8rem;
+      border-radius: 18px;
+      padding: 0.95rem;
       box-shadow: var(--shadow-soft);
     }
 
     .benefit-icon {
-      width: 42px;
-      height: 42px;
-      border-radius: 13px;
-      background: var(--orange-soft);
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--orange-soft), var(--mint));
       display: grid;
       place-items: center;
-      color: var(--orange);
+      color: var(--blue);
       font-weight: 900;
-      font-size: 18px;
+      font-size: 20px;
     }
 
     .benefit strong {
@@ -443,7 +500,7 @@
       margin-top: 1rem;
       background: rgba(255, 255, 255, 0.82);
       border: 1px solid var(--border);
-      border-radius: 18px;
+      border-radius: 22px;
       padding: 1rem;
       box-shadow: var(--shadow-soft);
       display: grid;
@@ -454,7 +511,7 @@
     .score-item strong {
       display: block;
       font-size: 1.7rem;
-      color: var(--orange);
+      color: var(--blue);
       line-height: 1;
     }
 
@@ -470,15 +527,28 @@
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 0.85rem;
-      margin: 1rem 0 1.5rem;
+      margin: 1.2rem 0 1.5rem;
     }
 
     .trust-item {
       background: white;
       border: 1px solid var(--border);
-      border-radius: 20px;
+      border-radius: 22px;
       padding: 1rem;
       box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .trust-item::after {
+      content: "";
+      position: absolute;
+      right: -24px;
+      bottom: -28px;
+      width: 82px;
+      height: 82px;
+      border-radius: 50%;
+      background: rgba(244, 124, 53, 0.07);
     }
 
     .trust-item strong {
@@ -494,6 +564,48 @@
       font-size: 13px;
     }
 
+    .local-strip {
+      margin: 1.6rem 0 0;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.2rem;
+      border: 1px solid rgba(57, 169, 107, 0.25);
+      border-radius: 28px;
+      background:
+        radial-gradient(circle at 6% 20%, rgba(255, 215, 106, 0.24), transparent 24%),
+        linear-gradient(135deg, rgba(255,255,255,0.92), rgba(230,246,238,0.74));
+      box-shadow: var(--shadow-soft);
+    }
+
+    .local-strip h2 {
+      color: var(--blue-2);
+      font-size: clamp(1.35rem, 2.5vw, 2rem);
+      letter-spacing: -0.05em;
+      line-height: 1.1;
+    }
+
+    .local-strip p {
+      color: var(--brown-2);
+      font-weight: 650;
+      margin-top: 0.35rem;
+      max-width: 760px;
+    }
+
+    .local-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.8rem 1rem;
+      border-radius: 999px;
+      background: white;
+      color: var(--blue);
+      border: 1px solid rgba(57, 169, 107, 0.3);
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
     /* ---- Cómo funciona ---- */
     .steps {
       display: grid;
@@ -507,7 +619,7 @@
       position: relative;
       background: white;
       border: 1px solid var(--border);
-      border-radius: 22px;
+      border-radius: 24px;
       padding: 1.4rem 1.1rem 1.1rem;
       box-shadow: var(--shadow-soft);
       transition: transform 0.18s ease, box-shadow 0.18s ease;
@@ -524,12 +636,12 @@
       width: 40px;
       height: 40px;
       border-radius: 13px;
-      background: linear-gradient(135deg, var(--orange), var(--orange-2));
+      background: linear-gradient(135deg, var(--blue), var(--green));
       color: white;
       font-weight: 900;
       font-size: 18px;
       margin-bottom: 0.75rem;
-      box-shadow: 0 10px 20px rgba(240, 125, 19, 0.28);
+      box-shadow: 0 10px 20px rgba(47, 125, 115, 0.24);
     }
 
     .step h3 {
@@ -613,9 +725,9 @@
     }
 
     @keyframes pulse-badge {
-      0% { box-shadow: 0 8px 18px rgba(240, 125, 19, 0.24), 0 0 0 0 rgba(229, 57, 53, 0.45); }
-      70% { box-shadow: 0 8px 18px rgba(240, 125, 19, 0.24), 0 0 0 8px rgba(229, 57, 53, 0); }
-      100% { box-shadow: 0 8px 18px rgba(240, 125, 19, 0.24), 0 0 0 0 rgba(229, 57, 53, 0); }
+      0% { box-shadow: 0 8px 18px rgba(244, 124, 53, 0.22), 0 0 0 0 rgba(233, 92, 74, 0.38); }
+      70% { box-shadow: 0 8px 18px rgba(244, 124, 53, 0.22), 0 0 0 8px rgba(233, 92, 74, 0); }
+      100% { box-shadow: 0 8px 18px rgba(244, 124, 53, 0.22), 0 0 0 0 rgba(233, 92, 74, 0); }
     }
 
     .card {
@@ -637,10 +749,10 @@
       display: none;
       gap: 0.6rem;
       padding: 0.65rem 0.85rem;
-      background: rgba(255, 248, 237, 0.96);
+      background: rgba(255, 250, 241, 0.96);
       backdrop-filter: blur(14px);
       border-top: 1px solid var(--border);
-      box-shadow: 0 -12px 28px rgba(74, 52, 40, 0.14);
+      box-shadow: 0 -12px 28px rgba(75, 45, 28, 0.14);
     }
 
     .sticky-cta a {
@@ -688,8 +800,8 @@
       gap: 0.45rem;
       margin-top: 0.4rem;
       padding: 0.4rem 0.85rem;
-      background: rgba(0, 166, 80, 0.1);
-      border: 1px solid rgba(0, 166, 80, 0.25);
+      background: var(--mint);
+      border: 1px solid rgba(57, 169, 107, 0.26);
       border-radius: 999px;
       color: var(--green);
       font-weight: 800;
@@ -701,20 +813,20 @@
       height: 8px;
       border-radius: 50%;
       background: var(--green);
-      box-shadow: 0 0 0 0 rgba(0, 166, 80, 0.6);
+      box-shadow: 0 0 0 0 rgba(57, 169, 107, 0.52);
       animation: pulse-dot 1.8s infinite;
     }
 
     @keyframes pulse-dot {
-      0% { box-shadow: 0 0 0 0 rgba(0, 166, 80, 0.55); }
-      70% { box-shadow: 0 0 0 7px rgba(0, 166, 80, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(0, 166, 80, 0); }
+      0% { box-shadow: 0 0 0 0 rgba(57, 169, 107, 0.50); }
+      70% { box-shadow: 0 0 0 7px rgba(57, 169, 107, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(57, 169, 107, 0); }
     }
 
     .panel {
       background: rgba(255, 255, 255, 0.92);
       border: 1px solid var(--border);
-      border-radius: 24px;
+      border-radius: 26px;
       padding: 1rem;
       margin-bottom: 1rem;
       box-shadow: var(--shadow-soft);
@@ -737,6 +849,7 @@
       cursor: pointer;
       outline: none;
       font-weight: 700;
+      min-height: 44px;
     }
 
     .chip {
@@ -753,9 +866,9 @@
 
     .chip.activo,
     .chip:hover {
-      background: var(--orange);
+      background: var(--blue);
       color: white;
-      border-color: var(--orange);
+      border-color: var(--blue);
     }
 
     .stats {
@@ -766,9 +879,9 @@
     }
 
     .stat {
-      background: var(--cream);
+      background: linear-gradient(180deg, #fffaf1, #f1fbf5);
       border: 1px solid var(--border);
-      border-radius: 18px;
+      border-radius: 20px;
       padding: 1rem;
       color: var(--muted);
       font-size: 13px;
@@ -777,7 +890,7 @@
 
     .stat strong {
       display: block;
-      color: var(--orange);
+      color: var(--blue);
       font-size: 1.55rem;
       line-height: 1;
       margin-bottom: 0.25rem;
@@ -792,7 +905,7 @@
     .card {
       background: white;
       border: 1px solid var(--border);
-      border-radius: 24px;
+      border-radius: 26px;
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -808,7 +921,9 @@
 
     .card-img-wrap {
       position: relative;
-      background: linear-gradient(180deg, #fffaf2, #ffffff);
+      background:
+        radial-gradient(circle at 22% 20%, rgba(255, 215, 106, 0.16), transparent 32%),
+        linear-gradient(180deg, #fffaf1, #ffffff);
       height: 225px;
       display: grid;
       place-items: center;
@@ -833,8 +948,8 @@
       padding: 1rem;
       font-size: 13px;
       background:
-        radial-gradient(circle at center, rgba(240, 125, 19, 0.08), transparent 45%),
-        #fffaf2;
+        radial-gradient(circle at center, rgba(57, 169, 107, 0.10), transparent 45%),
+        #fffaf1;
     }
 
     .discount-badge,
@@ -857,8 +972,8 @@
     .discount-badge {
       top: 12px;
       left: 12px;
-      background: var(--orange);
-      box-shadow: 0 8px 18px rgba(240, 125, 19, 0.24);
+      background: linear-gradient(135deg, var(--orange), var(--orange-2));
+      box-shadow: 0 8px 18px rgba(244, 124, 53, 0.22);
     }
 
     .flash-badge {
@@ -874,7 +989,7 @@
       letter-spacing: 0.02em;
       text-transform: uppercase;
       background: var(--red);
-      box-shadow: 0 8px 18px rgba(229, 57, 53, 0.3);
+      box-shadow: 0 8px 18px rgba(233, 92, 74, 0.24);
       z-index: 2;
     }
 
@@ -882,7 +997,7 @@
       display: inline-block;
       margin-top: 0.15rem;
       padding: 0.15rem 0.55rem;
-      background: rgba(0, 166, 80, 0.12);
+      background: rgba(57, 169, 107, 0.12);
       color: var(--green);
       border-radius: 999px;
       font-size: 11px;
@@ -892,14 +1007,14 @@
     .category-badge {
       top: 12px;
       right: 12px;
-      background: rgba(59, 33, 21, 0.9);
+      background: rgba(56, 32, 22, 0.9);
       text-transform: capitalize;
     }
 
     .store-badge {
       bottom: 12px;
       left: 12px;
-      background: rgba(12, 55, 102, 0.92);
+      background: rgba(47, 125, 115, 0.94);
     }
 
     .origin-badge {
@@ -908,7 +1023,7 @@
       background: var(--green);
     }
 
-    .origin-badge.internacional { background: var(--blue); }
+    .origin-badge.marketplace { background: var(--blue); }
 
     .card-body {
       padding: 1rem;
@@ -964,17 +1079,19 @@
     }
 
     .btn-offer {
-      background: var(--blue);
+      background: linear-gradient(135deg, var(--blue), var(--green));
       color: white;
       text-decoration: none;
       text-align: center;
       padding: 0.9rem;
-      border-radius: 16px;
+      border-radius: 18px;
       font-weight: 900;
       margin-top: 0.2rem;
     }
 
-    .btn-offer:hover { background: var(--blue-2); }
+    .btn-offer:hover {
+      background: linear-gradient(135deg, var(--blue-2), var(--blue));
+    }
 
     .loading,
     .vacio {
@@ -984,7 +1101,7 @@
       color: var(--muted);
       background: white;
       border: 1px solid var(--border);
-      border-radius: 24px;
+      border-radius: 26px;
       box-shadow: var(--shadow-soft);
     }
 
@@ -1003,8 +1120,8 @@
     .request-box {
       margin-top: 2rem;
       background:
-        radial-gradient(circle at top left, rgba(255, 155, 47, 0.34), transparent 28%),
-        linear-gradient(135deg, var(--brown), #5a3829);
+        radial-gradient(circle at top left, rgba(255, 215, 106, 0.28), transparent 28%),
+        linear-gradient(135deg, var(--brown), var(--blue-2));
       color: white;
       border-radius: 30px;
       padding: clamp(1.3rem, 3vw, 2rem);
@@ -1043,9 +1160,11 @@
 
     .business-box {
       margin-top: 1rem;
-      background: white;
+      background:
+        radial-gradient(circle at top right, rgba(57, 169, 107, 0.10), transparent 30%),
+        white;
       border: 1px solid var(--border);
-      border-radius: 24px;
+      border-radius: 26px;
       padding: 1.25rem;
       display: grid;
       grid-template-columns: 1fr auto;
@@ -1058,6 +1177,10 @@
       color: var(--muted);
       margin-top: 0.3rem;
       font-weight: 600;
+    }
+
+    .business-box h2 {
+      color: var(--blue-2);
     }
 
     footer {
@@ -1077,6 +1200,7 @@
       .hero-right { max-width: 680px; }
       .hero-left { min-height: 430px; }
       .hero-cat { width: min(275px, 66vw); }
+      .local-strip { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 860px) {
@@ -1108,6 +1232,7 @@
         border-radius: 24px;
         padding: 1.2rem;
         min-height: auto;
+        margin: 0;
       }
       .hero-left {
         min-height: 390px;
@@ -1119,6 +1244,10 @@
         left: 52%;
       }
       .mega-title { font-size: clamp(3rem, 17vw, 4.5rem); }
+      .hero-kicker {
+        font-size: 10px;
+        margin-bottom: 0.6rem;
+      }
       .tagline-ribbon {
         font-size: 0.9rem;
         padding: 0.45rem 1rem;
@@ -1126,6 +1255,13 @@
       .trust-row,
       .stats,
       .grid { grid-template-columns: 1fr; }
+      .local-strip {
+        border-radius: 22px;
+        margin-top: 1rem;
+      }
+      .local-pill {
+        width: 100%;
+      }
       .card-img-wrap { height: 215px; }
       .hero-score { grid-template-columns: 1fr; }
     }
@@ -1141,18 +1277,19 @@
         <img src="/assets/logo-gatito.png" alt="Logo El Ofertón del Gatito" class="brand-logo" width="58" height="58">
         <div class="brand-name">
           El <span class="brand-orange">Ofertón</span><br>del Gatito
-          <span>Buscamos ofertas por ti</span>
+          <span>Ofertas para mascotas</span>
         </div>
       </a>
 
       <nav class="nav" aria-label="Navegación principal">
-        <a href="#ofertas">Ofertas de hoy</a>
-        <a href="#pedidos">Pedir oferta</a>
-        <a href="#marcas">Marcas y tiendas</a>
+        <a href="#ofertas">Ofertas</a>
+        <a href="#local">Comercio local</a>
+        <a href="#funciona">Cómo funciona</a>
+        <a href="#marcas">Sumar tienda</a>
       </nav>
 
       <div class="search-wrap">
-        <input type="text" id="busqueda" placeholder="Buscar ofertas..." aria-label="Buscar ofertas">
+        <input type="text" id="busqueda" placeholder="Buscar alimento, juguetes, camas..." aria-label="Buscar ofertas para mascotas">
       </div>
 
       <a class="telegram-top" href="https://t.me/ofertastech_cl" target="_blank" rel="noopener">Unirme al Telegram</a>
@@ -1164,49 +1301,51 @@
       <div class="hero-left">
         <img src="/assets/gatito-hero.png" alt="Gatito recostado sobre el nombre El Ofertón del Gatito" class="hero-cat">
 
+        <div class="hero-kicker">Vitrina local de mascotas</div>
+
         <h1 class="mega-title">
           El <span class="orange">Ofertón</span>
           <span class="dark">del Gatito<span class="paw-dot">●</span></span>
         </h1>
 
-        <div class="tagline-ribbon">Buscamos las mejores ofertas por ti</div>
+        <div class="tagline-ribbon">Ofertas para mascotas, con comercio local primero</div>
 
         <div class="hero-actions">
-          <a class="btn btn-primary" href="#ofertas">Ver ofertas de hoy</a>
-          <a class="btn btn-secondary" href="https://docs.google.com/forms/d/e/1FAIpQLSeFz_lI6DzdSghYQniDqqOeCZnRNJJAQqCnIc83pdZ3RtLymw/viewform" target="_blank" rel="noopener">Pedir una oferta</a>
+          <a class="btn btn-primary" href="#ofertas">Ver ofertas para mascotas</a>
+          <a class="btn btn-secondary" href="https://docs.google.com/forms/d/e/1FAIpQLSeFz_lI6DzdSghYQniDqqOeCZnRNJJAQqCnIc83pdZ3RtLymw/viewform" target="_blank" rel="noopener">Pedir un producto</a>
           <a class="btn btn-blue" href="https://t.me/ofertastech_cl" target="_blank" rel="noopener">Unirme al Telegram</a>
         </div>
       </div>
 
       <div class="hero-right">
-        <h2 class="right-title"><span>Ahorra más.</span> Compra mejor.</h2>
+        <h2 class="right-title"><span>Cuida mejor.</span> Compra más cerca.</h2>
         <p class="right-copy">
-          Encontramos, filtramos y compartimos ofertas útiles para Chile.
-          Tecnología, hogar, datos buenos y oportunidades seleccionadas para ahorrar tiempo y dinero.
+          Reunimos ofertas para mascotas con foco en tiendas locales, emprendedores y datos buenos de la zona.
+          MercadoLibre queda como base para comparar precios y sumar oportunidades cuando conviene.
         </p>
 
         <div class="benefit-list">
           <div class="benefit">
-            <div class="benefit-icon">1</div>
+            <div class="benefit-icon">L</div>
             <div>
-              <strong>Ofertas seleccionadas</strong>
-              <span>No mostramos cualquier cosa. Priorizamos precio, utilidad y demanda real.</span>
+              <strong>Comercio local primero</strong>
+              <span>Priorizamos tiendas y emprendedores cercanos con productos útiles para mascotas.</span>
             </div>
           </div>
 
           <div class="benefit">
-            <div class="benefit-icon">2</div>
+            <div class="benefit-icon">OK</div>
             <div>
               <strong>Compra directa</strong>
-              <span>El pago, despacho y garantía quedan en la tienda o plataforma asociada.</span>
+              <span>El pago, retiro, despacho y garantía se coordinan directo con cada tienda o plataforma.</span>
             </div>
           </div>
 
           <div class="benefit">
-            <div class="benefit-icon">3</div>
+            <div class="benefit-icon">$</div>
             <div>
               <strong>La comunidad pide</strong>
-              <span>Usamos el buzón para buscar productos que la gente realmente necesita.</span>
+              <span>Buscamos alimento, accesorios, higiene y servicios que los tutores realmente necesitan.</span>
             </div>
           </div>
         </div>
@@ -1224,47 +1363,55 @@
       </div>
     </section>
 
+    <section class="local-strip" id="local" aria-label="Comercio local destacado">
+      <div>
+        <h2>Comercio local destacado</h2>
+        <p>La vitrina parte con ofertas base de MercadoLibre, pero el espacio principal es para tiendas, peluquerías, veterinarias y emprendedores de tu zona.</p>
+      </div>
+      <a class="local-pill" href="#marcas">Quiero destacar mi tienda</a>
+    </section>
+
     <section class="trust-row" aria-label="Beneficios">
       <div class="trust-item">
-        <strong>Selección gatuna</strong>
-        <span>Curamos productos con buen precio, utilidad y potencial real de ahorro.</span>
+        <strong>Solo mascotas</strong>
+        <span>Alimento, snacks, juguetes, camas, higiene, accesorios y servicios para mascotas.</span>
       </div>
       <div class="trust-item">
-        <strong>Tiendas asociadas</strong>
-        <span>El botón de compra te lleva directo a la plataforma correspondiente.</span>
+        <strong>Local destacado</strong>
+        <span>El comercio local será el agregado estrella: más cercano, más humano y más visible.</span>
       </div>
       <div class="trust-item">
-        <strong>Actualización automática</strong>
-        <span>La vitrina se alimenta desde el sistema y puede actualizarse durante el día.</span>
+        <strong>MercadoLibre como base</strong>
+        <span>Usamos ofertas de MercadoLibre para comparar precios y mantener variedad disponible.</span>
       </div>
       <div class="trust-item">
-        <strong>Futuras exclusivas</strong>
-        <span>La meta es negociar mejores precios y productos destacados para la comunidad.</span>
+        <strong>Datos para la comunidad</strong>
+        <span>La idea es ayudar a comprar mejor y, al mismo tiempo, mover la economía local.</span>
       </div>
     </section>
 
-    <section class="steps" aria-label="Cómo funciona">
+    <section class="steps" id="funciona" aria-label="Cómo funciona">
       <div class="step">
         <div class="step-num">1</div>
-        <h3>Rastreamos ofertas</h3>
-        <p>El sistema revisa precios varias veces al día para detectar caídas y descuentos reales.</p>
+        <h3>Buscamos lo útil</h3>
+        <p>Reunimos ofertas de alimento, accesorios, higiene y servicios que sí sirven para el día a día.</p>
       </div>
       <div class="step">
         <div class="step-num">2</div>
-        <h3>Filtramos lo bueno</h3>
-        <p>Descartamos lo irrelevante y dejamos solo lo que vale la pena por precio y utilidad.</p>
+        <h3>Destacamos lo local</h3>
+        <p>Las tiendas cercanas tienen prioridad para que la comunidad pueda comprar y apoyar a su zona.</p>
       </div>
       <div class="step">
         <div class="step-num">3</div>
-        <h3>Tú compras seguro</h3>
-        <p>Haces clic y compras directo en la tienda oficial: mismo pago, garantía y despacho de siempre.</p>
+        <h3>Compras directo</h3>
+        <p>Haces clic y coordinas con la tienda local o plataforma asociada, sin intermediarios raros.</p>
       </div>
     </section>
 
     <section id="ofertas">
       <div class="section-head">
         <div>
-          <h2>Ofertas destacadas de hoy</h2>
+          <h2>Comercio local y ofertas para mascotas</h2>
           <span class="live-chip"><span class="live-dot"></span><span id="actualizado">Cargando actualización...</span></span>
         </div>
       </div>
@@ -1280,9 +1427,9 @@
           </select>
 
           <select id="filtro-origen" aria-label="Filtrar por origen">
-            <option value="">Chile e internacional</option>
-            <option value="nacional">Solo nacional</option>
-            <option value="internacional">Solo internacional</option>
+            <option value="">Todas las fuentes</option>
+            <option value="local">Comercio local</option>
+            <option value="mercadolibre">MercadoLibre/base</option>
           </select>
 
           <select id="filtro-orden" aria-label="Ordenar ofertas">
@@ -1307,25 +1454,25 @@
 
     <section class="request-box" id="pedidos">
       <div>
-        <h2>¿Buscas una oferta específica?</h2>
+        <h2>¿Buscas algo para tu mascota?</h2>
         <p>
-          Déjanos el producto, presupuesto y urgencia. El Gatito usa ese buzón para buscar ofertas reales para la comunidad.
+          Déjanos el producto, presupuesto y comuna. El Gatito usa ese buzón para buscar opciones locales y comparar con ofertas online.
         </p>
       </div>
-      <a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSeFz_lI6DzdSghYQniDqqOeCZnRNJJAQqCnIc83pdZ3RtLymw/viewform" target="_blank" rel="noopener">Pedir una oferta</a>
+      <a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSeFz_lI6DzdSghYQniDqqOeCZnRNJJAQqCnIc83pdZ3RtLymw/viewform" target="_blank" rel="noopener">Pedir producto</a>
     </section>
 
     <section class="business-box" id="marcas">
       <div>
-        <h2>¿Tienes una tienda o producto para destacar?</h2>
+        <h2>¿Tienes tienda, peluquería o servicio para mascotas?</h2>
         <p>
-          Podemos evaluar productos destacados, precios especiales, ofertas exclusivas o publicaciones para nuestra comunidad.
+          Queremos destacar comercio local: alimento, accesorios, peluquería, hotel, veterinaria, paseos, delivery y productos para mascotas.
         </p>
         <p style="margin-top:.4rem; font-size:12px;">
           También puedes escribirnos a <a href="mailto:jleonardo.painevilu@gmail.com" style="text-decoration:underline;">jleonardo.painevilu@gmail.com</a>
         </p>
       </div>
-      <a class="btn btn-blue" href="https://wa.me/56973806218?text=Hola%2C%20quiero%20destacar%20un%20producto%20en%20El%20Oferton%20del%20Gatito" target="_blank" rel="noopener">Contacto comercial</a>
+      <a class="btn btn-blue" href="https://wa.me/56973806218?text=Hola%2C%20quiero%20destacar%20mi%20tienda%20o%20producto%20para%20mascotas%20en%20El%20Oferton%20del%20Gatito" target="_blank" rel="noopener">Sumar mi tienda</a>
     </section>
 
     <section class="faq" aria-label="Preguntas frecuentes">
@@ -1337,34 +1484,34 @@
 
       <details class="faq-item">
         <summary>¿Ustedes venden los productos?</summary>
-        <p>No. Nosotros encontramos y compartimos las ofertas; la compra, el pago, el despacho y la garantía siempre quedan directamente con la tienda o plataforma asociada.</p>
+        <p>No. Nosotros encontramos y compartimos ofertas para mascotas; la compra, el pago, el despacho y la garantía quedan directamente con la tienda local o plataforma asociada.</p>
       </details>
 
       <details class="faq-item">
-        <summary>¿Es seguro comprar desde acá?</summary>
-        <p>Sí, porque el botón "Ver oferta" te lleva al mismo sitio oficial de la tienda. No procesamos pagos ni pedimos tus datos bancarios en ningún momento.</p>
+        <summary>¿Por qué aparece MercadoLibre si el foco es local?</summary>
+        <p>MercadoLibre sirve como base para comparar precios y mantener ofertas disponibles. El agregado estrella será el comercio local destacado dentro de la vitrina.</p>
       </details>
 
       <details class="faq-item">
-        <summary>¿Con qué frecuencia se actualizan las ofertas?</summary>
-        <p>La vitrina se revisa varias veces al día, así que los precios y descuentos pueden cambiar durante la jornada.</p>
+        <summary>¿Puedo comprar a una tienda de mi zona?</summary>
+        <p>Sí. Cuando una oferta sea local, el botón te llevará al contacto, WhatsApp, catálogo o canal definido por esa tienda.</p>
       </details>
 
       <details class="faq-item">
         <summary>¿Puedo pedir que busquen un producto específico?</summary>
-        <p>Sí. Usa el botón "Pedir una oferta" y cuéntanos qué producto, presupuesto y urgencia tienes. Lo agregamos a la búsqueda.</p>
+        <p>Sí. Usa el botón "Pedir producto" y cuéntanos qué necesitas, para qué mascota, presupuesto y comuna. Lo agregamos a la búsqueda.</p>
       </details>
     </section>
   </main>
 
   <footer>
-    <p><strong>El Ofertón del Gatito</strong> - Buscamos las mejores ofertas por ti.</p>
-    <p style="margin-top:.5rem;">Las compras, pagos, garantías y despachos se realizan directamente en cada tienda o plataforma asociada.</p>
+    <p><strong>El Ofertón del Gatito</strong> - Ofertas para mascotas, comercio local primero.</p>
+    <p style="margin-top:.5rem;">Las compras, pagos, garantías, retiros y despachos se realizan directamente con cada tienda o plataforma asociada.</p>
   </footer>
 
   <div class="sticky-cta">
-    <a class="btn btn-blue" href="https://t.me/ofertastech_cl" target="_blank" rel="noopener">📲 Telegram</a>
-    <a class="btn btn-primary" href="#ofertas">🔥 Ver ofertas</a>
+    <a class="btn btn-blue" href="https://t.me/ofertastech_cl" target="_blank" rel="noopener">Telegram</a>
+    <a class="btn btn-primary" href="#ofertas">Ver ofertas</a>
   </div>
 
   <script>
@@ -1410,7 +1557,7 @@
     }
 
     function detectarTienda(p) {
-      const directa = repararTexto(p.tienda || p.store || "");
+      const directa = repararTexto(p.tienda || p.store || p.comercio || p.negocio || "");
       if (directa) return directa;
 
       const link = String(p.link_afiliado || p.link_oferta || "").toLowerCase();
@@ -1423,39 +1570,61 @@
       if (link.includes("amazon")) return "Amazon";
       if (link.includes("shopee")) return "Shopee";
 
-      return "Tienda asociada";
+      return "Comercio local";
     }
 
     function detectarOrigen(p) {
-      const tipo = normalizar(p.tipo_oferta || p.origen || p.pais_origen || "");
+      const tipo = normalizar(p.tipo_oferta || p.origen || p.pais_origen || p.fuente || "");
       const tienda = normalizar(detectarTienda(p));
+      const link = String(p.link_afiliado || p.link_oferta || "").toLowerCase();
 
       if (
-        tipo.includes("internacional") ||
-        tienda.includes("aliexpress") ||
-        tienda.includes("amazon") ||
-        tienda.includes("shopee")
+        tipo.includes("local") ||
+        tipo.includes("comercio") ||
+        tipo.includes("tienda local") ||
+        tienda.includes("local") ||
+        tienda.includes("veterinaria") ||
+        tienda.includes("peluqueria") ||
+        tienda.includes("petshop")
       ) {
-        return "internacional";
+        return "local";
       }
 
-      return "nacional";
+      if (
+        tipo.includes("mercadolibre") ||
+        tipo.includes("marketplace") ||
+        tienda.includes("mercadolibre") ||
+        link.includes("mercadolibre") ||
+        link.includes("meli.")
+      ) {
+        return "mercadolibre";
+      }
+
+      return "local";
     }
 
     function categoriaBonita(cat) {
       const c = normalizar(cat || "general");
 
       const mapa = {
-        memorias: "Memorias",
-        cargadores: "Cargadores",
-        audifonos: "Audífonos",
-        teclados: "Teclados",
-        smartv: "Smart TV",
-        internet: "Internet",
-        electronica: "Electrónica",
-        celulares: "Celulares",
-        herramientas: "Herramientas",
-        hogar: "Hogar",
+        alimento: "Alimento",
+        alimentos: "Alimentos",
+        comida: "Comida",
+        snacks: "Snacks",
+        premios: "Premios",
+        juguetes: "Juguetes",
+        accesorios: "Accesorios",
+        camas: "Camas",
+        higiene: "Higiene",
+        arena: "Arena",
+        salud: "Salud y cuidado",
+        cuidado: "Cuidado",
+        peluqueria: "Peluquería",
+        veterinaria: "Veterinaria",
+        paseos: "Paseos",
+        servicios: "Servicios",
+        ropa: "Ropa",
+        transporte: "Transporte",
         general: "General"
       };
 
@@ -1580,6 +1749,9 @@
       });
 
       lista.sort((a, b) => {
+        const prioridadA = detectarOrigen(a) === "local" ? 0 : 1;
+        const prioridadB = detectarOrigen(b) === "local" ? 0 : 1;
+        if (prioridadA !== prioridadB) return prioridadA - prioridadB;
         if (orden === "descuento") return Number(b.descuento_pct || 0) - Number(a.descuento_pct || 0);
         if (orden === "precio_asc") return Number(a.precio_clp || 0) - Number(b.precio_clp || 0);
         if (orden === "precio_desc") return Number(b.precio_clp || 0) - Number(a.precio_clp || 0);
@@ -1592,8 +1764,8 @@
     function renderStats() {
       const total = TODOS.length;
       const maxDesc = total ? Math.max(...TODOS.map(p => Number(p.descuento_pct || 0))) : 0;
-      const nacional = TODOS.filter(p => detectarOrigen(p) === "nacional").length;
-      const internacional = TODOS.filter(p => detectarOrigen(p) === "internacional").length;
+      const locales = TODOS.filter(p => detectarOrigen(p) === "local").length;
+      const mercadoLibre = TODOS.filter(p => detectarOrigen(p) === "mercadolibre").length;
 
       document.getElementById("hero-total").textContent = total;
       document.getElementById("hero-desc").textContent = Math.round(maxDesc) + "%";
@@ -1601,8 +1773,8 @@
       document.getElementById("stats").innerHTML = `
         <div class="stat"><strong>${total}</strong>ofertas activas</div>
         <div class="stat"><strong>${Math.round(maxDesc)}%</strong>mayor descuento</div>
-        <div class="stat"><strong>${nacional}</strong>ofertas Chile</div>
-        <div class="stat"><strong>${internacional}</strong>internacionales</div>
+        <div class="stat"><strong>${locales}</strong>comercio local</div>
+        <div class="stat"><strong>${mercadoLibre}</strong>MercadoLibre/base</div>
       `;
     }
 
@@ -1614,7 +1786,7 @@
         grid.innerHTML = `
           <div class="vacio">
             <h3>No hay ofertas con esos filtros.</h3>
-            <p>Prueba con otra categoría, tienda u orden.</p>
+            <p>Prueba con otra categoría, tienda, fuente u orden.</p>
           </div>
         `;
         return;
@@ -1629,7 +1801,7 @@
         const categoria = escaparHTML(categoriaBonita(p.categoria));
         const tienda = escaparHTML(detectarTienda(p));
         const origen = detectarOrigen(p);
-        const origenTexto = origen === "internacional" ? "Internacional" : "Chile";
+        const origenTexto = origen === "mercadolibre" ? "MercadoLibre" : "Local";
         const imagen = String(p.imagen || "").trim();
         const link = String(p.link_afiliado || p.link_oferta || "#").trim();
 
@@ -1647,10 +1819,10 @@
           <article class="card" style="animation-delay:${Math.min(idx * 0.04, 0.6)}s">
             <div class="card-img-wrap">
               ${descuento > 0 ? `<span class="discount-badge${esCaliente ? " hot" : ""}">-${Math.round(descuento)}%</span>` : ""}
-              ${esRelampago ? `<span class="flash-badge">⚡ Relámpago</span>` : ""}
+              ${esRelampago ? `<span class="flash-badge">Oferta top</span>` : ""}
               <span class="category-badge">${categoria}</span>
               <span class="store-badge">${tienda}</span>
-              <span class="origin-badge ${origen === "internacional" ? "internacional" : ""}">${origenTexto}</span>
+              <span class="origin-badge ${origen === "mercadolibre" ? "marketplace" : ""}">${origenTexto}</span>
               ${imagenHTML}
             </div>
 
@@ -1664,7 +1836,7 @@
                 ${ahorro > 0 ? `<span class="savings-tag">Ahorras ${fmtCLP(ahorro)}</span>` : ""}
               </div>
 
-              <p class="affiliate-note">Compra directamente en la tienda o plataforma asociada.</p>
+              <p class="affiliate-note">Compra o coordina directamente con la tienda o plataforma asociada.</p>
 
               <a class="btn-offer" href="${escaparHTML(link)}" target="_blank" rel="noopener sponsored" onclick="registrarClic('${escaparHTML(titulo).replace(/'/g, "\\'")}')">
                 Ver oferta
