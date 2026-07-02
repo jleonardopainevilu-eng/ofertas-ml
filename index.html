@@ -1475,7 +1475,7 @@
     <section id="ofertas">
       <div class="section-head">
         <div>
-          <h2>Comercio local destacado</h2>
+          <h2>Ofertas destacadas de hoy</h2>
           <span class="live-chip"><span class="live-dot"></span><span id="actualizado">Cargando actualización...</span></span>
         </div>
         <a class="section-link" href="#ofertas">Ver todas las ofertas</a>
@@ -1866,7 +1866,8 @@
         const categoria = escaparHTML(categoriaBonita(p.categoria));
         const tienda = escaparHTML(detectarTienda(p));
         const origen = detectarOrigen(p);
-        const origenTexto = origen === "mercadolibre" ? "MercadoLibre" : "Local";
+        const origenTexto = origen === "mercadolibre" ? "Compra online" : "Comercio local";
+        const mostrarOrigen = normalizar(tienda) !== normalizar(origenTexto);
         const imagen = String(p.imagen || "").trim();
         const link = String(p.link_afiliado || p.link_oferta || "#").trim();
 
@@ -1887,7 +1888,7 @@
               ${esRelampago ? `<span class="flash-badge">Oferta top</span>` : ""}
               <span class="category-badge">${categoria}</span>
               <span class="store-badge">${tienda}</span>
-              <span class="origin-badge ${origen === "mercadolibre" ? "marketplace" : ""}">${origenTexto}</span>
+              ${mostrarOrigen ? `<span class="origin-badge ${origen === "mercadolibre" ? "marketplace" : ""}">${origenTexto}</span>` : ""}
               ${imagenHTML}
             </div>
 
