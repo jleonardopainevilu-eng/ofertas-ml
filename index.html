@@ -483,6 +483,12 @@
       box-shadow: 0 12px 24px rgba(47, 125, 115, 0.22);
     }
 
+    .btn-shop {
+      background: linear-gradient(135deg, #249b64, #42bf7a);
+      color: white;
+      box-shadow: 0 12px 24px rgba(36, 155, 100, 0.22);
+    }
+
     .hero-right {
       position: relative;
       z-index: 3;
@@ -815,11 +821,12 @@
     .sticky-cta a {
       flex: 1;
       text-align: center;
-      padding: 0.85rem 0.7rem;
+      padding: 0.82rem 0.48rem;
       border-radius: 14px;
       font-weight: 900;
-      font-size: 13px;
+      font-size: 12px;
       text-decoration: none;
+      min-width: 0;
     }
 
     .sticky-cta .btn-primary,
@@ -1032,7 +1039,41 @@
       min-height: 100%;
     }
 
+    .flyer-card {
+      display: block;
+      width: 100%;
+      min-width: min(86vw, 420px);
+      max-width: 420px;
+      border-radius: 26px;
+      overflow: hidden;
+      background: white;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-soft);
+      scroll-snap-align: start;
+      text-decoration: none;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
 
+    .flyer-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+    }
+
+    .flyer-card img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      height: auto;
+      object-fit: cover;
+    }
+
+    @media (max-width: 590px) {
+      .flyer-card {
+        min-width: 84vw;
+        max-width: 84vw;
+        border-radius: 22px;
+      }
+    }
 
     .promo-card {
       position: relative;
@@ -1578,6 +1619,49 @@
       }
       .hero-score { grid-template-columns: 1fr; }
     }
+
+    .empty-cta {
+      margin-top: 1rem;
+      width: fit-content;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    @media (max-width: 590px) {
+      .premium-section {
+        margin-top: 0.9rem;
+      }
+      .premium-head p,
+      .source-head p {
+        font-size: 12px;
+        line-height: 1.4;
+      }
+      .promo-card {
+        min-height: 210px;
+      }
+      .promo-emoji {
+        width: 74px;
+        height: 74px;
+        font-size: 34px;
+      }
+      .promo-card h3 {
+        font-size: 1.12rem;
+      }
+      .promo-card p {
+        font-size: 12px;
+      }
+      .btn-promo {
+        padding: 0.72rem 0.85rem;
+      }
+      .sticky-cta {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .sticky-cta a {
+        font-size: 12px;
+        padding: 0.82rem 0.5rem;
+      }
+    }
+
   </style>
 </head>
 
@@ -1622,7 +1706,7 @@
           <span class="dark">del Gatito<span class="paw-dot">●</span></span>
         </h1>
 
-        <div class="tagline-ribbon">Las mejores ofertas para tu compañero felino y canino</div>
+        <div class="tagline-ribbon">Las mejores ofertas para tu mascota</div>
 
         <div class="hero-actions">
           <a class="btn btn-primary" href="#ofertas">Ver ofertas</a>
@@ -1635,16 +1719,15 @@
       <div class="hero-right">
         <h2 class="right-title"><span>Cuida mejor.</span> Compra más cerca.</h2>
         <p class="right-copy">
-          Reunimos ofertas para mascotas con foco en tiendas locales, emprendedores y datos buenos de la zona.
-          MercadoLibre queda como base para comparar precios y sumar oportunidades cuando conviene.
+          Encuentra alimento, accesorios, higiene, juguetes y servicios para perros y gatos. Reunimos ofertas locales y datos de MercadoLibre para ayudarte a comprar mejor.
         </p>
 
         <div class="benefit-list">
           <div class="benefit">
             <div class="benefit-icon">CL</div>
             <div>
-              <strong>Comercio local primero</strong>
-              <span>Priorizamos tiendas y emprendedores cercanos con productos útiles para mascotas.</span>
+              <strong>Comercio local</strong>
+              <span>Encuentra opciones cercanas para comprar, retirar o coordinar despacho.</span>
             </div>
           </div>
 
@@ -1659,8 +1742,8 @@
           <div class="benefit">
             <div class="benefit-icon">$</div>
             <div>
-              <strong>La comunidad pide</strong>
-              <span>Buscamos alimento, accesorios, higiene y servicios que los tutores realmente necesitan.</span>
+              <strong>Ofertas útiles</strong>
+              <span>Alimento, arena, accesorios, juguetes, peluquería y servicios para mascotas.</span>
             </div>
           </div>
         </div>
@@ -1681,7 +1764,7 @@
     <section class="local-strip" id="local" aria-label="Comercio local destacado">
       <div>
         <h2>Comercio local destacado</h2>
-        <p>La vitrina parte con ofertas base de MercadoLibre, pero el espacio principal es para tiendas, peluquerías, veterinarias y emprendedores de tu zona.</p>
+        <p>Tiendas, peluquerías, veterinarias y emprendedores pueden mostrar sus productos a personas que ya están buscando ofertas para sus mascotas.</p>
       </div>
       <a class="local-pill" href="#marcas">Quiero destacar mi tienda</a>
     </section>
@@ -1745,7 +1828,7 @@
           <select id="filtro-origen" aria-label="Filtrar por origen">
             <option value="">Todas las fuentes</option>
             <option value="local">Comercio local</option>
-            <option value="mercadolibre">MercadoLibre/base</option>
+            <option value="mercadolibre">MercadoLibre</option>
           </select>
 
           <select id="filtro-orden" aria-label="Ordenar ofertas">
@@ -1764,9 +1847,9 @@
         <div class="premium-head">
           <div>
             <h2>Destacados de miembros</h2>
-            <p>Productos destacados de miembros. También dejamos espacios visibles para invitar a nuevas tiendas a sumarse.</p>
+            <p>Tiendas y servicios que quieren mostrar sus mejores productos a la comunidad.</p>
           </div>
-          <span class="premium-badge-title">Espacio premium</span>
+          <span class="premium-badge-title">Membresías destacadas</span>
         </div>
         <div class="carousel" id="premium-carousel">
           <div class="loading">
@@ -1780,7 +1863,7 @@
         <div class="source-head">
           <div>
             <h2>Comercio local</h2>
-            <p>Tiendas, peluquerías, veterinarias y emprendedores de la zona. Esta sección no se mezcla con MercadoLibre.</p>
+            <p>Tiendas, veterinarias, peluquerías y emprendedores cercanos con productos y servicios para mascotas.</p>
           </div>
         </div>
         <div class="grid" id="local-grid"></div>
@@ -1789,8 +1872,8 @@
       <div class="source-section marketplace" id="mercadolibre">
         <div class="source-head">
           <div>
-            <h2>MercadoLibre/base de comparación</h2>
-            <p>Ofertas afiliadas usadas como respaldo para mantener variedad y comparar precios.</p>
+            <h2>MercadoLibre</h2>
+            <p>Ofertas online para comparar precios y encontrar oportunidades disponibles.</p>
           </div>
         </div>
         <div class="grid" id="mercadolibre-grid"></div>
@@ -1801,7 +1884,7 @@
       <div>
         <h2>¿Buscas algo para tu mascota?</h2>
         <p>
-          Déjanos el producto, presupuesto y comuna. El Gatito usa ese buzón para buscar opciones locales y comparar con ofertas online.
+          Déjanos el producto, presupuesto y comuna. Buscamos opciones útiles para que compres mejor.
         </p>
       </div>
       <a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSeFz_lI6DzdSghYQniDqqOeCZnRNJJAQqCnIc83pdZ3RtLymw/viewform" target="_blank" rel="noopener">Pedir producto</a>
@@ -1811,7 +1894,7 @@
       <div>
         <h2>¿Tienes tienda, peluquería o servicio para mascotas?</h2>
         <p>
-          Queremos destacar comercio local: alimento, accesorios, peluquería, hotel, veterinaria, paseos, delivery y productos para mascotas.
+          Súmate a la vitrina de El Ofertón del Gatito y muestra tus productos o servicios a personas que buscan ofertas para sus mascotas.
         </p>
         <p style="margin-top:.4rem; font-size:12px;">
           También puedes escribirnos a <a href="mailto:jleonardo.painevilu@gmail.com" style="text-decoration:underline;">jleonardo.painevilu@gmail.com</a>
@@ -1850,13 +1933,14 @@
   </main>
 
   <footer>
-    <p><strong>El Ofertón del Gatito</strong> - Ofertas para mascotas, comercio local primero.</p>
-    <p style="margin-top:.5rem;">Las compras, pagos, garantías, retiros y despachos se realizan directamente con cada tienda o plataforma asociada.</p>
+    <p><strong>El Ofertón del Gatito</strong> - Las mejores ofertas para tu mascota.</p>
+    <p style="margin-top:.5rem;">Las compras, pagos, garantías, retiros y despachos se realizan directamente con cada tienda o plataforma.</p>
   </footer>
 
   <div class="sticky-cta">
     <a class="btn btn-blue" href="https://t.me/ofertastech_cl" target="_blank" rel="noopener">Telegram</a>
     <a class="btn btn-primary" href="#ofertas">Ver ofertas</a>
+    <a class="btn btn-shop" href="#marcas">Sumar tienda</a>
   </div>
 
   <script>
@@ -2007,6 +2091,24 @@
       } catch (e) {}
     }
 
+
+    function abrirOferta(event, link, tituloProducto, origen) {
+      registrarClic(tituloProducto);
+
+      const esMovil = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent || "");
+
+      // En móvil, navegar en la misma pestaña aumenta la probabilidad de que
+      // Android/iOS entregue el enlace a la app de MercadoLibre si está instalada.
+      // Se conserva el mismo link afiliado; no usamos mercadolibre:// para no arriesgar tracking.
+      if (origen === "mercadolibre" && esMovil) {
+        event.preventDefault();
+        window.location.href = link;
+        return false;
+      }
+
+      return true;
+    }
+
     function actualizarJSONLD() {
       const items = TODOS.slice(0, 30).map((p, i) => {
         const titulo = repararTexto(p.titulo || "Producto sin título");
@@ -2142,7 +2244,7 @@
         <div class="stat"><strong>${total}</strong>ofertas activas</div>
         <div class="stat"><strong>${Math.round(maxDesc)}%</strong>mayor descuento</div>
         <div class="stat"><strong>${locales}</strong>comercio local</div>
-        <div class="stat"><strong>${mercadoLibre}</strong>MercadoLibre/base</div>
+        <div class="stat"><strong>${mercadoLibre}</strong>MercadoLibre</div>
       `;
     }
 
@@ -2169,29 +2271,34 @@
         return;
       }
 
-      const avisosPremium = [
-        renderPromoCard("Tu tienda podría estar acá", "Aparece en el carrusel superior y muestra tus productos antes que el resto.", "Sumar mi tienda", "🐾", 90),
-        renderPromoCard("Espacio reservado para comercios locales", "Ideal para pet shops, veterinarias, peluquerías caninas y emprendedores de mascotas.", "Quiero destacar productos", "🏪", 91)
+      const flyersMiembros = [
+        renderFlyerCard("/assets/haz_crecer_tu_negocio_local.png", "Haz crecer tu negocio local", 1),
+        renderFlyerCard("/assets/tu_tienda_para_amantes_de_mascotas.png", "Tu tienda podría estar acá", 2),
+        renderFlyerCard("/assets/destaca_tus_ofertas_del_mes.png", "Destaca tus ofertas del mes", 3)
       ];
 
-      carousel.innerHTML = premiumFinal.length
-        ? premiumFinal.map((p, idx) => renderCard(p, idx, true)).join("") + avisosPremium.join("")
-        : [
-            renderPromoCard("Tu tienda podría estar acá", "Este espacio es para miembros destacados. Publica productos, ofertas o servicios para mascotas.", "Agregar mi tienda", "🐱", 1),
-            renderPromoCard("Destaca tus productos arriba", "Muestra alimento, arena, accesorios, peluquería, veterinaria o delivery local.", "Consultar membresía", "⭐", 2),
-            renderPromoCard("Llega a clientes de tu zona", "El carrusel premium funciona como vitrina rápida para comercios que quieran más visibilidad.", "Hablar por contacto", "📍", 3)
-          ].join("");
+      carousel.innerHTML = flyersMiembros.join("") + (premiumFinal.length
+        ? premiumFinal.map((p, idx) => renderCard(p, idx + 4, true)).join("")
+        : "");
 
       localGrid.innerHTML = locales.length
         ? locales.map((p, idx) => renderCard(p, idx, false)).join("")
-        : `<div class="vacio"><h3>Aún no hay comercio local cargado.</h3><p>Agrega productos locales con origen = local para que aparezcan aquí.</p></div>`;
+        : `<div class="vacio"><h3>Pronto verás tiendas locales acá.</h3><p>¿Tienes un negocio para mascotas? Súmate y muestra tus productos a nuevos clientes.</p><a class="btn btn-primary empty-cta" href="#marcas">Sumar mi tienda</a></div>`;
 
       mlGrid.innerHTML = mercadoLibre.length
         ? mercadoLibre.map((p, idx) => renderCard(p, idx, false)).join("")
-        : `<div class="vacio"><h3>No hay ofertas de MercadoLibre cargadas.</h3><p>Estas ofertas sirven como base de comparación y respaldo.</p></div>`;
+        : `<div class="vacio"><h3>No hay ofertas de MercadoLibre cargadas.</h3><p>Pronto agregaremos ofertas online para comparar precios.</p></div>`;
     }
 
 
+
+    function renderFlyerCard(src, alt, idx = 0) {
+      return `
+        <a class="flyer-card" href="#marcas" aria-label="${escaparHTML(alt)}" onclick="registrarClic('Flyer membresía: ${escaparHTML(alt)}')" style="animation-delay:${Math.min(idx * 0.04, 0.6)}s">
+          <img src="${escaparHTML(src)}" alt="${escaparHTML(alt)}" loading="lazy">
+        </a>
+      `;
+    }
 
     function renderPromoCard(titulo, descripcion, textoBoton, emoji, idx = 0) {
       const linkContacto = "#marcas";
@@ -2211,7 +2318,8 @@
     }
 
     function renderCard(p, idx, esPremium = false) {
-        const titulo = escaparHTML(p.titulo || "Producto sin título");
+        const tituloRaw = repararTexto(p.titulo || "Producto sin título");
+        const titulo = escaparHTML(tituloRaw);
         const descripcion = escaparHTML(p.descripcion || "");
         const precio = p.precio_fmt ? escaparHTML(p.precio_fmt) : fmtCLP(p.precio_clp);
         const precioOriginal = p.precio_orig_fmt ? escaparHTML(p.precio_orig_fmt) : "";
@@ -2254,10 +2362,10 @@
                 ${ahorro > 0 ? `<span class="savings-tag">Ahorras ${fmtCLP(ahorro)}</span>` : ""}
               </div>
 
-              <p class="affiliate-note">Compra o coordina directamente con la tienda o plataforma asociada.</p>
+              <p class="affiliate-note">${origen === "mercadolibre" ? "Compra directa en MercadoLibre. El pago, despacho y garantía se gestionan en la plataforma." : "Contacta directo con la tienda para comprar, retirar o coordinar despacho."}</p>
 
-              <a class="btn-offer" href="${escaparHTML(link)}" target="_blank" rel="noopener sponsored" onclick="registrarClic('${escaparHTML(titulo).replace(/'/g, "\\'")}')">
-                Ver oferta
+              <a class="btn-offer" href="${escaparHTML(link)}" target="_blank" rel="noopener sponsored" onclick='return abrirOferta(event, ${JSON.stringify(link)}, ${JSON.stringify(tituloRaw)}, ${JSON.stringify(origen)})'>
+                ${origen === "mercadolibre" ? "Ver en MercadoLibre" : "Contactar tienda"}
               </a>
             </div>
           </article>
