@@ -1261,7 +1261,12 @@
       background: var(--green);
     }
 
-    .origin-badge.marketplace { background: var(--blue); }
+    .origin-badge.marketplace {
+      background: var(--blue);
+      left: 12px;
+      right: auto;
+      max-width: calc(100% - 24px);
+    }
 
     .card-body {
       padding: 1rem;
@@ -1520,7 +1525,57 @@
       .local-pill {
         width: 100%;
       }
-      .card-img-wrap { height: 215px; }
+      .card {
+        grid-template-columns: 1fr;
+        border-radius: 22px;
+      }
+      .card-img-wrap {
+        height: 165px;
+        min-height: 165px;
+        border-right: 0;
+        border-bottom: 1px solid var(--border);
+        overflow: hidden;
+      }
+      .card-img {
+        padding: 0.65rem;
+        max-height: 160px;
+        object-fit: contain;
+      }
+      .card-body {
+        padding: 0.85rem;
+        gap: 0.45rem;
+      }
+      .card-title {
+        font-size: 13.5px;
+        -webkit-line-clamp: 2;
+      }
+      .card-desc {
+        display: none;
+      }
+      .price {
+        font-size: 1.35rem;
+      }
+      .old-price {
+        font-size: 12px;
+      }
+      .affiliate-note {
+        font-size: 10.5px;
+      }
+      .btn-offer {
+        padding: 0.75rem;
+        border-radius: 15px;
+      }
+      .discount-badge,
+      .category-badge,
+      .store-badge,
+      .origin-badge {
+        font-size: 10px;
+        padding: 0.28rem 0.52rem;
+      }
+      .origin-badge.marketplace {
+        left: 10px;
+        bottom: 10px;
+      }
       .hero-score { grid-template-columns: 1fr; }
     }
   </style>
@@ -2184,7 +2239,7 @@
               ${descuento > 0 ? `<span class="discount-badge${esCaliente ? " hot" : ""}">-${Math.round(descuento)}%</span>` : ""}
               ${esPremium ? `<span class="flash-badge">Miembro</span>` : (esRelampago ? `<span class="flash-badge">Oferta top</span>` : "")}
               <span class="category-badge">${categoria}</span>
-              <span class="store-badge">${tienda}</span>
+              ${origen === "local" ? `<span class="store-badge">${tienda}</span>` : ""}
               <span class="origin-badge ${origen === "mercadolibre" ? "marketplace" : ""}">${origenTexto}</span>
               ${imagenHTML}
             </div>
