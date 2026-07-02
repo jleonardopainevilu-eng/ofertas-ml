@@ -1024,29 +1024,34 @@
     }
 
     .carousel {
-      display: grid;
-      grid-auto-flow: column;
-      grid-auto-columns: minmax(320px, 390px);
+      display: flex;
       gap: 1rem;
       overflow-x: auto;
+      overflow-y: hidden;
       overscroll-behavior-inline: contain;
       scroll-snap-type: inline mandatory;
-      padding: 0.15rem 0 0.4rem;
+      scroll-behavior: smooth;
+      padding: 0.15rem 0.15rem 0.65rem;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
     }
 
+    .carousel::-webkit-scrollbar { display: none; }
+
     .carousel .card {
+      flex: 0 0 calc((100% - 2rem) / 3);
+      max-width: calc((100% - 2rem) / 3);
       scroll-snap-align: start;
       min-height: 100%;
     }
 
     .flyer-card {
       display: block;
-      width: 100%;
-      min-width: min(86vw, 420px);
-      max-width: 420px;
+      flex: 0 0 calc((100% - 2rem) / 3);
+      max-width: calc((100% - 2rem) / 3);
       border-radius: 26px;
       overflow: hidden;
-      background: white;
+      background: #fffaf1;
       border: 1px solid var(--border);
       box-shadow: var(--shadow-soft);
       scroll-snap-align: start;
@@ -1062,17 +1067,40 @@
     .flyer-card img {
       display: block;
       width: 100%;
-      aspect-ratio: 1 / 1;
       height: auto;
-      object-fit: cover;
+      aspect-ratio: 1 / 1;
+      object-fit: contain;
+      background: #fffaf1;
+    }
+
+    .carousel-hint {
+      display: none;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      margin-top: 0.45rem;
+    }
+
+    @media (max-width: 960px) {
+      .carousel .card,
+      .flyer-card {
+        flex-basis: calc((100% - 1rem) / 2);
+        max-width: calc((100% - 1rem) / 2);
+      }
     }
 
     @media (max-width: 590px) {
+      .carousel {
+        gap: 0.85rem;
+        padding-inline: 0;
+      }
+      .carousel .card,
       .flyer-card {
-        min-width: 84vw;
-        max-width: 84vw;
+        flex-basis: 100%;
+        max-width: 100%;
         border-radius: 22px;
       }
+      .carousel-hint { display: block; }
     }
 
     .promo-card {
@@ -1851,12 +1879,13 @@
           </div>
           <span class="premium-badge-title">Membresías destacadas</span>
         </div>
-        <div class="carousel" id="premium-carousel">
+        <div class="carousel" id="premium-carousel" aria-label="Carrusel automático de membresías destacadas">
           <div class="loading">
             <div class="spinner"></div>
             <p>Cargando destacados...</p>
           </div>
         </div>
+        <p class="carousel-hint">Se mueve automáticamente. También puedes deslizarlo con el dedo.</p>
       </div>
 
       <div class="source-section" id="locales">
@@ -2288,9 +2317,50 @@
       mlGrid.innerHTML = mercadoLibre.length
         ? mercadoLibre.map((p, idx) => renderCard(p, idx, false)).join("")
         : `<div class="vacio"><h3>No hay ofertas de MercadoLibre cargadas.</h3><p>Pronto agregaremos ofertas online para comparar precios.</p></div>`;
+
+      iniciarCarruselMiembros();
     }
 
+    let carruselMiembrosTimer = null;
+    let carruselPausado = false;
 
+    function iniciarCarruselMiembros() {
+      const carousel = document.getElementById("premium-carousel");
+      if (!carousel) return;
+
+      if (carruselMiembrosTimer) {
+        clearInterval(carruselMiembrosTimer);
+        carruselMiembrosTimer = null;
+      }
+
+      if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+      const pausar = () => { carruselPausado = true; };
+      const reanudar = () => { carruselPausado = false; };
+
+      carousel.onmouseenter = pausar;
+      carousel.onmouseleave = reanudar;
+      carousel.ontouchstart = pausar;
+      carousel.ontouchend = () => setTimeout(reanudar, 2200);
+
+      carruselMiembrosTimer = setInterval(() => {
+        if (carruselPausado) return;
+        const firstItem = carousel.querySelector(".flyer-card, .card");
+        if (!firstItem) return;
+
+        const gap = parseFloat(getComputedStyle(carousel).gap || "0") || 0;
+        const step = firstItem.getBoundingClientRect().width + gap;
+        const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+
+        if (maxScroll <= 6) return;
+
+        if (carousel.scrollLeft + step >= maxScroll - 8) {
+          carousel.scrollTo({ left: 0, behavior: "smooth" });
+        } else {
+          carousel.scrollBy({ left: step, behavior: "smooth" });
+        }
+      }, 3600);
+    }
 
     function renderFlyerCard(src, alt, idx = 0) {
       return `
