@@ -1032,6 +1032,104 @@
       min-height: 100%;
     }
 
+
+
+    .promo-card {
+      position: relative;
+      min-height: 245px;
+      border: 2px dashed rgba(244, 124, 53, 0.42);
+      background:
+        radial-gradient(circle at 18% 18%, rgba(255, 177, 93, 0.25), transparent 28%),
+        linear-gradient(135deg, #ffffff, #fff1df);
+      overflow: hidden;
+    }
+
+    .promo-card::before {
+      content: "";
+      position: absolute;
+      right: -36px;
+      top: -36px;
+      width: 130px;
+      height: 130px;
+      border-radius: 999px;
+      background: rgba(244, 124, 53, 0.11);
+      pointer-events: none;
+    }
+
+    .promo-visual {
+      min-height: 100%;
+      display: grid;
+      place-items: center;
+      background:
+        linear-gradient(180deg, rgba(241,251,245,0.9), rgba(255,250,241,0.95));
+      border-right: 1px solid var(--border);
+    }
+
+    .promo-emoji {
+      width: 96px;
+      height: 96px;
+      border-radius: 28px;
+      display: grid;
+      place-items: center;
+      background: white;
+      box-shadow: var(--shadow-soft);
+      font-size: 42px;
+      transform: rotate(-4deg);
+    }
+
+    .promo-body {
+      position: relative;
+      z-index: 1;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 0.6rem;
+    }
+
+    .promo-label {
+      width: fit-content;
+      padding: 0.3rem 0.65rem;
+      border-radius: 999px;
+      background: rgba(0, 166, 80, 0.12);
+      color: var(--green);
+      font-size: 11px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .promo-card h3 {
+      color: var(--brown);
+      font-size: 1.35rem;
+      line-height: 1.05;
+      letter-spacing: -0.055em;
+    }
+
+    .promo-card p {
+      color: var(--muted);
+      font-weight: 650;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .btn-promo {
+      width: fit-content;
+      margin-top: 0.15rem;
+      background: var(--orange);
+      color: white;
+      text-decoration: none;
+      padding: 0.78rem 0.95rem;
+      border-radius: 15px;
+      font-weight: 900;
+      font-size: 13px;
+      box-shadow: 0 12px 24px rgba(244, 124, 53, 0.24);
+    }
+
+    .btn-promo:hover {
+      background: #df6925;
+    }
+
     .source-section {
       margin-top: 2rem;
     }
@@ -1611,7 +1709,7 @@
         <div class="premium-head">
           <div>
             <h2>Destacados de miembros</h2>
-            <p>Este carrusel es para tiendas que paguen membresía y quieran mostrar sus productos arriba.</p>
+            <p>Productos destacados de miembros. También dejamos espacios visibles para invitar a nuevas tiendas a sumarse.</p>
           </div>
           <span class="premium-badge-title">Espacio premium</span>
         </div>
@@ -2016,9 +2114,18 @@
         return;
       }
 
+      const avisosPremium = [
+        renderPromoCard("Tu tienda podría estar acá", "Aparece en el carrusel superior y muestra tus productos antes que el resto.", "Sumar mi tienda", "🐾", 90),
+        renderPromoCard("Espacio reservado para comercios locales", "Ideal para pet shops, veterinarias, peluquerías caninas y emprendedores de mascotas.", "Quiero destacar productos", "🏪", 91)
+      ];
+
       carousel.innerHTML = premiumFinal.length
-        ? premiumFinal.map((p, idx) => renderCard(p, idx, true)).join("")
-        : `<div class="vacio"><h3>Aún no hay destacados premium.</h3><p>Cuando una tienda pague membresía, sus productos aparecerán en este carrusel.</p></div>`;
+        ? premiumFinal.map((p, idx) => renderCard(p, idx, true)).join("") + avisosPremium.join("")
+        : [
+            renderPromoCard("Tu tienda podría estar acá", "Este espacio es para miembros destacados. Publica productos, ofertas o servicios para mascotas.", "Agregar mi tienda", "🐱", 1),
+            renderPromoCard("Destaca tus productos arriba", "Muestra alimento, arena, accesorios, peluquería, veterinaria o delivery local.", "Consultar membresía", "⭐", 2),
+            renderPromoCard("Llega a clientes de tu zona", "El carrusel premium funciona como vitrina rápida para comercios que quieran más visibilidad.", "Hablar por contacto", "📍", 3)
+          ].join("");
 
       localGrid.innerHTML = locales.length
         ? locales.map((p, idx) => renderCard(p, idx, false)).join("")
@@ -2027,6 +2134,25 @@
       mlGrid.innerHTML = mercadoLibre.length
         ? mercadoLibre.map((p, idx) => renderCard(p, idx, false)).join("")
         : `<div class="vacio"><h3>No hay ofertas de MercadoLibre cargadas.</h3><p>Estas ofertas sirven como base de comparación y respaldo.</p></div>`;
+    }
+
+
+
+    function renderPromoCard(titulo, descripcion, textoBoton, emoji, idx = 0) {
+      const linkContacto = "#marcas";
+      return `
+        <article class="card promo-card" style="animation-delay:${Math.min(idx * 0.04, 0.6)}s">
+          <div class="promo-visual">
+            <div class="promo-emoji" aria-hidden="true">${emoji}</div>
+          </div>
+          <div class="promo-body">
+            <span class="promo-label">Espacio disponible</span>
+            <h3>${escaparHTML(titulo)}</h3>
+            <p>${escaparHTML(descripcion)}</p>
+            <a class="btn-promo" href="${linkContacto}" onclick="registrarClic('CTA tienda destacada')">${escaparHTML(textoBoton)}</a>
+          </div>
+        </article>
+      `;
     }
 
     function renderCard(p, idx, esPremium = false) {
