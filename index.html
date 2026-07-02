@@ -54,6 +54,17 @@
 
     html { scroll-behavior: smooth; }
 
+
+    #ofertas,
+    #locales,
+    #funciona,
+    #marcas,
+    #pedidos,
+    #miembros,
+    #mercadolibre {
+      scroll-margin-top: 110px;
+    }
+
     body {
       font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background:
@@ -654,7 +665,7 @@
 
     /* ---- Cómo funciona ---- */
     .steps {
-      display: none;
+      display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 1rem;
       margin: 2rem 0;
@@ -954,6 +965,80 @@
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
       gap: 1.15rem;
+    }
+
+    .premium-section {
+      margin-top: 1.2rem;
+      padding: 1.2rem;
+      border: 1px solid rgba(244, 124, 53, 0.24);
+      border-radius: 30px;
+      background:
+        radial-gradient(circle at 8% 12%, rgba(255, 215, 106, 0.22), transparent 28%),
+        linear-gradient(135deg, rgba(255,255,255,0.94), rgba(255,242,220,0.78));
+      box-shadow: var(--shadow-soft);
+    }
+
+    .premium-head,
+    .source-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .premium-head h2,
+    .source-head h2 {
+      color: var(--brown);
+      font-size: clamp(1.35rem, 2.4vw, 2rem);
+      letter-spacing: -0.05em;
+      line-height: 1.1;
+    }
+
+    .premium-head p,
+    .source-head p {
+      color: var(--muted);
+      font-weight: 650;
+      font-size: 13px;
+      margin-top: 0.25rem;
+    }
+
+    .premium-badge-title {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.45rem 0.85rem;
+      border-radius: 999px;
+      background: var(--orange);
+      color: white;
+      font-size: 12px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .carousel {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: minmax(320px, 390px);
+      gap: 1rem;
+      overflow-x: auto;
+      overscroll-behavior-inline: contain;
+      scroll-snap-type: inline mandatory;
+      padding: 0.15rem 0 0.4rem;
+    }
+
+    .carousel .card {
+      scroll-snap-align: start;
+      min-height: 100%;
+    }
+
+    .source-section {
+      margin-top: 2rem;
+    }
+
+    .source-section.marketplace {
+      padding-top: 1.4rem;
+      border-top: 1px dashed rgba(104, 70, 53, 0.22);
     }
 
     .card {
@@ -1318,6 +1403,18 @@
       .trust-row,
       .stats,
       .grid { grid-template-columns: 1fr; }
+      .premium-section {
+        padding: 1rem;
+        border-radius: 24px;
+      }
+      .premium-head,
+      .source-head {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+      .carousel {
+        grid-auto-columns: minmax(280px, 88vw);
+      }
       .local-strip {
         border-radius: 22px;
         margin-top: 1rem;
@@ -1346,7 +1443,7 @@
 
       <nav class="nav" aria-label="Navegación principal">
         <a href="#ofertas">Ofertas</a>
-        <a href="#local">Comercio local</a>
+        <a href="#locales">Comercio local</a>
         <a href="#funciona">Cómo funciona</a>
         <a href="#marcas">Sumar tienda</a>
       </nav>
@@ -1376,6 +1473,7 @@
 
         <div class="hero-actions">
           <a class="btn btn-primary" href="#ofertas">Ver ofertas</a>
+          <a class="btn btn-secondary" href="#funciona">Cómo funciona</a>
           <a class="btn btn-secondary" href="#marcas">Sumar mi tienda</a>
           <a class="btn btn-blue" href="https://t.me/ofertastech_cl" target="_blank" rel="noopener">Telegram</a>
         </div>
@@ -1475,10 +1573,10 @@
     <section id="ofertas">
       <div class="section-head">
         <div>
-          <h2>Ofertas destacadas de hoy</h2>
+          <h2>Ofertas para mascotas</h2>
           <span class="live-chip"><span class="live-dot"></span><span id="actualizado">Cargando actualización...</span></span>
         </div>
-        <a class="section-link" href="#ofertas">Ver todas las ofertas</a>
+        <a class="section-link" href="#marcas">Sumar mi tienda</a>
       </div>
 
       <div class="panel">
@@ -1509,11 +1607,40 @@
         <div class="stats" id="stats"></div>
       </div>
 
-      <div class="grid" id="grid">
-        <div class="loading">
-          <div class="spinner"></div>
-          <p>Cargando ofertas...</p>
+      <div class="premium-section" id="miembros">
+        <div class="premium-head">
+          <div>
+            <h2>Destacados de miembros</h2>
+            <p>Este carrusel es para tiendas que paguen membresía y quieran mostrar sus productos arriba.</p>
+          </div>
+          <span class="premium-badge-title">Espacio premium</span>
         </div>
+        <div class="carousel" id="premium-carousel">
+          <div class="loading">
+            <div class="spinner"></div>
+            <p>Cargando destacados...</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="source-section" id="locales">
+        <div class="source-head">
+          <div>
+            <h2>Comercio local</h2>
+            <p>Tiendas, peluquerías, veterinarias y emprendedores de la zona. Esta sección no se mezcla con MercadoLibre.</p>
+          </div>
+        </div>
+        <div class="grid" id="local-grid"></div>
+      </div>
+
+      <div class="source-section marketplace" id="mercadolibre">
+        <div class="source-head">
+          <div>
+            <h2>MercadoLibre/base de comparación</h2>
+            <p>Ofertas afiliadas usadas como respaldo para mantener variedad y comparar precios.</p>
+          </div>
+        </div>
+        <div class="grid" id="mercadolibre-grid"></div>
       </div>
     </section>
 
@@ -1696,6 +1823,27 @@
       return mapa[c] || repararTexto(cat || "General");
     }
 
+    function esDestacadoMiembro(p) {
+      const valores = [
+        p.destacado,
+        p.premium,
+        p.membresia,
+        p.miembro,
+        p.plan,
+        p.tipo_publicacion
+      ].map(v => normalizar(v || ""));
+
+      return valores.some(v =>
+        v === "si" ||
+        v === "sí" ||
+        v.includes("premium") ||
+        v.includes("destacado") ||
+        v.includes("membresia") ||
+        v.includes("miembro") ||
+        v.includes("pro")
+      );
+    }
+
     function registrarClic(tituloProducto) {
       // Placeholder de tracking: reemplaza esto por tu Analytics/Plausible/endpoint propio
       // cuando quieras medir qué ofertas generan más clics.
@@ -1768,12 +1916,14 @@
 
         document.getElementById("actualizado").textContent = "No se pudo cargar la actualización.";
 
-        document.getElementById("grid").innerHTML = `
+        document.getElementById("premium-carousel").innerHTML = "";
+        document.getElementById("local-grid").innerHTML = `
           <div class="vacio">
             <h3>No se encontraron ofertas.</h3>
             <p>Revisa que exista /data/ofertas.json y que GitHub Actions haya generado productos.</p>
           </div>
         `;
+        document.getElementById("mercadolibre-grid").innerHTML = "";
       }
     }
 
@@ -1845,19 +1995,41 @@
 
     function renderGrid() {
       const lista = filtrar();
-      const grid = document.getElementById("grid");
+      const premium = lista.filter(p => detectarOrigen(p) === "local" && esDestacadoMiembro(p));
+      const locales = lista.filter(p => detectarOrigen(p) === "local");
+      const mercadoLibre = lista.filter(p => detectarOrigen(p) === "mercadolibre");
+
+      const premiumFinal = premium.length ? premium : locales.slice(0, 6);
+      const carousel = document.getElementById("premium-carousel");
+      const localGrid = document.getElementById("local-grid");
+      const mlGrid = document.getElementById("mercadolibre-grid");
 
       if (!lista.length) {
-        grid.innerHTML = `
+        carousel.innerHTML = "";
+        localGrid.innerHTML = `
           <div class="vacio">
             <h3>No hay ofertas con esos filtros.</h3>
             <p>Prueba con otra categoría, tienda, fuente u orden.</p>
           </div>
         `;
+        mlGrid.innerHTML = "";
         return;
       }
 
-      grid.innerHTML = lista.map((p, idx) => {
+      carousel.innerHTML = premiumFinal.length
+        ? premiumFinal.map((p, idx) => renderCard(p, idx, true)).join("")
+        : `<div class="vacio"><h3>Aún no hay destacados premium.</h3><p>Cuando una tienda pague membresía, sus productos aparecerán en este carrusel.</p></div>`;
+
+      localGrid.innerHTML = locales.length
+        ? locales.map((p, idx) => renderCard(p, idx, false)).join("")
+        : `<div class="vacio"><h3>Aún no hay comercio local cargado.</h3><p>Agrega productos locales con origen = local para que aparezcan aquí.</p></div>`;
+
+      mlGrid.innerHTML = mercadoLibre.length
+        ? mercadoLibre.map((p, idx) => renderCard(p, idx, false)).join("")
+        : `<div class="vacio"><h3>No hay ofertas de MercadoLibre cargadas.</h3><p>Estas ofertas sirven como base de comparación y respaldo.</p></div>`;
+    }
+
+    function renderCard(p, idx, esPremium = false) {
         const titulo = escaparHTML(p.titulo || "Producto sin título");
         const descripcion = escaparHTML(p.descripcion || "");
         const precio = p.precio_fmt ? escaparHTML(p.precio_fmt) : fmtCLP(p.precio_clp);
@@ -1866,8 +2038,7 @@
         const categoria = escaparHTML(categoriaBonita(p.categoria));
         const tienda = escaparHTML(detectarTienda(p));
         const origen = detectarOrigen(p);
-        const origenTexto = origen === "mercadolibre" ? "Compra online" : "Comercio local";
-        const mostrarOrigen = normalizar(tienda) !== normalizar(origenTexto);
+        const origenTexto = origen === "mercadolibre" ? "MercadoLibre" : "Local";
         const imagen = String(p.imagen || "").trim();
         const link = String(p.link_afiliado || p.link_oferta || "#").trim();
 
@@ -1885,10 +2056,10 @@
           <article class="card" style="animation-delay:${Math.min(idx * 0.04, 0.6)}s">
             <div class="card-img-wrap">
               ${descuento > 0 ? `<span class="discount-badge${esCaliente ? " hot" : ""}">-${Math.round(descuento)}%</span>` : ""}
-              ${esRelampago ? `<span class="flash-badge">Oferta top</span>` : ""}
+              ${esPremium ? `<span class="flash-badge">Miembro</span>` : (esRelampago ? `<span class="flash-badge">Oferta top</span>` : "")}
               <span class="category-badge">${categoria}</span>
               <span class="store-badge">${tienda}</span>
-              ${mostrarOrigen ? `<span class="origin-badge ${origen === "mercadolibre" ? "marketplace" : ""}">${origenTexto}</span>` : ""}
+              <span class="origin-badge ${origen === "mercadolibre" ? "marketplace" : ""}">${origenTexto}</span>
               ${imagenHTML}
             </div>
 
@@ -1910,7 +2081,6 @@
             </div>
           </article>
         `;
-      }).join("");
     }
 
     document.getElementById("busqueda").addEventListener("input", renderGrid);
@@ -1925,6 +2095,27 @@
       renderGrid();
     });
 
+
+    function activarNavegacionInterna() {
+      document.querySelectorAll('a[href^="#"]').forEach(function(enlace) {
+        enlace.addEventListener("click", function(evento) {
+          const hash = this.getAttribute("href");
+          if (!hash || hash === "#") return;
+
+          const destino = document.querySelector(hash);
+          if (!destino) return;
+
+          evento.preventDefault();
+          destino.scrollIntoView({ behavior: "smooth", block: "start" });
+
+          try {
+            history.pushState(null, "", hash);
+          } catch (e) {}
+        });
+      });
+    }
+
+    activarNavegacionInterna();
     cargarDatos();
   </script>
 </body>
