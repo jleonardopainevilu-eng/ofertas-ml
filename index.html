@@ -136,6 +136,74 @@
         radial-gradient(ellipse at 52% 70%, rgba(47, 125, 115, 0.16), transparent 36%);
     }
 
+
+
+    .top-promo-strip {
+      margin: 0 -2rem;
+      padding: 0.65rem max(1rem, calc((100vw - 1440px) / 2 + 2rem));
+      border-bottom: 1px solid rgba(239, 216, 189, 0.85);
+      background:
+        radial-gradient(circle at 10% 50%, rgba(255, 215, 106, 0.22), transparent 24%),
+        linear-gradient(90deg, rgba(255,250,241,0.96), rgba(230,246,238,0.82), rgba(255,250,241,0.96));
+      overflow: hidden;
+      position: relative;
+    }
+
+    .top-promo-strip::before,
+    .top-promo-strip::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 90px;
+      height: 100%;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .top-promo-strip::before {
+      left: 0;
+      background: linear-gradient(90deg, rgba(255,250,241,1), transparent);
+    }
+
+    .top-promo-strip::after {
+      right: 0;
+      background: linear-gradient(270deg, rgba(255,250,241,1), transparent);
+    }
+
+    .top-promo-track {
+      display: flex;
+      gap: 0.75rem;
+      width: max-content;
+      animation: top-strip-move 28s linear infinite;
+    }
+
+    .top-promo-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.56rem 0.9rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid rgba(239, 216, 189, 0.95);
+      color: var(--brown-2);
+      font-weight: 900;
+      font-size: 13px;
+      white-space: nowrap;
+      box-shadow: 0 6px 16px rgba(75,45,28,0.06);
+    }
+
+    .top-promo-pill strong { color: var(--blue); }
+
+    @keyframes top-strip-move {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .top-promo-track { animation: none; }
+    }
+
     header {
       position: sticky;
       top: 0;
@@ -1025,44 +1093,45 @@
 
     .carousel {
       display: flex;
-      gap: 1rem;
-      overflow-x: auto;
+      gap: 0;
+      overflow-x: hidden;
       overflow-y: hidden;
       overscroll-behavior-inline: contain;
       scroll-snap-type: inline mandatory;
       scroll-behavior: smooth;
-      padding: 0.15rem 0.15rem 0.65rem;
+      padding: 0.2rem 0 0.7rem;
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
+      max-width: min(620px, 100%);
+      margin: 0 auto;
+      border-radius: 28px;
     }
 
     .carousel::-webkit-scrollbar { display: none; }
 
     .carousel .card {
-      flex: 0 0 calc((100% - 2rem) / 3);
-      max-width: calc((100% - 2rem) / 3);
-      scroll-snap-align: start;
+      flex: 0 0 100%;
+      max-width: 100%;
+      scroll-snap-align: center;
       min-height: 100%;
     }
 
     .flyer-card {
       display: block;
-      flex: 0 0 calc((100% - 2rem) / 3);
-      max-width: calc((100% - 2rem) / 3);
-      border-radius: 26px;
+      flex: 0 0 100%;
+      max-width: 100%;
+      border-radius: 28px;
       overflow: hidden;
-      background: #fffaf1;
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow-soft);
-      scroll-snap-align: start;
+      background: transparent;
+      border: 0;
+      box-shadow: none;
+      scroll-snap-align: center;
       text-decoration: none;
-      transition: transform 0.18s ease, box-shadow 0.18s ease;
+      transition: transform 0.18s ease;
+      padding: 0;
     }
 
-    .flyer-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow);
-    }
+    .flyer-card:hover { transform: translateY(-3px); }
 
     .flyer-card img {
       display: block;
@@ -1071,36 +1140,63 @@
       aspect-ratio: 1 / 1;
       object-fit: contain;
       background: #fffaf1;
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 0.45rem;
+      margin-top: 0.35rem;
+    }
+
+    .carousel-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(104,70,53,0.24);
+      border: 0;
+      padding: 0;
+      cursor: pointer;
+    }
+
+    .carousel-dot.activo {
+      width: 24px;
+      background: var(--orange);
     }
 
     .carousel-hint {
-      display: none;
+      display: block;
       color: var(--muted);
       font-size: 12px;
       font-weight: 800;
       margin-top: 0.45rem;
-    }
-
-    @media (max-width: 960px) {
-      .carousel .card,
-      .flyer-card {
-        flex-basis: calc((100% - 1rem) / 2);
-        max-width: calc((100% - 1rem) / 2);
-      }
+      text-align: center;
     }
 
     @media (max-width: 590px) {
       .carousel {
-        gap: 0.85rem;
-        padding-inline: 0;
-      }
-      .carousel .card,
-      .flyer-card {
-        flex-basis: 100%;
         max-width: 100%;
         border-radius: 22px;
       }
-      .carousel-hint { display: block; }
+      .flyer-card,
+      .carousel .card {
+        border-radius: 22px;
+      }
+      .flyer-card img {
+        border-radius: 22px;
+      }
+      .top-promo-strip {
+        margin: 0 -0.85rem;
+        padding-left: 0.85rem;
+        padding-right: 0.85rem;
+      }
+      .top-promo-pill {
+        font-size: 12px;
+        padding: 0.52rem 0.78rem;
+      }
     }
 
     .promo-card {
@@ -1722,6 +1818,21 @@
   </header>
 
   <main>
+    <section class="top-promo-strip" aria-label="Datos destacados de El Ofertón del Gatito">
+      <div class="top-promo-track" aria-hidden="true">
+        <span class="top-promo-pill">🐾 <strong>Comercio local</strong> para mascotas</span>
+        <span class="top-promo-pill">📣 Destaca tu tienda en la vitrina</span>
+        <span class="top-promo-pill">🐶 Alimento, accesorios y servicios</span>
+        <span class="top-promo-pill">📲 Web + Telegram + redes</span>
+        <span class="top-promo-pill">🐱 Clientes de tu zona</span>
+        <span class="top-promo-pill">🐾 <strong>Comercio local</strong> para mascotas</span>
+        <span class="top-promo-pill">📣 Destaca tu tienda en la vitrina</span>
+        <span class="top-promo-pill">🐶 Alimento, accesorios y servicios</span>
+        <span class="top-promo-pill">📲 Web + Telegram + redes</span>
+        <span class="top-promo-pill">🐱 Clientes de tu zona</span>
+      </div>
+    </section>
+
     <section class="hero">
       <div class="hero-town" aria-hidden="true"></div>
       <div class="hero-left">
@@ -1885,7 +1996,8 @@
             <p>Cargando destacados...</p>
           </div>
         </div>
-        <p class="carousel-hint">Se mueve automáticamente. También puedes deslizarlo con el dedo.</p>
+        <div class="carousel-dots" id="premium-dots" aria-label="Indicadores del carrusel"></div>
+        <p class="carousel-hint">Avanza solo. También puedes deslizarlo con el dedo.</p>
       </div>
 
       <div class="source-section" id="locales">
@@ -2326,6 +2438,7 @@
 
     function iniciarCarruselMiembros() {
       const carousel = document.getElementById("premium-carousel");
+      const dotsWrap = document.getElementById("premium-dots");
       if (!carousel) return;
 
       if (carruselMiembrosTimer) {
@@ -2333,7 +2446,34 @@
         carruselMiembrosTimer = null;
       }
 
-      if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      const items = Array.from(carousel.querySelectorAll(".flyer-card, .card"));
+      if (!items.length) return;
+
+      let indiceCarrusel = 0;
+
+      function actualizarDots() {
+        if (!dotsWrap) return;
+        dotsWrap.innerHTML = items.map((_, i) => `
+          <button class="carousel-dot${i === indiceCarrusel ? " activo" : ""}" type="button" aria-label="Ver aviso ${i + 1}"></button>
+        `).join("");
+
+        Array.from(dotsWrap.querySelectorAll(".carousel-dot")).forEach((dot, i) => {
+          dot.addEventListener("click", () => {
+            indiceCarrusel = i;
+            moverA(indiceCarrusel, true);
+          });
+        });
+      }
+
+      function moverA(indice, suave = true) {
+        const item = items[indice];
+        if (!item) return;
+        carousel.scrollTo({
+          left: item.offsetLeft - carousel.offsetLeft,
+          behavior: suave ? "smooth" : "auto"
+        });
+        actualizarDots();
+      }
 
       const pausar = () => { carruselPausado = true; };
       const reanudar = () => { carruselPausado = false; };
@@ -2341,24 +2481,17 @@
       carousel.onmouseenter = pausar;
       carousel.onmouseleave = reanudar;
       carousel.ontouchstart = pausar;
-      carousel.ontouchend = () => setTimeout(reanudar, 2200);
+      carousel.ontouchend = () => setTimeout(reanudar, 1800);
+
+      actualizarDots();
+      moverA(0, false);
+
+      if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
       carruselMiembrosTimer = setInterval(() => {
         if (carruselPausado) return;
-        const firstItem = carousel.querySelector(".flyer-card, .card");
-        if (!firstItem) return;
-
-        const gap = parseFloat(getComputedStyle(carousel).gap || "0") || 0;
-        const step = firstItem.getBoundingClientRect().width + gap;
-        const maxScroll = carousel.scrollWidth - carousel.clientWidth;
-
-        if (maxScroll <= 6) return;
-
-        if (carousel.scrollLeft + step >= maxScroll - 8) {
-          carousel.scrollTo({ left: 0, behavior: "smooth" });
-        } else {
-          carousel.scrollBy({ left: step, behavior: "smooth" });
-        }
+        indiceCarrusel = (indiceCarrusel + 1) % items.length;
+        moverA(indiceCarrusel, true);
       }, 3600);
     }
 
