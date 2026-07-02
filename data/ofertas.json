@@ -1,9 +1,25 @@
 {
-  "actualizado": "2026-07-01T19:14:28.807696",
-  "total": 1,
+  "actualizado": "2026-07-02T10:16:31.036735",
+  "total": 2,
   "productos": [
     {
-      "id": "prod_0_72544",
+      "id": "prod_0_34023",
+      "link_afiliado": "https://meli.la/274jDMZ",
+      "titulo": "Alimento Seco Bavaro Work 18kg Perro Adulto Alta EnergÃ­a",
+      "precio_clp": 39306.0,
+      "precio_original_clp": 44900.0,
+      "precio_fmt": "$39.306",
+      "precio_orig_fmt": "$44.900",
+      "descuento_pct": 12.5,
+      "categoria": "alimento",
+      "descripcion": "Alimento Seco Bavaro Work 18kg Perro Adulto Alta EnergÃ­a",
+      "imagen": "https://http2.mlstatic.com/D_NQ_NP_2X_951311-MLA99685912214_122025-F.webp",
+      "publicar_telegram": true,
+      "publicar_web": true,
+      "activo": true
+    },
+    {
+      "id": "prod_1_19793",
       "link_afiliado": "https://meli.la/31jXuKB",
       "titulo": "Vitalcan Premium Cordero 20 Kg",
       "precio_clp": 38703.0,
@@ -14,7 +30,7 @@
       "categoria": "Alimento",
       "descripcion": "Vitalcan Premium Cordero 20 Kg - Alimento Perro Adulto",
       "imagen": "https://http2.mlstatic.com/D_NQ_NP_2X_879751-MLC96183516348_102025-F.webp",
-      "publicar_telegram": false,
+      "publicar_telegram": true,
       "publicar_web": true,
       "activo": true
     }
