@@ -1786,6 +1786,344 @@
       }
     }
 
+  
+
+    /* ===== Optimización agregador de ofertas / mobile first ===== */
+    .hero {
+      min-height: 440px;
+      padding-top: clamp(1rem, 3vw, 2.4rem);
+      padding-bottom: clamp(1rem, 3vw, 2.4rem);
+    }
+
+    .hero-left {
+      min-height: 405px;
+      padding-top: 88px;
+    }
+
+    .hero-cat { width: min(355px, 42vw); }
+
+    .mega-title { font-size: clamp(3.4rem, 7.2vw, 7.2rem); }
+
+    .quick-trust {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: .8rem;
+      margin: 1rem 0 1.35rem;
+    }
+
+    .quick-trust-card {
+      border: 1px solid rgba(239, 216, 189, 0.95);
+      background: rgba(255,255,255,.78);
+      border-radius: 20px;
+      box-shadow: var(--shadow-soft);
+      padding: .9rem;
+      display: flex;
+      align-items: center;
+      gap: .7rem;
+      min-height: 72px;
+    }
+
+    .quick-trust-card b {
+      display: block;
+      font-size: 13px;
+      line-height: 1.1;
+      color: var(--brown);
+    }
+
+    .quick-trust-card span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      margin-top: .15rem;
+    }
+
+    .quick-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      background: var(--orange-soft);
+      color: var(--orange);
+      font-weight: 900;
+      flex: 0 0 auto;
+    }
+
+    .filters-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: .8rem;
+      margin-bottom: .85rem;
+      color: var(--brown);
+      font-weight: 900;
+    }
+
+    .filters-title small {
+      color: var(--muted);
+      font-weight: 800;
+    }
+
+    .panel {
+      display: block;
+      background: rgba(255,255,255,.74);
+    }
+
+    .filtros select,
+    .chip {
+      box-shadow: 0 6px 16px rgba(75,45,28,.04);
+    }
+
+    #filtro-comuna {
+      border-color: rgba(57,169,107,.38);
+      background: linear-gradient(180deg,#fff,#f3fbf6);
+      color: var(--blue-2);
+      font-weight: 900;
+    }
+
+    .skeleton-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.15rem;
+      width: 100%;
+    }
+
+    .skeleton-card {
+      min-height: 245px;
+      border-radius: 26px;
+      border: 1px solid var(--border);
+      background: white;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 42% 1fr;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .sk {
+      position: relative;
+      overflow: hidden;
+      background: #f2e6d8;
+    }
+
+    .sk::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      transform: translateX(-100%);
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.68), transparent);
+      animation: shimmer 1.25s infinite;
+    }
+
+    @keyframes shimmer { 100% { transform: translateX(100%); } }
+
+    .sk-img { min-height: 245px; }
+    .sk-body { padding: 1rem; display: grid; gap: .65rem; align-content: center; }
+    .sk-line { height: 15px; border-radius: 999px; }
+    .sk-line.big { height: 34px; width: 72%; }
+    .sk-line.short { width: 46%; }
+    .sk-button { height: 48px; border-radius: 18px; }
+
+    .source-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: .35rem;
+      width: fit-content;
+      max-width: 100%;
+      padding: .34rem .64rem;
+      border-radius: 999px;
+      color: white;
+      font-size: 11px;
+      line-height: 1;
+      font-weight: 900;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .source-pill.local { background: linear-gradient(135deg, var(--green), var(--blue)); }
+    .source-pill.ml { background: linear-gradient(135deg, #fff159, #ffb900); color: #3a2b00; }
+
+    .card-meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .42rem;
+      align-items: center;
+      margin-bottom: -.1rem;
+    }
+
+    .freshness {
+      display: inline-flex;
+      align-items: center;
+      gap: .28rem;
+      width: fit-content;
+      padding: .28rem .58rem;
+      border-radius: 999px;
+      background: rgba(57,169,107,.11);
+      color: var(--green);
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+    .vote-btn {
+      position: absolute;
+      right: 12px;
+      top: 52px;
+      z-index: 3;
+      border: 0;
+      border-radius: 999px;
+      min-width: 48px;
+      height: 34px;
+      padding: 0 .55rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: .22rem;
+      color: var(--brown);
+      background: rgba(255,255,255,.92);
+      box-shadow: 0 8px 18px rgba(75,45,28,.14);
+      font: inherit;
+      font-size: 12px;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .vote-btn.voted {
+      background: var(--orange);
+      color: white;
+    }
+
+    .price {
+      color: var(--green);
+      font-size: 1.85rem;
+    }
+
+    .discount-badge {
+      background: linear-gradient(135deg, #ff4e2f, var(--orange));
+      font-size: 12px;
+      padding: .42rem .7rem;
+    }
+
+    .old-price {
+      color: #9b8b80;
+      font-weight: 800;
+    }
+
+    .request-inline-form {
+      display: grid;
+      grid-template-columns: 1fr 1fr auto;
+      gap: .7rem;
+      margin-top: 1rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .request-inline-form input,
+    .request-inline-form select {
+      border: 1px solid rgba(255,255,255,.38);
+      background: rgba(255,255,255,.92);
+      color: var(--brown);
+      border-radius: 999px;
+      min-height: 48px;
+      padding: .8rem 1rem;
+      font: inherit;
+      font-weight: 800;
+      outline: none;
+    }
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(30,18,10,.48);
+      z-index: 400;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    .modal-backdrop.open { display: flex; }
+
+    .modal-box {
+      width: min(540px, 100%);
+      background: #fffaf1;
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      box-shadow: 0 30px 70px rgba(30,18,10,.28);
+      padding: 1.25rem;
+      color: var(--brown);
+    }
+
+    .modal-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: start;
+      margin-bottom: .8rem;
+    }
+
+    .modal-head h3 { font-size: 1.45rem; letter-spacing: -.04em; }
+    .modal-close {
+      border: 0;
+      background: white;
+      border-radius: 999px;
+      width: 38px;
+      height: 38px;
+      font-weight: 900;
+      cursor: pointer;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .modal-form { display: grid; gap: .7rem; }
+    .modal-form input,
+    .modal-form textarea,
+    .modal-form select {
+      width: 100%;
+      border: 1px solid var(--border);
+      background: white;
+      border-radius: 18px;
+      padding: .85rem 1rem;
+      font: inherit;
+      font-weight: 750;
+      color: var(--brown);
+      outline: none;
+    }
+    .modal-form textarea { min-height: 92px; resize: vertical; }
+
+    .modal-actions { display: flex; gap: .65rem; flex-wrap: wrap; margin-top: .2rem; }
+
+    @media (max-width: 860px) {
+      .quick-trust { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .request-inline-form { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 590px) {
+      .hero { margin: 0; min-height: auto; padding: 1rem; }
+      .hero-left { min-height: 320px; padding-top: 82px; }
+      .hero-right { display: none; }
+      .hero-cat { top: -18px; width: min(215px, 68vw); }
+      .mega-title { font-size: clamp(2.85rem, 15vw, 4.1rem); }
+      .hero-actions { gap: .55rem; }
+      .hero-actions .btn { flex: 1 1 calc(50% - .55rem); padding: .84rem .7rem; font-size: 14px; }
+      .top-promo-strip { margin: 0 -.85rem; }
+      .quick-trust { grid-template-columns: 1fr 1fr; gap: .55rem; margin: .75rem 0 1rem; }
+      .quick-trust-card { padding: .7rem; min-height: 62px; border-radius: 16px; }
+      .quick-icon { width: 32px; height: 32px; }
+      .quick-trust-card b { font-size: 12px; }
+      .quick-trust-card span { display: none; }
+      .panel { padding: .85rem; border-radius: 20px; }
+      .filtros { gap: .48rem; }
+      .filtros select, .chip { flex: 1 1 100%; border-radius: 16px; }
+      .skeleton-grid { grid-template-columns: 1fr; }
+      .skeleton-card { grid-template-columns: 1fr; min-height: 0; }
+      .sk-img { min-height: 190px; }
+      .card-meta-row { order: -1; }
+      .price { font-size: 1.45rem; }
+      .vote-btn { top: 48px; right: 10px; }
+      .request-box { padding: 1rem; border-radius: 24px; }
+      .modal-box { border-radius: 24px; padding: 1rem; }
+    }
+
   </style>
 </head>
 
@@ -1900,6 +2238,13 @@
       </div>
     </section>
 
+    <section class="quick-trust" aria-label="Confianza y acceso rápido">
+      <div class="quick-trust-card"><div class="quick-icon">%</div><div><b>Ahorro visible</b><span>Descuentos claros y precio anterior</span></div></div>
+      <div class="quick-trust-card"><div class="quick-icon">📍</div><div><b>Busca por zona</b><span>Prioriza ofertas cercanas</span></div></div>
+      <div class="quick-trust-card"><div class="quick-icon">👍</div><div><b>Vota ofertas</b><span>La comunidad destaca lo bueno</span></div></div>
+      <div class="quick-trust-card"><div class="quick-icon">⏱</div><div><b>Actualizado</b><span>Precios vivos desde la vitrina</span></div></div>
+    </section>
+
     <section class="local-strip" id="local" aria-label="Comercio local destacado">
       <div>
         <h2>Comercio local destacado</h2>
@@ -1955,6 +2300,7 @@
       </div>
 
       <div class="panel">
+        <div class="filters-title"><span>Filtra rápido tus ofertas</span><small>Busca por texto, comuna, categoría o fuente</small></div>
         <div class="filtros">
           <select id="filtro-categoria" aria-label="Filtrar por categoría">
             <option value="">Todas las categorías</option>
@@ -1962,6 +2308,10 @@
 
           <select id="filtro-tienda" aria-label="Filtrar por tienda">
             <option value="">Todas las tiendas</option>
+          </select>
+
+          <select id="filtro-comuna" aria-label="Filtrar por comuna o región">
+            <option value="">¿Dónde estás buscando?</option>
           </select>
 
           <select id="filtro-origen" aria-label="Filtrar por origen">
@@ -1991,9 +2341,8 @@
           <span class="premium-badge-title">Membresías destacadas</span>
         </div>
         <div class="carousel" id="premium-carousel" aria-label="Carrusel automático de membresías destacadas">
-          <div class="loading">
-            <div class="spinner"></div>
-            <p>Cargando destacados...</p>
+          <div class="skeleton-grid" aria-label="Cargando destacados">
+            <div class="skeleton-card"><div class="sk sk-img"></div><div class="sk-body"><div class="sk sk-line"></div><div class="sk sk-line big"></div><div class="sk sk-line"></div><div class="sk sk-button"></div></div></div>
           </div>
         </div>
         <div class="carousel-dots" id="premium-dots" aria-label="Indicadores del carrusel"></div>
@@ -2028,7 +2377,12 @@
           Déjanos el producto, presupuesto y comuna. Buscamos opciones útiles para que compres mejor.
         </p>
       </div>
-      <a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSeFz_lI6DzdSghYQniDqqOeCZnRNJJAQqCnIc83pdZ3RtLymw/viewform" target="_blank" rel="noopener">Pedir producto</a>
+      <button class="btn btn-primary" type="button" onclick="abrirModalPedido()">Pedir producto</button>
+      <form class="request-inline-form" onsubmit="enviarPedidoRapido(event)">
+        <input id="pedido-producto" type="text" placeholder="Producto: alimento, arena, cama..." aria-label="Producto buscado">
+        <input id="pedido-comuna" type="text" placeholder="Comuna" aria-label="Comuna">
+        <button class="btn btn-primary" type="submit">Enviar por WhatsApp</button>
+      </form>
     </section>
 
     <section class="business-box" id="marcas">
@@ -2077,6 +2431,34 @@
     <p><strong>El Ofertón del Gatito</strong> - Las mejores ofertas para tu mascota.</p>
     <p style="margin-top:.5rem;">Las compras, pagos, garantías, retiros y despachos se realizan directamente con cada tienda o plataforma.</p>
   </footer>
+
+  <div class="modal-backdrop" id="pedido-modal" role="dialog" aria-modal="true" aria-label="Pedir producto">
+    <div class="modal-box">
+      <div class="modal-head">
+        <div>
+          <h3>Pedir producto</h3>
+          <p>Cuéntanos qué necesitas y lo buscamos para la comunidad.</p>
+        </div>
+        <button class="modal-close" type="button" onclick="cerrarModalPedido()">×</button>
+      </div>
+      <form class="modal-form" onsubmit="enviarPedidoModal(event)">
+        <input id="modal-producto" type="text" placeholder="¿Qué producto buscas?" required>
+        <input id="modal-comuna" type="text" placeholder="Comuna o ciudad" required>
+        <select id="modal-mascota">
+          <option value="">Tipo de mascota</option>
+          <option>Perro</option>
+          <option>Gato</option>
+          <option>Ambos</option>
+          <option>Otra</option>
+        </select>
+        <textarea id="modal-detalle" placeholder="Presupuesto, marca, urgencia o detalles"></textarea>
+        <div class="modal-actions">
+          <button class="btn btn-primary" type="submit">Enviar por WhatsApp</button>
+          <button class="btn btn-secondary" type="button" onclick="cerrarModalPedido()">Cerrar</button>
+        </div>
+      </form>
+    </div>
+  </div>
 
   <div class="sticky-cta">
     <a class="btn btn-blue" href="https://t.me/ofertastech_cl" target="_blank" rel="noopener">Telegram</a>
@@ -2222,6 +2604,81 @@
       );
     }
 
+    function tiempoRelativo(fecha) {
+      if (!fecha || isNaN(fecha.getTime())) return "Actualizado recientemente";
+      const diff = Date.now() - fecha.getTime();
+      const mins = Math.max(0, Math.round(diff / 60000));
+      if (mins < 2) return "Actualizado recién";
+      if (mins < 60) return `Actualizado hace ${mins} min`;
+      const horas = Math.round(mins / 60);
+      if (horas < 24) return `Actualizado hace ${horas} h`;
+      const dias = Math.round(horas / 24);
+      return `Actualizado hace ${dias} día${dias === 1 ? "" : "s"}`;
+    }
+
+    function claveOferta(p) {
+      return "voto_" + btoa(unescape(encodeURIComponent(String(p.link_afiliado || p.link_oferta || p.titulo || "oferta")))).slice(0, 28);
+    }
+
+    function votosOferta(p) {
+      const base = Number(p.votos || p.likes || p.puntos || 0);
+      const extra = localStorage.getItem(claveOferta(p)) ? 1 : 0;
+      return base + extra;
+    }
+
+    function yaVote(p) {
+      return Boolean(localStorage.getItem(claveOferta(p)));
+    }
+
+    function votarOfertaDesdeBoton(btn, clave) {
+      const actual = localStorage.getItem(clave);
+      if (actual) {
+        localStorage.removeItem(clave);
+        btn.classList.remove("voted");
+      } else {
+        localStorage.setItem(clave, "1");
+        btn.classList.add("voted");
+      }
+      const count = document.querySelector(`[data-vote-count="${clave}"]`);
+      if (count) {
+        const base = Number(count.getAttribute("data-base") || 0);
+        count.textContent = base + (localStorage.getItem(clave) ? 1 : 0);
+      }
+    }
+
+    function abrirModalPedido() {
+      const modal = document.getElementById("pedido-modal");
+      if (modal) modal.classList.add("open");
+    }
+
+    function cerrarModalPedido() {
+      const modal = document.getElementById("pedido-modal");
+      if (modal) modal.classList.remove("open");
+    }
+
+    function enviarWhatsAppPedido(producto, comuna, mascota, detalle) {
+      const msg = `Hola, quiero pedir que busquen una oferta.%0AProducto: ${encodeURIComponent(producto || "")} %0AComuna: ${encodeURIComponent(comuna || "")} %0AMascota: ${encodeURIComponent(mascota || "")} %0ADetalle: ${encodeURIComponent(detalle || "")}`;
+      window.open(`https://wa.me/56973806218?text=${msg}`, "_blank", "noopener");
+    }
+
+    function enviarPedidoRapido(event) {
+      event.preventDefault();
+      const producto = document.getElementById("pedido-producto").value.trim();
+      const comuna = document.getElementById("pedido-comuna").value.trim();
+      enviarWhatsAppPedido(producto, comuna, "", "");
+    }
+
+    function enviarPedidoModal(event) {
+      event.preventDefault();
+      enviarWhatsAppPedido(
+        document.getElementById("modal-producto").value.trim(),
+        document.getElementById("modal-comuna").value.trim(),
+        document.getElementById("modal-mascota").value.trim(),
+        document.getElementById("modal-detalle").value.trim()
+      );
+      cerrarModalPedido();
+    }
+
     function registrarClic(tituloProducto) {
       // Placeholder de tracking: reemplaza esto por tu Analytics/Plausible/endpoint propio
       // cuando quieras medir qué ofertas generan más clics.
@@ -2236,17 +2693,9 @@
     function abrirOferta(event, link, tituloProducto, origen) {
       registrarClic(tituloProducto);
 
-      const esMovil = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent || "");
-
-      // En móvil, navegar en la misma pestaña aumenta la probabilidad de que
-      // Android/iOS entregue el enlace a la app de MercadoLibre si está instalada.
-      // Se conserva el mismo link afiliado; no usamos mercadolibre:// para no arriesgar tracking.
-      if (origen === "mercadolibre" && esMovil) {
-        event.preventDefault();
-        window.location.href = link;
-        return false;
-      }
-
+      // Importante: no forzamos window.location ni esquemas mercadolibre://.
+      // El enlace debe quedar como <a> normal para conservar el tracking afiliado
+      // y permitir que Android/iOS decidan si abren la app o el navegador.
       return true;
     }
 
@@ -2300,8 +2749,8 @@
         TODOS = Array.isArray(data.productos) ? data.productos : [];
 
         const fecha = new Date(data.actualizado);
-        document.getElementById("actualizado").textContent =
-          "Actualizado: " + fecha.toLocaleString("es-CL");
+        window.FECHA_ACTUALIZACION = fecha;
+        document.getElementById("actualizado").textContent = tiempoRelativo(fecha);
 
         cargarFiltros();
         renderStats();
@@ -2326,6 +2775,7 @@
     function cargarFiltros() {
       const categorias = [...new Set(TODOS.map(p => normalizar(p.categoria || "general")))].sort();
       const tiendas = [...new Set(TODOS.map(p => detectarTienda(p)))].sort();
+      const comunas = [...new Set(TODOS.map(p => repararTexto(p.comuna || p.ciudad || p.region || p.zona || p.ubicacion || "")).filter(Boolean))].sort();
 
       document.getElementById("filtro-categoria").innerHTML =
         "<option value=''>Todas las categorías</option>" +
@@ -2334,6 +2784,10 @@
       document.getElementById("filtro-tienda").innerHTML =
         "<option value=''>Todas las tiendas</option>" +
         tiendas.map(t => `<option value="${escaparHTML(normalizar(t))}">${escaparHTML(t)}</option>`).join("");
+
+      document.getElementById("filtro-comuna").innerHTML =
+        "<option value=''>¿Dónde estás buscando?</option>" +
+        comunas.map(c => `<option value="${escaparHTML(normalizar(c))}">${escaparHTML(c)}</option>`).join("");
     }
 
     function filtrar() {
@@ -2341,6 +2795,7 @@
       const cat = document.getElementById("filtro-categoria").value;
       const tienda = document.getElementById("filtro-tienda").value;
       const origen = document.getElementById("filtro-origen").value;
+      const comunaFiltro = document.getElementById("filtro-comuna").value;
       const orden = document.getElementById("filtro-orden").value;
 
       let lista = TODOS.filter(p => {
@@ -2349,17 +2804,26 @@
         const categoria = normalizar(p.categoria || "general");
         const tiendaP = normalizar(detectarTienda(p));
         const origenP = detectarOrigen(p);
+        const comunaP = normalizar(p.comuna || p.ciudad || p.region || p.zona || p.ubicacion || "");
 
         if (q && !titulo.includes(q) && !desc.includes(q)) return false;
         if (cat && categoria !== cat) return false;
         if (tienda && tiendaP !== tienda) return false;
         if (origen && origenP !== origen) return false;
+        if (comunaFiltro && !comunaP.includes(comunaFiltro)) return false;
         if (filtroDescuento && Number(p.descuento_pct || 0) <= 0) return false;
 
         return true;
       });
 
       lista.sort((a, b) => {
+        const comunaA = normalizar(a.comuna || a.ciudad || a.region || a.zona || a.ubicacion || "");
+        const comunaB = normalizar(b.comuna || b.ciudad || b.region || b.zona || b.ubicacion || "");
+        if (comunaFiltro) {
+          const matchA = comunaA.includes(comunaFiltro) ? 0 : 1;
+          const matchB = comunaB.includes(comunaFiltro) ? 0 : 1;
+          if (matchA !== matchB) return matchA - matchB;
+        }
         const prioridadA = detectarOrigen(a) === "local" ? 0 : 1;
         const prioridadB = detectarOrigen(b) === "local" ? 0 : 1;
         if (prioridadA !== prioridadB) return prioridadA - prioridadB;
@@ -2525,14 +2989,21 @@
         const titulo = escaparHTML(tituloRaw);
         const descripcion = escaparHTML(p.descripcion || "");
         const precio = p.precio_fmt ? escaparHTML(p.precio_fmt) : fmtCLP(p.precio_clp);
-        const precioOriginal = p.precio_orig_fmt ? escaparHTML(p.precio_orig_fmt) : "";
-        const descuento = Number(p.descuento_pct || 0);
+        const precioOriginal = p.precio_orig_fmt || p.precio_original_fmt ? escaparHTML(p.precio_orig_fmt || p.precio_original_fmt) : "";
+        const descuento = Number(p.descuento_pct || p.descuento || 0);
         const categoria = escaparHTML(categoriaBonita(p.categoria));
-        const tienda = escaparHTML(detectarTienda(p));
+        const tiendaRaw = detectarTienda(p);
+        const tienda = escaparHTML(tiendaRaw);
         const origen = detectarOrigen(p);
-        const origenTexto = origen === "mercadolibre" ? "MercadoLibre" : "Local";
+        const origenTexto = origen === "mercadolibre" ? "MercadoLibre" : `Local · ${tiendaRaw}`;
         const imagen = String(p.imagen || "").trim();
         const link = String(p.link_afiliado || p.link_oferta || "#").trim();
+        const fechaOferta = new Date(p.actualizado || p.fecha_actualizacion || p.fecha || window.FECHA_ACTUALIZACION || Date.now());
+        const fresh = tiempoRelativo(fechaOferta);
+        const voteKey = claveOferta(p);
+        const baseVotos = Number(p.votos || p.likes || p.puntos || 0);
+        const totalVotos = votosOferta(p);
+        const voted = yaVote(p);
 
         const imagenHTML = imagen
           ? `<img class="card-img" src="${escaparHTML(imagen)}" alt="${titulo}" loading="lazy" onerror="this.parentElement.innerHTML='<div class=&quot;img-placeholder&quot;>Imagen no disponible</div>'">`
@@ -2541,33 +3012,40 @@
         const esRelampago = descuento >= 40;
         const esCaliente = descuento >= 50;
         const ahorro = (precioOriginal && descuento > 0)
-          ? Number(p.precio_orig_clp || 0) - Number(p.precio_clp || 0)
+          ? Number(p.precio_orig_clp || p.precio_original_clp || 0) - Number(p.precio_clp || 0)
           : 0;
+
+        const target = origen === "mercadolibre" ? "_self" : "_blank";
 
         return `
           <article class="card" style="animation-delay:${Math.min(idx * 0.04, 0.6)}s">
             <div class="card-img-wrap">
               ${descuento > 0 ? `<span class="discount-badge${esCaliente ? " hot" : ""}">-${Math.round(descuento)}%</span>` : ""}
               ${esPremium ? `<span class="flash-badge">Miembro</span>` : (esRelampago ? `<span class="flash-badge">Oferta top</span>` : "")}
+              <button class="vote-btn${voted ? " voted" : ""}" type="button" onclick="votarOfertaDesdeBoton(this, '${voteKey}')" aria-label="Votar oferta">♥ <span data-vote-count="${voteKey}" data-base="${baseVotos}">${totalVotos}</span></button>
               <span class="category-badge">${categoria}</span>
-              ${origen === "local" ? `<span class="store-badge">${tienda}</span>` : ""}
-              <span class="origin-badge ${origen === "mercadolibre" ? "marketplace" : ""}">${origenTexto}</span>
+              <span class="origin-badge ${origen === "mercadolibre" ? "marketplace" : ""}">${origen === "mercadolibre" ? "MercadoLibre" : "Local"}</span>
               ${imagenHTML}
             </div>
 
             <div class="card-body">
+              <div class="card-meta-row">
+                <span class="source-pill ${origen === "mercadolibre" ? "ml" : "local"}">${origen === "mercadolibre" ? "🛒" : "📍"} ${escaparHTML(origenTexto)}</span>
+                <span class="freshness">● ${escaparHTML(fresh)}</span>
+              </div>
+
               <h3 class="card-title">${titulo}</h3>
               ${descripcion ? `<p class="card-desc">${descripcion}</p>` : ""}
 
               <div class="price-line">
-                ${precioOriginal && descuento > 0 ? `<div class="old-price">${precioOriginal}</div>` : ""}
+                ${precioOriginal && descuento > 0 ? `<div class="old-price">Antes ${precioOriginal}</div>` : ""}
                 <div class="price">${precio}</div>
                 ${ahorro > 0 ? `<span class="savings-tag">Ahorras ${fmtCLP(ahorro)}</span>` : ""}
               </div>
 
               <p class="affiliate-note">${origen === "mercadolibre" ? "Compra directa en MercadoLibre. El pago, despacho y garantía se gestionan en la plataforma." : "Contacta directo con la tienda para comprar, retirar o coordinar despacho."}</p>
 
-              <a class="btn-offer" href="${escaparHTML(link)}" target="_blank" rel="noopener sponsored" onclick='return abrirOferta(event, ${JSON.stringify(link)}, ${JSON.stringify(tituloRaw)}, ${JSON.stringify(origen)})'>
+              <a class="btn-offer" href="${escaparHTML(link)}" target="${target}" rel="noopener noreferrer sponsored" onclick='registrarClic(${JSON.stringify(tituloRaw)})'>
                 ${origen === "mercadolibre" ? "Ver en MercadoLibre" : "Contactar tienda"}
               </a>
             </div>
@@ -2579,6 +3057,7 @@
     document.getElementById("filtro-categoria").addEventListener("change", renderGrid);
     document.getElementById("filtro-tienda").addEventListener("change", renderGrid);
     document.getElementById("filtro-origen").addEventListener("change", renderGrid);
+    document.getElementById("filtro-comuna").addEventListener("change", renderGrid);
     document.getElementById("filtro-orden").addEventListener("change", renderGrid);
 
     document.getElementById("chip-descuento").addEventListener("click", function() {
@@ -2606,6 +3085,10 @@
         });
       });
     }
+
+    document.getElementById("pedido-modal")?.addEventListener("click", function(event) {
+      if (event.target === this) cerrarModalPedido();
+    });
 
     activarNavegacionInterna();
     cargarDatos();
