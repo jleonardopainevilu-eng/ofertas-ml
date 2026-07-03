@@ -697,7 +697,7 @@
 
     .local-strip {
       margin: 1.6rem 0 0;
-      display: none;
+      display: grid;
       grid-template-columns: minmax(0, 1fr) auto;
       align-items: center;
       gap: 1rem;
@@ -1505,12 +1505,36 @@
     .vacio {
       grid-column: 1 / -1;
       text-align: center;
-      padding: 4rem 1rem;
+      padding: 3rem 1.5rem;
       color: var(--muted);
       background: white;
-      border: 1px solid var(--border);
+      border: 1px dashed rgba(57, 169, 107, 0.35);
       border-radius: 26px;
       box-shadow: var(--shadow-soft);
+    }
+
+    .vacio-icon {
+      width: 60px;
+      height: 60px;
+      margin: 0 auto 1rem;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--orange-soft), var(--mint));
+      color: var(--blue);
+      font-size: 24px;
+    }
+
+    .vacio h3 {
+      color: var(--brown);
+      font-size: 17px;
+      margin-bottom: 0.35rem;
+    }
+
+    .vacio p {
+      max-width: 380px;
+      margin: 0 auto;
+      font-size: 14px;
     }
 
     .spinner {
@@ -2176,8 +2200,6 @@
       <div class="hero-left">
         <img src="/assets/gatito-hero.png" alt="Gatito recostado sobre el nombre El Ofertón del Gatito" class="hero-cat">
 
-        <div class="hero-kicker">Vitrina local de mascotas</div>
-
         <h1 class="mega-title">
           El <span class="orange">Ofertón</span>
           <span class="dark">del Gatito<span class="paw-dot">●</span></span>
@@ -2251,25 +2273,6 @@
         <p>Tiendas, peluquerías, veterinarias y emprendedores pueden mostrar sus productos a personas que ya están buscando ofertas para sus mascotas.</p>
       </div>
       <a class="local-pill" href="#marcas">Quiero destacar mi tienda</a>
-    </section>
-
-    <section class="trust-row" aria-label="Beneficios">
-      <div class="trust-item">
-        <strong>Solo mascotas</strong>
-        <span>Alimento, snacks, juguetes, camas, higiene, accesorios y servicios para mascotas.</span>
-      </div>
-      <div class="trust-item">
-        <strong>Local destacado</strong>
-        <span>El comercio local será el agregado estrella: más cercano, más humano y más visible.</span>
-      </div>
-      <div class="trust-item">
-        <strong>MercadoLibre como base</strong>
-        <span>Usamos ofertas de MercadoLibre para comparar precios y mantener variedad disponible.</span>
-      </div>
-      <div class="trust-item">
-        <strong>Datos para la comunidad</strong>
-        <span>La idea es ayudar a comprar mejor y, al mismo tiempo, mover la economía local.</span>
-      </div>
     </section>
 
     <section class="steps" id="funciona" aria-label="Cómo funciona">
@@ -2888,11 +2891,11 @@
 
       localGrid.innerHTML = locales.length
         ? locales.map((p, idx) => renderCard(p, idx, false)).join("")
-        : `<div class="vacio"><h3>Pronto verás tiendas locales acá.</h3><p>¿Tienes un negocio para mascotas? Súmate y muestra tus productos a nuevos clientes.</p><a class="btn btn-primary empty-cta" href="#marcas">Sumar mi tienda</a></div>`;
+        : `<div class="vacio"><div class="vacio-icon">🐾</div><h3>Pronto verás tiendas locales acá.</h3><p>¿Tienes un negocio para mascotas? Súmate y muestra tus productos a nuevos clientes.</p><a class="btn btn-primary empty-cta" href="#marcas">Sumar mi tienda</a></div>`;
 
       mlGrid.innerHTML = mercadoLibre.length
         ? mercadoLibre.map((p, idx) => renderCard(p, idx, false)).join("")
-        : `<div class="vacio"><h3>No hay ofertas de MercadoLibre cargadas.</h3><p>Pronto agregaremos ofertas online para comparar precios.</p></div>`;
+        : `<div class="vacio"><div class="vacio-icon">🛒</div><h3>No hay ofertas de MercadoLibre cargadas.</h3><p>Pronto agregaremos ofertas online para comparar precios.</p></div>`;
 
       iniciarCarruselMiembros();
     }
