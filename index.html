@@ -143,8 +143,10 @@
       padding: 0.65rem max(1rem, calc((100vw - 1440px) / 2 + 2rem));
       border-bottom: 1px solid rgba(239, 216, 189, 0.85);
       background:
-        radial-gradient(circle at 10% 50%, rgba(255, 215, 106, 0.22), transparent 24%),
-        linear-gradient(90deg, rgba(255,250,241,0.96), rgba(230,246,238,0.82), rgba(255,250,241,0.96));
+        radial-gradient(circle at 10% 50%, rgba(255, 215, 106, 0.28), transparent 26%),
+        radial-gradient(circle at 55% 0%, rgba(57, 169, 107, 0.14), transparent 40%),
+        radial-gradient(circle at 90% 100%, rgba(244, 124, 53, 0.12), transparent 35%),
+        linear-gradient(90deg, rgba(255,240,216,0.9), rgba(230,246,238,0.72), rgba(255,240,216,0.9));
       overflow: hidden;
       position: relative;
     }
@@ -193,6 +195,16 @@
       box-shadow: 0 6px 16px rgba(75,45,28,0.06);
     }
 
+    .top-promo-pill:nth-child(3n+2) {
+      background: linear-gradient(135deg, rgba(255, 224, 163, 0.9), rgba(255, 242, 205, 0.9));
+      border-color: rgba(240, 125, 19, 0.22);
+    }
+
+    .top-promo-pill:nth-child(3n+3) {
+      background: linear-gradient(135deg, rgba(230, 246, 238, 0.95), rgba(255, 255, 255, 0.9));
+      border-color: rgba(57, 169, 107, 0.25);
+    }
+
     .top-promo-pill strong { color: var(--blue); }
 
     @keyframes top-strip-move {
@@ -208,7 +220,10 @@
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(255, 250, 241, 0.96);
+      background:
+        radial-gradient(circle at 15% 0%, rgba(255, 177, 93, 0.16), transparent 55%),
+        radial-gradient(circle at 85% 100%, rgba(57, 169, 107, 0.14), transparent 55%),
+        rgba(255, 250, 241, 0.97);
       backdrop-filter: blur(16px);
       border-bottom: 1px solid rgba(241, 216, 189, 0.9);
     }
@@ -493,6 +508,8 @@
     }
 
     .tagline-ribbon {
+      position: relative;
+      z-index: 6;
       display: inline-flex;
       align-items: center;
       justify-content: center;
