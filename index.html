@@ -2862,7 +2862,7 @@
       const locales = lista.filter(p => detectarOrigen(p) === "local");
       const mercadoLibre = lista.filter(p => detectarOrigen(p) === "mercadolibre");
 
-      const premiumFinal = premium.length ? premium : locales.slice(0, 6);
+      const premiumFinal = premium;
       const carousel = document.getElementById("premium-carousel");
       const localGrid = document.getElementById("local-grid");
       const mlGrid = document.getElementById("mercadolibre-grid");
