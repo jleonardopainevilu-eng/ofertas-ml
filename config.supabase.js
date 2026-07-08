@@ -4,6 +4,6 @@
 // La anon key NO es un secreto privado, pero RLS debe estar bien configurado.
 
 window.GATITO_SUPABASE = {
-  url: "",
-  anonKey: ""
+  url: "https://obvpswtczratnsrtrwel.supabase.co",
+  anonKey: "TU_PUBLISHABLE_KEY"
 };
