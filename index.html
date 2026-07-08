@@ -61,7 +61,8 @@
     #marcas,
     #pedidos,
     #miembros,
-    #mercadolibre {
+    #mercadolibre,
+    #apoyo {
       scroll-margin-top: 110px;
     }
 
@@ -2379,6 +2380,19 @@
         <div class="grid" id="local-grid"></div>
       </div>
 
+      <div class="source-section" id="apoyo">
+        <div class="source-head">
+          <div>
+            <h2>Servicios de apoyo</h2>
+            <p>Paseos, cuidados, visitas, traslado y ayuda local para mascotas. Espacio preparado para una próxima etapa con Supabase.</p>
+          </div>
+          <a class="section-link" href="#marcas">Ofrecer servicio</a>
+        </div>
+        <div class="grid" id="apoyo-grid">
+          <div class="vacio"><div class="vacio-icon">🤝</div><h3>Pronto sumaremos servicios de apoyo.</h3><p>La idea es conectar tutores con paseadores, cuidadores y servicios responsables de la zona.</p><a class="btn btn-primary empty-cta" href="#marcas">Quiero ofrecer un servicio</a></div>
+        </div>
+      </div>
+
       <div class="source-section marketplace" id="mercadolibre">
         <div class="source-head">
           <div>
@@ -2409,7 +2423,7 @@
       <div>
         <h2>¿Tienes tienda, peluquería o servicio para mascotas?</h2>
         <p>
-          Súmate a la vitrina de El Ofertón del Gatito y muestra tus productos o servicios a personas que buscan ofertas para sus mascotas.
+          Súmate a la red local de El Ofertón del Gatito. Puedes aparecer como tienda, servicio de apoyo, paseador, cuidador o emprendimiento para mascotas.
         </p>
         <p style="margin-top:.4rem; font-size:12px;">
           También puedes escribirnos a <a href="mailto:jleonardo.painevilu@gmail.com" style="text-decoration:underline;">jleonardo.painevilu@gmail.com</a>
@@ -2486,9 +2500,24 @@
     <a class="btn btn-shop" href="#marcas">Sumar tienda</a>
   </div>
 
+  <script src="/config.supabase.js"></script>
+
   <script>
     let TODOS = [];
     let filtroDescuento = false;
+
+    const SUPABASE_CONFIG = window.GATITO_SUPABASE || {};
+    const SUPABASE_URL = String(SUPABASE_CONFIG.url || "").replace(/\/$/, "");
+    const SUPABASE_ANON_KEY = String(SUPABASE_CONFIG.anonKey || "");
+    const SUPABASE_ACTIVO = Boolean(SUPABASE_URL && SUPABASE_ANON_KEY);
+
+    function supabaseHeaders() {
+      return {
+        "apikey": SUPABASE_ANON_KEY,
+        "Authorization": `Bearer ${SUPABASE_ANON_KEY}`,
+        "Content-Type": "application/json"
+      };
+    }
 
     const fmtCLP = (n) => "$" + Math.round(Number(n || 0)).toLocaleString("es-CL");
 
@@ -2681,21 +2710,22 @@
       window.open(`https://wa.me/56973806218?text=${msg}`, "_blank", "noopener");
     }
 
-    function enviarPedidoRapido(event) {
+    async function enviarPedidoRapido(event) {
       event.preventDefault();
       const producto = document.getElementById("pedido-producto").value.trim();
       const comuna = document.getElementById("pedido-comuna").value.trim();
+      await guardarLeadSupabase("pedido_producto", { producto, comuna, mensaje: "Pedido rápido desde la web" });
       enviarWhatsAppPedido(producto, comuna, "", "");
     }
 
-    function enviarPedidoModal(event) {
+    async function enviarPedidoModal(event) {
       event.preventDefault();
-      enviarWhatsAppPedido(
-        document.getElementById("modal-producto").value.trim(),
-        document.getElementById("modal-comuna").value.trim(),
-        document.getElementById("modal-mascota").value.trim(),
-        document.getElementById("modal-detalle").value.trim()
-      );
+      const producto = document.getElementById("modal-producto").value.trim();
+      const comuna = document.getElementById("modal-comuna").value.trim();
+      const mascota = document.getElementById("modal-mascota").value.trim();
+      const detalle = document.getElementById("modal-detalle").value.trim();
+      await guardarLeadSupabase("pedido_producto", { producto, comuna, mascota, mensaje: detalle });
+      enviarWhatsAppPedido(producto, comuna, mascota, detalle);
       cerrarModalPedido();
     }
 
@@ -2760,27 +2790,117 @@
       script.textContent = JSON.stringify(jsonLD);
     }
 
-    async function cargarDatos() {
+    async function cargarOfertasMercadoLibre() {
       try {
         const resp = await fetch("/data/ofertas.json", { cache: "no-store" });
         if (!resp.ok) throw new Error("No se pudo cargar /data/ofertas.json");
-
         const data = await resp.json();
-        TODOS = Array.isArray(data.productos) ? data.productos : [];
-
-        const fecha = new Date(data.actualizado);
-        window.FECHA_ACTUALIZACION = fecha;
-        document.getElementById("actualizado").textContent = tiempoRelativo(fecha);
-
-        cargarFiltros();
-        renderStats();
-        renderGrid();
-        actualizarJSONLD();
+        const productos = Array.isArray(data.productos) ? data.productos : [];
+        const normalizados = productos.map(p => ({
+          ...p,
+          origen: p.origen || "mercadolibre",
+          tienda: p.tienda || "MercadoLibre",
+          fuente_datos: "sheets",
+          actualizado: p.actualizado || data.actualizado
+        }));
+        return { productos: normalizados, actualizado: data.actualizado || new Date().toISOString(), ok: true };
       } catch (error) {
-        console.error(error);
+        console.warn("[MercadoLibre/JSON]", error);
+        return { productos: [], actualizado: null, ok: false };
+      }
+    }
 
+    function whatsappLink(numero, mensaje) {
+      const limpio = String(numero || "").replace(/[^0-9]/g, "");
+      if (!limpio) return "#marcas";
+      return `https://wa.me/${limpio}?text=${encodeURIComponent(mensaje || "Hola, vengo desde El Ofertón del Gatito y quiero consultar por este producto.")}`;
+    }
+
+    function normalizarProductoSupabase(p) {
+      const tienda = p.tienda || p.store_name || p.store?.name || p.stores?.name || "Comercio local";
+      const whatsapp = p.whatsapp || p.store_whatsapp || p.store?.whatsapp || p.stores?.whatsapp || "";
+      const precio = Number(p.precio_clp || p.price_clp || p.price || 0);
+      const precioOriginal = Number(p.precio_original_clp || p.compare_at_price_clp || p.old_price_clp || 0);
+      const descuento = precioOriginal > precio && precio > 0 ? Math.round((1 - precio / precioOriginal) * 1000) / 10 : Number(p.descuento_pct || 0);
+      const titulo = p.titulo || p.title || "Producto local";
+      return {
+        id: p.id || `local_${titulo}_${tienda}`,
+        titulo,
+        descripcion: p.descripcion || p.description || "",
+        precio_clp: precio,
+        precio_original_clp: precioOriginal,
+        precio_fmt: p.precio_fmt || fmtCLP(precio),
+        precio_orig_fmt: p.precio_orig_fmt || (precioOriginal ? fmtCLP(precioOriginal) : null),
+        descuento_pct: descuento,
+        categoria: p.categoria || p.category || "general",
+        imagen: p.imagen || p.image_url || p.photo_url || "",
+        link_oferta: p.link_oferta || p.url || whatsappLink(whatsapp, `Hola, vi ${titulo} en El Ofertón del Gatito y quiero consultar.`),
+        link_afiliado: p.link_afiliado || p.link_oferta || p.url || whatsappLink(whatsapp, `Hola, vi ${titulo} en El Ofertón del Gatito y quiero consultar.`),
+        tienda,
+        whatsapp,
+        comuna: p.comuna || p.city || p.store_city || p.store?.comuna || p.stores?.comuna || "",
+        region: p.region || p.store_region || p.store?.region || p.stores?.region || "",
+        origen: "local",
+        destacado: p.destacado || p.featured || p.is_featured ? "si" : "no",
+        premium: p.premium || p.is_premium || false,
+        membresia: p.membresia || p.membership_plan || p.plan || "",
+        plan: p.plan || p.membership_plan || p.store?.plan || p.stores?.plan || "",
+        votos: p.votos || p.votes_count || 0,
+        actualizado: p.actualizado || p.updated_at || p.created_at || new Date().toISOString(),
+        fuente_datos: "supabase"
+      };
+    }
+
+    async function cargarComercioLocalSupabase() {
+      if (!SUPABASE_ACTIVO) return [];
+      try {
+        const endpoint = `${SUPABASE_URL}/rest/v1/public_products_local?select=*&order=destacado.desc,updated_at.desc`;
+        const resp = await fetch(endpoint, { headers: supabaseHeaders(), cache: "no-store" });
+        if (!resp.ok) throw new Error(`Supabase respondió ${resp.status}`);
+        const data = await resp.json();
+        return Array.isArray(data) ? data.map(normalizarProductoSupabase) : [];
+      } catch (error) {
+        console.warn("[Supabase/local]", error);
+        return [];
+      }
+    }
+
+    async function guardarLeadSupabase(tipo, datos) {
+      if (!SUPABASE_ACTIVO) return false;
+      try {
+        const resp = await fetch(`${SUPABASE_URL}/rest/v1/leads`, {
+          method: "POST",
+          headers: { ...supabaseHeaders(), "Prefer": "return=minimal" },
+          body: JSON.stringify({
+            tipo,
+            nombre: datos.nombre || null,
+            negocio: datos.negocio || null,
+            whatsapp: datos.whatsapp || null,
+            comuna: datos.comuna || null,
+            mensaje: datos.mensaje || null,
+            producto_buscado: datos.producto || null,
+            mascota: datos.mascota || null,
+            origen: "web",
+            estado: "nuevo"
+          })
+        });
+        return resp.ok;
+      } catch (error) {
+        console.warn("[Supabase/leads]", error);
+        return false;
+      }
+    }
+
+    async function cargarDatos() {
+      const [ml, localesSupabase] = await Promise.all([
+        cargarOfertasMercadoLibre(),
+        cargarComercioLocalSupabase()
+      ]);
+
+      TODOS = [...localesSupabase, ...ml.productos];
+
+      if (!TODOS.length && !ml.ok && !SUPABASE_ACTIVO) {
         document.getElementById("actualizado").textContent = "No se pudo cargar la actualización.";
-
         document.getElementById("premium-carousel").innerHTML = "";
         document.getElementById("local-grid").innerHTML = `
           <div class="vacio">
@@ -2789,7 +2909,18 @@
           </div>
         `;
         document.getElementById("mercadolibre-grid").innerHTML = "";
+        return;
       }
+
+      const fechas = TODOS.map(p => new Date(p.actualizado || p.fecha_actualizacion || p.fecha || ml.actualizado || Date.now()).getTime()).filter(Boolean);
+      const fecha = new Date(fechas.length ? Math.max(...fechas) : Date.now());
+      window.FECHA_ACTUALIZACION = fecha;
+      document.getElementById("actualizado").textContent = tiempoRelativo(fecha);
+
+      cargarFiltros();
+      renderStats();
+      renderGrid();
+      actualizarJSONLD();
     }
 
     function cargarFiltros() {
