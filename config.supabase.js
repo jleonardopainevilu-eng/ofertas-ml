@@ -1,9 +1,2 @@
-// Configuración pública de Supabase para El Ofertón del Gatito
-// Fase 1: dejar vacío para seguir usando solo Google Sheets + data/ofertas.json.
-// Cuando conectemos Supabase, pega aquí la URL del proyecto y la anon public key.
-// La anon key NO es un secreto privado, pero RLS debe estar bien configurado.
-
-window.GATITO_SUPABASE = {
-  url: "",
-  anonKey: ""
-};
+window.GATITO_SUPABASE={url:"",anonKey:""};
+document.addEventListener("DOMContentLoaded",()=>{let d=document,h=d.querySelector(".right-title");if(h)h.textContent="Publica tu tienda y llega a mas clientes.";let p=d.querySelector(".right-copy");if(p)p.textContent="Planes desde $9.990 para tiendas de mascotas. Publica ofertas, WhatsApp y destaca tu negocio.";if(d.querySelector("#planes"))return;let s=d.createElement("section");s.id="planes";s.className="business-box";s.innerHTML="<div><h2>Planes para tiendas</h2><p>Fundadores $9.990/mes - Vitrina Local $19.990 + IVA - Impulso Comercial $39.990 + IVA.</p></div><a class=\"btn btn-blue\" href=\"#marcas\">Consultar membresia</a>";let r=d.querySelector("#pedidos")||d.querySelector(".faq");if(r)r.before(s);});
