@@ -1,19 +1,19 @@
 {
-  "actualizado": "2026-08-18T17:32:16.392249",
+  "actualizado": "2026-08-18T23:27:42.675154",
   "total": 2,
   "productos": [
     {
-      "id": "prod_5e792966e02ada",
+      "id": "prod_64a3907ce22f1e",
       "link_afiliado": "https://meli.la/274jDMZ",
       "link_oferta": "https://meli.la/274jDMZ",
-      "titulo": "Alimento Seco Bavaro Work 18kg Perro Adulto Alta EnergÃ­a",
+      "titulo": "Alimento Seco Bavaro Work 18kg Perro Adulto Alta Energía",
       "precio_clp": 39306.0,
       "precio_original_clp": 44900.0,
       "precio_fmt": "$39.306",
       "precio_orig_fmt": "$44.900",
       "descuento_pct": 12.5,
       "categoria": "alimento",
-      "descripcion": "Alimento Seco Bavaro Work 18kg Perro Adulto Alta EnergÃ­a",
+      "descripcion": "Alimento Seco Bavaro Work 18kg Perro Adulto Alta Energía",
       "imagen": "https://http2.mlstatic.com/D_NQ_NP_2X_951311-MLA99685912214_122025-F.webp",
       "tienda": "MercadoLibre",
       "origen": "mercadolibre",
@@ -25,7 +25,7 @@
       "destacado": "no",
       "stock": "",
       "votos": 0,
-      "actualizado": "2026-08-18T17:32:16.390643",
+      "actualizado": "2026-08-18T23:27:42.673250",
       "publicar_telegram": true,
       "publicar_web": true,
       "activo": true
@@ -53,7 +53,7 @@
       "destacado": "no",
       "stock": "",
       "votos": 0,
-      "actualizado": "2026-08-18T17:32:16.390643",
+      "actualizado": "2026-08-18T23:27:42.673250",
       "publicar_telegram": true,
       "publicar_web": true,
       "activo": true
