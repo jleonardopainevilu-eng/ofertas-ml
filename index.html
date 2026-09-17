@@ -142,6 +142,13 @@
       </div>
     </section>
 
+    <nav class="quick-nav" aria-label="Accesos rápidos">
+      <a class="quick-nav-btn" href="#ofertas">🐾 Ofertas</a>
+      <a class="quick-nav-btn" href="#locales">📍 Comercio local</a>
+      <a class="quick-nav-btn" href="#pedidos">🔍 Pedir producto</a>
+      <a class="quick-nav-btn" href="#marcas">🏪 Sumar tienda</a>
+    </nav>
+
     <section class="quick-trust" aria-label="Confianza y acceso rápido">
       <div class="quick-trust-card"><div class="quick-icon">%</div><div><b>Ahorro visible</b><span>Descuentos claros y precio anterior</span></div></div>
       <div class="quick-trust-card"><div class="quick-icon">📍</div><div><b>Busca por zona</b><span>Prioriza ofertas cercanas</span></div></div>
@@ -199,6 +206,8 @@
             <option value="">¿Dónde estás buscando?</option>
           </select>
 
+          <button class="chip" type="button" id="btn-cerca-mi" onclick="buscarCercaDeMi()">📍 Cerca de mí</button>
+
           <select id="filtro-origen" aria-label="Filtrar por origen">
             <option value="">Todas las fuentes</option>
             <option value="local">Comercio local</option>
@@ -240,6 +249,7 @@
             <h2>Comercio local</h2>
             <p>Tiendas, veterinarias, peluquerías y emprendedores cercanos con productos y servicios para mascotas.</p>
           </div>
+          <a class="section-link" href="#ofertas" onclick="verTodasOrigen('local')">Ver todas</a>
         </div>
         <div class="grid" id="local-grid"></div>
       </div>
@@ -263,6 +273,7 @@
             <h2>MercadoLibre</h2>
             <p>Ofertas online para comparar precios y encontrar oportunidades disponibles.</p>
           </div>
+          <a class="section-link" href="#ofertas" onclick="verTodasOrigen('mercadolibre')">Ver todas</a>
         </div>
         <div class="grid" id="mercadolibre-grid"></div>
       </div>
